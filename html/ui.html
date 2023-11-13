@@ -101,17 +101,11 @@
 			<div class="">
 				<h2>탭</h2>
 				<div class="ui-tab">
-					<!-- <div class="tab-menu">
-						<button type="button" class="isActive" onclick="tabMenu('tab-content01')" aria-controls="">tab-menu01</button>
-						<button type="button" onclick="tabMenu('tab-content02')">tab-menu02</button>
-						<button type="button" onclick="tabMenu('tab-content03')">tab-menu03</button>
-						<button type="button" onclick="tabMenu('tab-content04')">tab-menu04</button>
-					</div> -->
 					<div class="tab-menu">
-						<button type="button" onclick="tabMenu()" aria-controls="tab-content01">tab-menu01</button>
-						<button type="button" onclick="tabMenu()" aria-controls="tab-content02">tab-menu02</button>
-						<button type="button" onclick="tabMenu()" aria-controls="tab-content03">tab-menu03</button>
-						<button type="button" onclick="tabMenu()" aria-controls="tab-content04">tab-menu04</button>
+						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content01">tab-menu01</button>
+						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content02">tab-menu02</button>
+						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content03">tab-menu03</button>
+						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content04">tab-menu04</button>
 					</div>
 					<div class="tab-content">
 						<div id="tab-content01">tab-content01</div>
@@ -179,7 +173,8 @@
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
 			// tabMenu 함수 호출
-			tabMenu(2);
+			// tabMenu(2);
+			tabString('tab-content01');
 		});
 	</script>
 </body>
