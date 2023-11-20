@@ -63,39 +63,6 @@ var ui = {
 
 
 
-
-// 탭 메뉴
-
-
-// function test() {
-//     console.log(this)
-// }
-// test(this);
-
-// const myObject = {
-//     myMethod : function()  {
-//         console.log(this); // 자기 자신을 가킨다. 
-//     },
-//     myMethod2 : () => {
-//         console.log(this); // 전역 자신을 가킨다. 
-//     }
-// };
-
-// myObject.myMethod();
-// myObject.myMethod2();
-
-// function regularFunction() {
-//     console.log(this); // 호출된 컨텍스트에 따라 결정됨
-// }
-// const arrowFunction = () => {
-//     console.log(this); // arrowFunction이 정의된 컨텍스트를 유지
-// };
-// regularFunction(); // 호출된 컨텍스트에 따라 달라짐
-// arrowFunction(); // arrowFunction이 정의된 컨텍스트를 유지
-
-
-
-
 // 탭에 대한 함수를 정의 하고 그 조건에 맞게 호출한다.
 function tabEvent(value){
     // console.log(typeof value)
@@ -130,7 +97,9 @@ function tabNumber(num){
 // 아니면 
 
 function tabString(str){
-    const _this = (typeof str === 'object') ? str : event.currentTarget;
+    /// console.log(typeof str , "ddd") // typeof 로 어떤 형태로 넘어오는지 확인
+
+    const _this = (typeof str === 'object') ? str : event.currentTarget; 
     const tabButtons = document.querySelectorAll('.tab-menu > button');
     const _getStr = (typeof str === 'object') ? str.getAttribute('aria-controls') : str
     const _id = (str !== undefined && typeof str === 'string') ? str : _this.getAttribute('aria-controls')
@@ -155,66 +124,6 @@ function tabString(str){
 
 
 
-function tabMenu(num) { // num 으로 크ㄹ릭한 파라미터 값이 들ㅓ온다.
-    // console.log(this , "1");
-    const _this = event.currentTarget;
-    const tabButtons = document.querySelectorAll('.tab-menu button')
-    //const _index = (num ? num : Array.from(tabButtons).indexOf(_this));
-    
-    const type = typeof(num)
-    console.log(type , "type")
-    const ex = type ? Number : String
-    
-    // 클릭한 요소에 index 구하기
-    // num 값이 들어오면 num을 받고 넘이 없을 경우 클릭한 인덱스 값이 넘어온다.
-    const _index = (num !== undefined) ? num : Array.from(tabButtons).indexOf(_this); 
-    
-    tabButtons.forEach((item, index) => {
-        //console.log(this, "2");
-        const controls = document.getElementById(item.getAttribute('aria-controls'))
-        if(index === _index) { 
-            item.classList.add('isActive')
-            // tabContents[index].classList.add('on');
-            controls.classList.add('isActive');
-        } else {
-            item.classList.remove('isActive');
-            controls.classList.remove('isActive');
-        }
-    });
-
-    
-
-    //const tabContent = document.getElementById(id) // 클릭 했을 때 컨텐츠 아이디 값을 가져온다.
-    //const tabContents = document.querySelectorAll('.tab-content div');
-
-    // console.log(_index, "몇번째 요소")
-    // console.log(id, "id") // 컨텐츠 아이디 값 
-    // console.log(tabContent, "tabContent") // 컨텐츠 아이디 값 
-
-    // 메뉴 활성화 
-    // tabButtons.forEach((item, index) => {
-    //     if(index === _index) { 
-    //         item.classList.add('isActive')
-    //     } else {
-    //         item.classList.remove('isActive')
-    //     }
-    // });
-
-    // // 컨텐츠를 초기화 한다.
-    // tabContents.forEach((content) => {
-    //     content.classList.remove('on');
-    // });
-    // tabContent.classList.add('on');
-    // 컨텐츠를 초기화 한다.
-    // tabContents.forEach((content) => {
-    //     content.classList.remove('on');
-    // });
-    // tabContent.classList.add('on');
-}
-
-
-
-
 
 // 모달 레이어 팝업
 function openPopup(id){
@@ -234,3 +143,81 @@ function closePopup() {
 }
 
 
+
+
+
+// 아코디언 메뉴
+const accordion = document.querySelector('.accordion')
+
+accordion.addEventListener('click', function(e){
+
+    const currentTarget = e.target;
+    const prevActive = this.querySelector('.isActive');
+
+
+    if( e.target.closest('.content') ) return;
+    
+
+    if (prevActive) {
+        prevActive.classList.remove('isActive');
+        prevActive.querySelector('.content').style.height = '';
+        prevActive.querySelector('.content').addEventListener('transitionend', ()=>{
+            // if (!content.classList.contains('isActive') && content.style.height == '') {
+            if(!prevActive.classList.contains('isActive') && prevActive.querySelector('.content').style.height == ''){
+                console.log(1)
+                prevActive.querySelector('.content').style.display = 'none';
+                prevActive.querySelector('.headBtn').setAttribute('aria-expanded', false)
+                prevActive.querySelector('.content').setAttribute('aria-hidden', true)
+                // content.style.display = 'none';
+            }
+        })
+    }
+
+    if(currentTarget.classList.contains('headBtn')) {
+        currentTarget.parentNode.classList.add('isActive')
+        currentTarget.parentNode.querySelector('.headBtn').setAttribute('aria-expanded', true)
+        currentTarget.parentNode.querySelector('.content').setAttribute('aria-hidden', false)
+        
+        currentTarget.parentNode.querySelector('.content').style.display = 'block';
+        currentTarget.parentNode.querySelector('.content').style.height = currentTarget.parentNode.querySelector('.content').scrollHeight + 'rem'
+
+    }
+
+    
+});
+
+
+
+// const accordion = document.querySelectorAll('.accordion .headBtn')
+
+// accordion.forEach((currentElement, idx)=>{
+//     currentElement.addEventListener('click', function(){
+//         const controls = this.getAttribute('aria-controls');
+//         accordion.forEach((item, index)=>{
+//             const id = document.getElementById(item.getAttribute('aria-controls')).id
+//             const content = document.getElementById(id)
+
+//             if(controls === id) {
+//                 item.classList.add('isActive')
+//                 item.setAttribute('aria-expanded', true)    
+//                 content.setAttribute('aria-hidden', false)
+//                 content.classList.add('isActive')
+//                 content.style.display = 'block';
+//                 content.style.height = content.scrollHeight + 'rem'
+//             } else {
+//                 item.classList.remove('isActive')
+//                 content.classList.remove('isActive')
+//                 content.style.height = '';
+//                 content.addEventListener("transitionend", () => {
+//                     if (!content.classList.contains('isActive') && content.style.height == '') {
+//                         item.setAttribute('aria-expanded', false)
+//                         content.setAttribute('aria-hidden', true)
+//                         content.style.display = 'none';
+//                     }
+//                 });
+               
+//             }
+//         });
+        
+//     });
+// });

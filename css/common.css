@@ -10,7 +10,7 @@ html{font-size: 1px;}
 
 img{max-width: 100%;}
 a:focus,button:focus,textarea:focus,
-[tabindex]:not([tabindex='-1']):focus{outline: 3px solid rgba(0, 114, 255,0.2);border-radius: 2rem;}
+[tabindex]:not([tabindex='-1']):focus{outline: 3px solid rgba(0, 114, 255,0.5);border-radius: 2rem;}
 button{cursor:pointer;background: none;border: none;}
 button[disabled]{/* cursor:default */}
 
@@ -119,10 +119,10 @@ a.btn.disabled{ pointer-events: none; }
 /* 탭 메뉴 */
 .ui-tab {}
 .ui-tab .tab-menu {display: flex; justify-content: space-between; align-items: center;}
-.ui-tab .tab-menu button {display: inline-flex; justify-content: center; align-items: center; width: 100%; height: 30rem; background-color: #eee;}
+.ui-tab .tab-menu button {display: inline-flex; justify-content: center; align-items: center; width: 100%; padding: 15rem; background-color: #eee;}
 .ui-tab .tab-menu button.isActive {background-color: #409eff; color: #fff;}
 .ui-tab .tab-content {}
-.ui-tab .tab-content > div {display: none; padding: 10rem; border: 1px solid #eee}
+.ui-tab .tab-content > div {display: none; padding: 20rem; border: 1px solid #eee}
 .ui-tab .tab-content > div.isActive {display: block;}
 
 
@@ -178,4 +178,23 @@ a.btn.disabled{ pointer-events: none; }
 .ui-confrim>.pbd>.pbt .btn:disabled{border-color:#cccedb; background-color:#cccedb;}
 .ui-confrim>.pbd>.pbt .btn-cancel{color: #242424;border-radius: 4rem 0 0 4rem;}
 .ui-confrim>.pbd>.btn-close{width: 24rem;height: 24rem;position:absolute;right: 10rem;top: 10rem;text-indent:-9999rem;overflow:hidden;background: url(../img/common/btn_popup_close@2x.png) no-repeat center;background-size: 20rem auto;/* display: none; */}
+
+
+
+/* 아코디언 */
+/* .accordion {}
+.accordion li { border-bottom: 1px solid #eff3f6; }
+.accordion li .headBtn {width: 100%; padding: 15rem; font-weight: 700; background-color: #fff; text-align: left;}
+.accordion li .headBtn.isActive {background-color: #409eff; color: #fff}
+.accordion li .content {opacity: 0; height: 0; overflow: hidden; display:none; transition: opacity 0.3s, height 0.3s;}
+.accordion li .content .inner { padding: 15rem; }
+.accordion li .content.isActive { opacity: 1; height:auto; display:block;}
+.accordion li .content.isActive .inner {} */
+.accordion {}
+.accordion li { border-bottom: 1px solid #eff3f6; }
+.accordion li .headBtn {width: 100%; padding: 15rem; font-weight: 700; background-color: #fff; text-align: left;}
+.accordion li.isActive .headBtn {background-color: #409eff; color: #fff}
+.accordion li .content {opacity: 0; height: 0; overflow: hidden; display:none; transition: opacity 0.3s, height 0.3s;}
+.accordion li .content .inner { padding: 15rem; }
+.accordion li.isActive .content{ opacity: 1; }
 
