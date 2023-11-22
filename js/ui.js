@@ -186,13 +186,16 @@ function accaordionFn(){
         prevActive.addEventListener('transitionend', ()=>{
             if(!prevActive.classList.contains('isActive')){
                 prevActive.querySelector('.content').style.display = 'none';
+                prevActive.querySelector('.content').setAttribute('aria-hidden', true)
+                prevActive.querySelector('.headBtn').setAttribute('aria-expanded', false)
             }
         });
     };
-
     _this.parentNode.classList.add('isActive');
     _this.closest('li').querySelector('.content').style.display = 'block';
     _this.closest('li').querySelector('.content').style.height = _this.closest('li').querySelector('.content').scrollHeight + 'rem';
+    _this.closest('li').querySelector('.content').setAttribute('aria-hidden', false);
+    _this.closest('li').querySelector('.headBtn').setAttribute('aria-expanded', true);
 }
 
 
