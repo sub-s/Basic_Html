@@ -198,3 +198,10 @@ a.btn.disabled{ pointer-events: none; }
 .accordion li .content .inner { padding: 15rem; }
 .accordion li.isActive .content{ opacity: 1; }
 
+.accordion2 {}
+.accordion2 li { border-bottom: 1px solid #eff3f6; }
+.accordion2 li .headBtn {width: 100%; padding: 15rem; font-weight: 700; background-color: #fff; text-align: left;}
+.accordion2 li.isActive .headBtn {background-color: #409eff; color: #fff}
+.accordion2 li .content {opacity: 0; height: 0; overflow: hidden; display:none; transition: opacity 0.3s, height 0.3s;}
+.accordion2 li .content .inner { padding: 15rem; }
+.accordion2 li.isActive .content{ opacity: 1; }

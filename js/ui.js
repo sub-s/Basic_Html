@@ -124,7 +124,6 @@ function tabString(str){
 
 
 
-
 // 모달 레이어 팝업
 function openPopup(id){
     const _this = event.currentTarget;
@@ -146,50 +145,59 @@ function closePopup() {
 
 
 
-// 아코디언 메뉴
+// 아코디언 이벤트 위임 메뉴
 const accordion = document.querySelector('.accordion')
-
 accordion.addEventListener('click', function(e){
-
     const currentTarget = e.target;
     const prevActive = this.querySelector('.isActive');
 
-
-    if( e.target.closest('.content') ) return;
-    
-
+    if( e.target.closest('.content') ) return; // 컨텐츠를 클릭 했을때 리턴
     if (prevActive) {
         prevActive.classList.remove('isActive');
-        prevActive.querySelector('.content').style.height = '';
-        prevActive.querySelector('.content').addEventListener('transitionend', ()=>{
-            // if (!content.classList.contains('isActive') && content.style.height == '') {
-            if(!prevActive.classList.contains('isActive') && prevActive.querySelector('.content').style.height == ''){
-                console.log(1)
-                prevActive.querySelector('.content').style.display = 'none';
-                prevActive.querySelector('.headBtn').setAttribute('aria-expanded', false)
-                prevActive.querySelector('.content').setAttribute('aria-hidden', true)
-                // content.style.display = 'none';
-            }
-        })
-    }
+        prevActive.querySelector('.content').style.height = ''; 
 
+        // 트랜지션이 종료 된 후 실행
+        prevActive.querySelector('.content').addEventListener('transitionend', ()=>{
+            if(!prevActive.classList.contains('isActive') && prevActive.querySelector('.content').style.height == ''){
+                prevActive.querySelector('.content').style.display = 'none';
+                prevActive.querySelector('.content').setAttribute('aria-hidden', true);
+                prevActive.querySelector('.headBtn').setAttribute('aria-expanded', false);
+            }
+        });
+    }
     if(currentTarget.classList.contains('headBtn')) {
-        currentTarget.parentNode.classList.add('isActive')
-        currentTarget.parentNode.querySelector('.headBtn').setAttribute('aria-expanded', true)
-        currentTarget.parentNode.querySelector('.content').setAttribute('aria-hidden', false)
-        
+        currentTarget.parentNode.classList.add('isActive');
         currentTarget.parentNode.querySelector('.content').style.display = 'block';
         currentTarget.parentNode.querySelector('.content').style.height = currentTarget.parentNode.querySelector('.content').scrollHeight + 'rem'
-
+        currentTarget.parentNode.querySelector('.content').setAttribute('aria-hidden', false);
+        currentTarget.parentNode.querySelector('.headBtn').setAttribute('aria-expanded', true);
     }
-
-    
 });
 
 
+// 아코디언 함수형
+function accaordionFn(){
+    const _this = event.currentTarget; 
+    const prevActive = _this.closest('ul').querySelector('.isActive');
 
+    if(prevActive){
+        prevActive.classList.remove('isActive');
+        prevActive.querySelector('.content').style.height = '';
+        prevActive.addEventListener('transitionend', ()=>{
+            if(!prevActive.classList.contains('isActive')){
+                prevActive.querySelector('.content').style.display = 'none';
+            }
+        });
+    };
+
+    _this.parentNode.classList.add('isActive');
+    _this.closest('li').querySelector('.content').style.display = 'block';
+    _this.closest('li').querySelector('.content').style.height = _this.closest('li').querySelector('.content').scrollHeight + 'rem';
+}
+
+
+// 아코디언 메뉴 forEach
 // const accordion = document.querySelectorAll('.accordion .headBtn')
-
 // accordion.forEach((currentElement, idx)=>{
 //     currentElement.addEventListener('click', function(){
 //         const controls = this.getAttribute('aria-controls');
