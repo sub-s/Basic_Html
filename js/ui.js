@@ -127,18 +127,20 @@ function tabString(str){
 // 모달 레이어 팝업
 function openPopup(id){
     const _this = event.currentTarget;
-    const _popup = document.getElementById(id)
-    const _body = document.querySelector('body')
+    const _popup = document.getElementById(id);
+    const _body = document.querySelector('body');
 
-    _body.classList.add('isPopup')
-    _popup.style.display = 'block'
+    _body.classList.add('isPopup');
+    _popup.style.display = 'block';
 }
 function closePopup() {
     const _this = event.currentTarget;
-    const _body = document.querySelector('body')
+    const _body = document.querySelector('body');
 
-    _body.classList.remove('isPopup')
-    _this.closest('.pop-layer').style.display = 'none'
+    _body.classList.remove('isPopup');
+    _this.closest('.pop-layer').style.display = 'none';
+
+    
 }
 
 
@@ -232,3 +234,57 @@ function accaordionFn(){
         
 //     });
 // });
+
+
+
+function uiAlert(title = '기본 타이틀 입니다.', text = '기본 컨텐츠 내용입니다.'){
+    const _this = event.currentTarget;
+    const set = {
+        title : title,
+        text : text,
+    };
+
+    document.querySelector('body').classList.add('isAlert');
+
+    const alertContent = document.createElement('div');
+    alertContent.setAttribute('class', 'ui-alert')
+    alertContent.innerHTML = 
+    `<div class="pop-header"> 
+        <h3>${set.title}</h3> 
+        <button class="btn" onclick="closeAlert()"> 닫기</button> 
+    </div> 
+    <div class="pop-content">${set.text}</div> 
+    <div class="pop-footer"> 
+        <button class="btn" onclick="alertConfirm()">확인</button> 
+    </div>`
+    document.body.append(alertContent)
+
+    const focus = document.querySelector('.ui-alert');
+    focus.setAttribute('tabindex', "0");
+    focus.focus();
+
+}
+
+function closeAlert() {
+    const _this = event.currentTarget;
+    const _body = document.querySelector('body');
+    _body.classList.remove('isAlert');
+    _this.closest('.ui-alert').remove()
+}
+
+function alertConfirm(){
+    console.log('확인')
+    closeAlert()
+}
+
+
+{/* <div class="ui-alert">
+		<div class="pop-header">
+			<h3>팝업 헤드22222222222</h3>
+			<button class="btn" onclick="closePopup()"> 닫기</button>
+		</div>
+		<div class="pop-content">팝업 컨텐츠22222</div>
+		<div class="pop-footer">
+			<button class="btn">닫기</button>
+		</div>
+	</div> */}

@@ -100,6 +100,41 @@
 				</div>
 			</div>
 
+			
+
+			<div class="">
+				<h2>탭</h2>
+				<div class="ui-tab">
+					<div class="tab-menu">
+						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content01">tab-menu01</button>
+						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content02">tab-menu02</button>
+						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content03">tab-menu03</button>
+						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content04">tab-menu04</button>
+					</div>
+					<div class="tab-content">
+						<div id="tab-content01">tab-content01</div>
+						<div id="tab-content02">tab-content02</div>
+						<div id="tab-content03">tab-content03</div>
+						<div id="tab-content04">tab-content04</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="">
+				<h2>모달</h2>
+				<button class="btn" onclick="openPopup('modal01')">팝업 호출해보자</button>
+				<button class="btn" onclick="openPopup('modal02')">팝업 호출해보자</button>
+			</div>
+			<div class="">
+				<h2>알럿</h2>
+				<button type="button" class="btn" onclick="uiAlert('제목입니다.', '내용입니다.')">알럿</button>
+				<!-- <div class="ui-alert"></div> -->
+			</div>
+			<div class="">
+				<h2>컨펌</h2>
+				<!-- <div class="ui-confirm"></div> -->
+			</div>
+
 			<div class="">
 				<h2>아코디언</h2>
 				<div class="accordion">
@@ -183,38 +218,6 @@
 					</ul>
 				</div>
 			</div>
-
-			<div class="">
-				<h2>탭</h2>
-				<div class="ui-tab">
-					<div class="tab-menu">
-						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content01">tab-menu01</button>
-						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content02">tab-menu02</button>
-						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content03">tab-menu03</button>
-						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content04">tab-menu04</button>
-					</div>
-					<div class="tab-content">
-						<div id="tab-content01">tab-content01</div>
-						<div id="tab-content02">tab-content02</div>
-						<div id="tab-content03">tab-content03</div>
-						<div id="tab-content04">tab-content04</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="">
-				<h2>모달</h2>
-				<button class="btn" onclick="openPopup('modal01')">팝업 호출해보자</button>
-				<button class="btn" onclick="openPopup('modal02')">팝업 호출해보자</button>
-			</div>
-			<div class="">
-				<h2>알럿</h2>
-				<!-- <div class="ui-alert"></div> -->
-			</div>
-			<div class="">
-				<h2>컨펌</h2>
-				<!-- <div class="ui-confirm"></div> -->
-			</div>
 			<div class="">
 				<h2>스와이프</h2>
 			</div>
@@ -239,7 +242,9 @@
 			<button class="btn" onclick="closePopup()"> 닫기</button>
 		</div>
 		<div class="pop-content">팝업 컨텐츠</div>
-		<div class="pop-footer">팝업 푸터</div>
+		<div class="pop-footer">
+			<button class="btn">닫기</button>
+		</div>
 	</div>
 	<div class="pop-layer" id="modal02">
 		<div class="pop-header">
@@ -247,10 +252,13 @@
 			<button class="btn" onclick="closePopup()"> 닫기</button>
 		</div>
 		<div class="pop-content">팝업 컨텐츠22222</div>
-		<div class="pop-footer">팝업 푸터2222</div>
+		<div class="pop-footer">
+			<button class="btn">닫기</button>
+		</div>
 	</div>
 
 
+	
 	
 	<script src="../js/ui.js"></script>
 	
@@ -260,6 +268,9 @@
 			// tabMenu(2);
 			tabString('tab-content01');
 		});
+
+
+		
 	</script>
 </body>
 </html>
