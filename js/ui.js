@@ -237,17 +237,24 @@ function accaordionFn(){
 
 
 
-function uiAlert(str, title = '기본 타이틀 입니다.', text = '기본 컨텐츠 내용입니다.'){
-    const _this = event.currentTarget;
-    
-    _this.setAttribute('id', str);
-    
-    const set = {
-        title : title,
-        text : text,
-    };
+function openAlert(str, options){
 
-    document.querySelector('body').classList.add('isAlert');
+    // console.log(str , "str ::::::::::::")
+    options = options || {}
+
+    const defaults = {
+        title : '기본 타이틀 입니다.',
+        text : '기본 알럿 텍스트 입니다.',
+        confirmFn: null,
+    }
+    for (var key in defaults)  {
+        options[key] = typeof options[key] !== 'undefined' ? options[key] : defaults[key];
+        // console.log(options[item] , '펑션 확인')
+    }
+    const _this = event.currentTarget;
+   _this.setAttribute('id', str);
+   
+   document.querySelector('body').classList.add('isAlert');
 
     const alertContent = document.createElement('div');
     alertContent.setAttribute('class', 'ui-alert');
@@ -256,20 +263,31 @@ function uiAlert(str, title = '기본 타이틀 입니다.', text = '기본 컨�
     
     alertContent.innerHTML = 
     `<div class="pop-header"> 
-        <h3>${set.title}</h3> 
+        <h3>${options.title}</h3> 
         <button class="btn" onclick="closeAlert()">닫기</button> 
     </div> 
-    <div class="pop-content">${set.text}</div> 
+    <div class="pop-content">${options.text}</div> 
     <div class="pop-footer"> 
-        <button class="btn" onclick="alertConfirm()">확인</button> 
+        <button class="btn confirm">확인</button> 
     </div>`
     document.body.append(alertContent)
+
+
+    document.querySelector(`[data-id="${str}"] .confirm`).addEventListener('click', function(){
+        options.confirmFn();
+        closeAlert();
+    })
+
 
     // 팝업 내에서 포커스 이벤트 관리를 위한 코드
     const focusableElements = alertContent.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     const firstFocusable = focusableElements[0];
     const lastFocusable = focusableElements[focusableElements.length - 1];
 
+    const focus = document.querySelector('.ui-alert');
+    
+
+    
     alertContent.addEventListener('keydown', function (event) {
         // Tab 키를 눌렀을 때 포커스 이동을 위한 이벤트 처리
         if (event.key === 'Tab' && event.keyCode === 9 ) {
@@ -289,10 +307,68 @@ function uiAlert(str, title = '기본 타이틀 입니다.', text = '기본 컨�
         }
     });
 
-    const focus = document.querySelector('.ui-alert');
     focus.setAttribute('tabindex', "0");
     focus.focus();
 }
+// function openAlert(str, title = '기본 타이틀 입니다.', text = '기본 컨텐츠 내용입니다.'){
+//     const _this = event.currentTarget;
+    
+//     _this.setAttribute('id', str);
+    
+//     const set = {
+//         title : title,
+//         text : text,
+//     };
+
+//     document.querySelector('body').classList.add('isAlert');
+
+//     const alertContent = document.createElement('div');
+//     alertContent.setAttribute('class', 'ui-alert');
+//     alertContent.setAttribute('role', 'alert');
+//     alertContent.setAttribute('data-id', str);
+    
+//     alertContent.innerHTML = 
+//     `<div class="pop-header"> 
+//         <h3>${set.title}</h3> 
+//         <button class="btn" onclick="closeAlert()">닫기</button> 
+//     </div> 
+//     <div class="pop-content">${set.text}</div> 
+//     <div class="pop-footer"> 
+//         <button class="btn confirm">확인</button> 
+//     </div>`
+//     document.body.append(alertContent)
+
+//     // 팝업 내에서 포커스 이벤트 관리를 위한 코드
+//     const focusableElements = alertContent.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+//     const firstFocusable = focusableElements[0];
+//     const lastFocusable = focusableElements[focusableElements.length - 1];
+
+//     const focus = document.querySelector('.ui-alert');
+    
+
+    
+//     alertContent.addEventListener('keydown', function (event) {
+//         // Tab 키를 눌렀을 때 포커스 이동을 위한 이벤트 처리
+//         if (event.key === 'Tab' && event.keyCode === 9 ) {
+//             if (event.shiftKey) {
+//                 // Shift 키와 함께 Tab 키를 눌렀을 때
+//                 if (document.activeElement === firstFocusable) {
+//                     event.preventDefault();
+//                     lastFocusable.focus();
+//                 }
+//             } else {
+//                 // Tab 키를 눌렀을 때
+//                 if (document.activeElement === lastFocusable) {
+//                     event.preventDefault();
+//                     firstFocusable.focus();
+//                 }
+//             }
+//         }
+//     });
+
+//     focus.setAttribute('tabindex', "0");
+//     focus.focus();
+// }
 
 function closeAlert() {
     const _this = event.currentTarget;
@@ -304,14 +380,22 @@ function closeAlert() {
     _this.closest('.ui-alert').remove();
     
     // 클릭한 요소의 아이디 값을 
-    
     document.getElementById(id).focus()
-    
 }
 
-function alertConfirm(){
-    console.log('확인')
-    closeAlert()
-}
+// function confirmAlert(){
+//     console.log('확인')
+// 실행할 코드 
+//     closeAlert()
+// }
 
+function submit(){}
 
+// openAlert('id', {
+//         title: 'ddd',
+//         tex: 'dddd',
+//         confirmfn: function(){
+//             console.log(11111)
+//         }
+//     }
+// )

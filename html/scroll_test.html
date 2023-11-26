@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html, body {margin:0;}
+    section {height:800px; padding:20px; border-top:5px dashed #eee; text-align:center; font-size:40px; line-height:2; box-sizing:border-box;}
+    section:first-child {border-top:0;}
+    #pages-wrap {height:100vh;transition: transform 0.5s ease-in-out;}
+  </style>
+</head>
+<body>
+  <button class="btn">aa</button>
+  <div id="pages-wrap">
+    <section class="sclElm" style="background:blue;">1</section>
+    <section class="sclElm" style="background:green;">2</section>
+    <section class="sclElm" style="background:yellow;">3</section>
+  </div>
+  <section>4</section>
+  <section>5</section>
+  <section>6</section>
+  <section>7</section>
+  <section>8</section>
+
+  <script>
+     function handleScroll() {
+      const sectionHeight = document.querySelector('.sclElm').offsetHeight;
+      const pagesWrap = document.getElementById('pages-wrap');
+      
+      window.scrollTo({
+        top: pagesWrap.offsetTop + sectionHeight, 
+        behavior: 'smooth'
+      });
+    }
+
+    window.addEventListener('scroll', handleScroll);
+
+    // document.querySelector('.btn').addEventListener('click', handleScroll);
+  </script>
+</body>
+</html>
