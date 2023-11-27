@@ -128,7 +128,8 @@
 			<div class="">
 				<h2>알럿</h2>
 				<!-- <button type="button" class="btn" onclick="openAlert('alert-id01', '제목입니다.', '여기가 알럿 내용입니다.')">알럿</button> -->
-				<button type="button" class="btn" onclick="openAlert('alert-id01', {title: '제목입니다', text :' 알럿 내용이지롱.. ', confirmFn: function() { ex(), console.log('실행후 함수')}})">알럿</button>
+				<button type="button" class="btn" aria-haspopup="true" onclick="openAlert('alert-id01', {title: '제목입니다', text:' 알럿 내용이지롱..', confirmFn: function() {ex(), console.log('실행후 함수')} })">알럿</button>
+				<button type="button" class="btn" aria-haspopup="true" onclick="openAlert('confirmFn-id01', {title: '컨펌 제목입니다', text:' 컨펌 내용입니다.', confirmFn: function() {ex(), console.log('실행후 함수')}, cancelFn: function(){} })">컨펌</button>
 				<!-- <div class="ui-alert"></div> -->
 			</div>
 			<div class="">
@@ -271,7 +272,7 @@
 		});
 
 		const ex = () => {
-			console.log('가즈앗 알럿아!!')
+			console.log('가즈앗 알럿 컨펌아!!')
 		}
 
 		

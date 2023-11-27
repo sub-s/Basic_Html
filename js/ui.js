@@ -124,6 +124,8 @@ function tabString(str){
 
 
 
+
+
 // 모달 레이어 팝업
 function openPopup(id){
     const _this = event.currentTarget;
@@ -238,77 +240,108 @@ function accaordionFn(){
 
 
 function openAlert(str, options){
-
-    // console.log(str , "str ::::::::::::")
+    const _this = event.currentTarget;
+    
     options = options || {}
-
+    
     const defaults = {
         title : '기본 타이틀 입니다.',
         text : '기본 알럿 텍스트 입니다.',
         confirmFn: null,
+        cancelFn: null,
     }
+  
     for (var key in defaults)  {
         options[key] = typeof options[key] !== 'undefined' ? options[key] : defaults[key];
-        // console.log(options[item] , '펑션 확인')
     }
-    const _this = event.currentTarget;
-   _this.setAttribute('id', str);
+
+    _this.setAttribute('id', str); // 클릭한 요소에 str에서 받은 id값 지정 
    
-   document.querySelector('body').classList.add('isAlert');
+    document.querySelector('body').classList.add('isAlert');
 
     const alertContent = document.createElement('div');
     alertContent.setAttribute('class', 'ui-alert');
     alertContent.setAttribute('role', 'alert');
     alertContent.setAttribute('data-id', str);
+    alertContent.setAttribute('aria-labelledby', options.title);
     
-    alertContent.innerHTML = 
-    `<div class="pop-header"> 
-        <h3>${options.title}</h3> 
-        <button class="btn" onclick="closeAlert()">닫기</button> 
-    </div> 
-    <div class="pop-content">${options.text}</div> 
-    <div class="pop-footer"> 
-        <button class="btn confirm">확인</button> 
-    </div>`
+    // 받아오는 param 값에 function이 있는지 여부 확인
+    if(typeof options.cancelFn === 'function') {
+        alertContent.innerHTML = 
+        `<div class="pop-header"> 
+            <h3>${options.title}</h3> 
+            <button class="btn" onclick="closeAlert()">닫기</button> 
+        </div> 
+        <div class="pop-content">${options.text}</div> 
+        <div class="pop-footer"> 
+            <button class="btn confirm">확인</button> 
+            <button class="btn" onclick="closeAlert()">취소</button> 
+        </div>`
+    } else {
+        alertContent.innerHTML = 
+        `<div class="pop-header"> 
+            <h3>${options.title}</h3> 
+            <button class="btn" onclick="closeAlert()">닫기</button> 
+        </div> 
+        <div class="pop-content">${options.text}</div> 
+        <div class="pop-footer"> 
+            <button class="btn confirm">확인</button> 
+        </div>`
+    }
+
     document.body.append(alertContent)
 
-
+    // 확인 버특을 눌렀을 때 콜백 함수 실행
     document.querySelector(`[data-id="${str}"] .confirm`).addEventListener('click', function(){
         options.confirmFn();
         closeAlert();
-    })
+    });
 
 
-    // 팝업 내에서 포커스 이벤트 관리를 위한 코드
-    const focusableElements = alertContent.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-    const firstFocusable = focusableElements[0];
-    const lastFocusable = focusableElements[focusableElements.length - 1];
 
+     
     const focus = document.querySelector('.ui-alert');
     
+    
+    // 팝업 내에서 포커스 이벤트 관리를 위한 코드
+    // const focusElements = alertContent.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const focusElements = alertContent.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+    const firstFocus = focusElements[0];
+    const lastFocus = focusElements[focusElements.length - 1];
 
+    
+    firstFocus.focus(); // 알럿 실행 후 포커스 
+   
+    focus.setAttribute('tabindex', "0");
+    // 알럿을 클릭 했을 때 강제로 처음 포커스로 이동 
+    focus.addEventListener('click', ()=>{
+        if(focus.getAttribute('tabindex') !== null) firstFocus.focus();
+    })
+    
     
     alertContent.addEventListener('keydown', function (event) {
         // Tab 키를 눌렀을 때 포커스 이동을 위한 이벤트 처리
-        if (event.key === 'Tab' && event.keyCode === 9 ) {
-            if (event.shiftKey) {
+        if (event.key === 'Tab' ) {
+            if (event.shiftKey && event.keyCode === 9) {
                 // Shift 키와 함께 Tab 키를 눌렀을 때
-                if (document.activeElement === firstFocusable) {
+                if (document.activeElement === firstFocus) {
                     event.preventDefault();
-                    lastFocusable.focus();
+                    lastFocus.focus();
                 }
             } else {
                 // Tab 키를 눌렀을 때
-                if (document.activeElement === lastFocusable) {
+                if (document.activeElement === lastFocus) {
                     event.preventDefault();
-                    firstFocusable.focus();
+                    firstFocus.focus();
                 }
             }
         }
     });
 
-    focus.setAttribute('tabindex', "0");
-    focus.focus();
+    
+
+    
+    //focus.focus();
 }
 // function openAlert(str, title = '기본 타이틀 입니다.', text = '기본 컨텐츠 내용입니다.'){
 //     const _this = event.currentTarget;
@@ -339,9 +372,9 @@ function openAlert(str, options){
 //     document.body.append(alertContent)
 
 //     // 팝업 내에서 포커스 이벤트 관리를 위한 코드
-//     const focusableElements = alertContent.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-//     const firstFocusable = focusableElements[0];
-//     const lastFocusable = focusableElements[focusableElements.length - 1];
+//     const focusElements = alertContent.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+//     const firstFocus = focusElements[0];
+//     const lastFocus = focusElements[focusElements.length - 1];
 
 //     const focus = document.querySelector('.ui-alert');
     
@@ -352,15 +385,15 @@ function openAlert(str, options){
 //         if (event.key === 'Tab' && event.keyCode === 9 ) {
 //             if (event.shiftKey) {
 //                 // Shift 키와 함께 Tab 키를 눌렀을 때
-//                 if (document.activeElement === firstFocusable) {
+//                 if (document.activeElement === firstFocus) {
 //                     event.preventDefault();
-//                     lastFocusable.focus();
+//                     lastFocus.focus();
 //                 }
 //             } else {
 //                 // Tab 키를 눌렀을 때
-//                 if (document.activeElement === lastFocusable) {
+//                 if (document.activeElement === lastFocus) {
 //                     event.preventDefault();
-//                     firstFocusable.focus();
+//                     firstFocus.focus();
 //                 }
 //             }
 //         }
