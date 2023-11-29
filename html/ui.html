@@ -99,9 +99,6 @@
 					<label for="toggle"></label>
 				</div>
 			</div>
-
-			
-
 			<div class="">
 				<h2>탭</h2>
 				<div class="ui-tab">
@@ -122,21 +119,20 @@
 			
 			<div class="">
 				<h2>모달</h2>
-				<button class="btn" onclick="openPopup('modal01')">팝업 호출해보자</button>
-				<button class="btn" onclick="openPopup('modal02')">팝업 호출해보자</button>
+				<button class="btn" aria-haspopup="true" onclick="openPopup('modal01' , {position : 'top', confirmFn: function(){ console.log('확인') } })">상단 팝업 호출해보자</button>
+				<button class="btn" aria-haspopup="true" onclick="openPopup('modal02' , {position : 'center', confirmFn: function(){ console.log('확인') } })">중앙 팝업 호출해보자</button>
+				<!-- <button class="btn" aria-haspopup="true" onclick="openPopup('modal02')">중앙 팝업 호출해보자</button> -->
+				<button class="btn" aria-haspopup="true" onclick="openPopup('modal03' , {position : 'bottom', confirmFn: function(){ console.log('확인') } })">하단 팝업 호출해보자</button>
+				<!-- <button class="btn openPopup" aria-haspopup="true" onclick="openPopup('modal02')">팝업 호출해보자</button> -->
 			</div>
 			<div class="">
-				<h2>알럿</h2>
+				<h2>알럿 / 컨펌</h2>
 				<!-- <button type="button" class="btn" onclick="openAlert('alert-id01', '제목입니다.', '여기가 알럿 내용입니다.')">알럿</button> -->
-				<button type="button" class="btn" aria-haspopup="true" onclick="openAlert('alert-id01', {title: '제목입니다', text:' 알럿 내용이지롱..', confirmFn: function() {ex(), console.log('실행후 함수')} })">알럿</button>
-				<button type="button" class="btn" aria-haspopup="true" onclick="openAlert('confirmFn-id01', {title: '컨펌 제목입니다', text:' 컨펌 내용입니다.', confirmFn: function() {ex(), console.log('실행후 함수')}, cancelFn: function(){} })">컨펌</button>
+				<button type="button" class="btn alert" aria-haspopup="true" onclick="openAlert('alert-id01', {title: '제목입니다', text:' 알럿 내용이지롱..', confirmFn: function() {ex(), console.log('실행후 함수')} })">알럿</button>
+				<button type="button" class="btn confirm" aria-haspopup="true" onclick="openAlert('confirmFn-id01', {title: '컨펌 제목입니다', text:' 컨펌 내용입니다.', confirmFn: function() {ex(), console.log('실행후 함수')}})">컨펌</button>
 				<!-- <div class="ui-alert"></div> -->
 			</div>
-			<div class="">
-				<h2>컨펌</h2>
-				<!-- <div class="ui-confirm"></div> -->
-			</div>
-
+			
 			<div class="">
 				<h2>아코디언</h2>
 				<div class="accordion">
@@ -238,24 +234,52 @@
 	</div>
 
 	<!-- 모달 팝업 -->
-	<div class="pop-layer" id="modal01">
+	<div class="pop-layer" role="dialog" aria-modal="true" id="modal01">
 		<div class="pop-header">
 			<h3>팝업 헤드</h3>
 			<button class="btn" onclick="closePopup()"> 닫기</button>
 		</div>
 		<div class="pop-content">팝업 컨텐츠</div>
 		<div class="pop-footer">
-			<button class="btn">닫기</button>
+			<button class="btn confirm">확인</button>
 		</div>
 	</div>
-	<div class="pop-layer" id="modal02">
+	<div class="pop-layer" role="dialog" aria-modal="true" id="modal02">
 		<div class="pop-header">
 			<h3>팝업 헤드22222222222</h3>
-			<button class="btn" onclick="closePopup()"> 닫기</button>
+			<button class="btn" onclick="closePopup()">닫기</button>
 		</div>
-		<div class="pop-content">팝업 컨텐츠22222</div>
+		<div class="pop-content">
+			팝업 컨텐츠22222 <br>
+			팝업 컨텐츠22222 <br>
+			팝업 컨텐츠22222 <br>
+			팝업 컨텐츠22222 <br>
+			팝업 컨텐츠22222 <br>
+			팝업 컨텐츠22222 <br>
+			팝업 컨텐츠22222 <br>
+			팝업 컨텐츠22222 <br>
+			팝업 컨텐츠22222 <br>
+			팝업 컨텐츠22222 <br>
+
+		</div>
 		<div class="pop-footer">
-			<button class="btn">닫기</button>
+			<button class="btn confirm">확인</button>
+		</div>
+	</div>
+	<div class="pop-layer" role="dialog" aria-modal="true" id="modal03">
+		<div class="pop-header">
+			<h3>팝업 헤드 3333333</h3>
+			<button class="btn" onclick="closePopup()">닫기</button>
+		</div>
+		<div class="pop-content">
+			팝업 컨텐츠3333333 <br>
+			팝업 컨텐츠3333333 <br>
+			팝업 컨텐츠3333333 <br>
+			팝업 컨텐츠3333333 <br>
+			팝업 컨텐츠3333333 <br>
+		</div>
+		<div class="pop-footer">
+			<button class="btn confirm">확인</button>
 		</div>
 	</div>
 

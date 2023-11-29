@@ -1,3 +1,10 @@
+// Written by: sub's
+// Date: 30.11.2023
+// Description: This code deals with HTML, CSS, and vanilla JavaScript.
+// Please specify any particular points or features you want to emphasize.
+// Feel free to reach out if you have any questions or need additional explanations!
+
+
 
 // elemet index return
 HTMLElement.prototype.getIndex = function(){
@@ -38,31 +45,6 @@ HTMLElement.prototype.parent = function(t){
     return temp;
 }
 
-
-var ui = { 
-    // 초기구동
-	init:function(){ 
-		this.ex.init();
-	},
-    // 페이지 동적으로 뿌린 후 업데이트 ui.update();
-	update:function(){ 
-		this.ex.set();
-	},
-	ex:{ 
-		init: function() {
-            this.evt()
-		},
-        evt:function(){
-		},
-		set:function(){
-		}
-	},
-};
-// ui.init();
-
-
-
-
 // 탭에 대한 함수를 정의 하고 그 조건에 맞게 호출한다.
 function tabEvent(value){
     // console.log(typeof value)
@@ -74,7 +56,6 @@ function tabEvent(value){
         //console.log('숫자열')
     }
 }
-
 
 function tabNumber(num){
     const _this = event.currentTarget;
@@ -92,9 +73,6 @@ function tabNumber(num){
         }   
     });
 }
-
-// 클릭한 문자열이 있으면.. 문자열을 받아오고..
-// 아니면 
 
 function tabString(str){
     /// console.log(typeof str , "ddd") // typeof 로 어떤 형태로 넘어오는지 확인
@@ -119,32 +97,6 @@ function tabString(str){
         }
     })
 }
-
-
-
-
-
-
-
-// 모달 레이어 팝업
-function openPopup(id){
-    const _this = event.currentTarget;
-    const _popup = document.getElementById(id);
-    const _body = document.querySelector('body');
-
-    _body.classList.add('isPopup');
-    _popup.style.display = 'block';
-}
-function closePopup() {
-    const _this = event.currentTarget;
-    const _body = document.querySelector('body');
-
-    _body.classList.remove('isPopup');
-    _this.closest('.pop-layer').style.display = 'none';
-
-    
-}
-
 
 
 
@@ -239,18 +191,18 @@ function accaordionFn(){
 
 
 
+
+// 알럿, 컨펌 창
 function openAlert(str, options){
+    options = options || {} // option에 값이 들어오면 option 없으면 {} 
     const _this = event.currentTarget;
-    
-    options = options || {}
-    
+
     const defaults = {
         title : '기본 타이틀 입니다.',
         text : '기본 알럿 텍스트 입니다.',
         confirmFn: null,
-        cancelFn: null,
     }
-  
+    
     for (var key in defaults)  {
         options[key] = typeof options[key] !== 'undefined' ? options[key] : defaults[key];
     }
@@ -262,11 +214,21 @@ function openAlert(str, options){
     const alertContent = document.createElement('div');
     alertContent.setAttribute('class', 'ui-alert');
     alertContent.setAttribute('role', 'alert');
-    alertContent.setAttribute('data-id', str);
+    alertContent.setAttribute('data-alert', str);
     alertContent.setAttribute('aria-labelledby', options.title);
     
-    // 받아오는 param 값에 function이 있는지 여부 확인
-    if(typeof options.cancelFn === 'function') {
+    // 알럿인지 컨펌인지 확인 클래스에 alert, confirm으로 확인
+    if(_this.classList.contains('alert')){
+        alertContent.innerHTML = 
+        `<div class="pop-header"> 
+            <h3>${options.title}</h3> 
+            <button class="btn" onclick="closeAlert()">닫기</button> 
+        </div> 
+        <div class="pop-content">${options.text}</div> 
+        <div class="pop-footer"> 
+            <button class="btn confirm">확인</button> 
+        </div>`
+    } else if (_this.classList.contains('confirm')) {
         alertContent.innerHTML = 
         `<div class="pop-header"> 
             <h3>${options.title}</h3> 
@@ -277,38 +239,23 @@ function openAlert(str, options){
             <button class="btn confirm">확인</button> 
             <button class="btn" onclick="closeAlert()">취소</button> 
         </div>`
-    } else {
-        alertContent.innerHTML = 
-        `<div class="pop-header"> 
-            <h3>${options.title}</h3> 
-            <button class="btn" onclick="closeAlert()">닫기</button> 
-        </div> 
-        <div class="pop-content">${options.text}</div> 
-        <div class="pop-footer"> 
-            <button class="btn confirm">확인</button> 
-        </div>`
     }
 
     document.body.append(alertContent)
 
     // 확인 버특을 눌렀을 때 콜백 함수 실행
-    document.querySelector(`[data-id="${str}"] .confirm`).addEventListener('click', function(){
+    document.querySelector(`[data-alert="${str}"] .confirm`).addEventListener('click', function(){
         options.confirmFn();
         closeAlert();
     });
 
-
-
-     
     const focus = document.querySelector('.ui-alert');
-    
     
     // 팝업 내에서 포커스 이벤트 관리를 위한 코드
     // const focusElements = alertContent.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     const focusElements = alertContent.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
     const firstFocus = focusElements[0];
     const lastFocus = focusElements[focusElements.length - 1];
-
     
     firstFocus.focus(); // 알럿 실행 후 포커스 
    
@@ -337,98 +284,212 @@ function openAlert(str, options){
             }
         }
     });
-
-    
-
-    
-    //focus.focus();
 }
-// function openAlert(str, title = '기본 타이틀 입니다.', text = '기본 컨텐츠 내용입니다.'){
-//     const _this = event.currentTarget;
-    
-//     _this.setAttribute('id', str);
-    
-//     const set = {
-//         title : title,
-//         text : text,
-//     };
-
-//     document.querySelector('body').classList.add('isAlert');
-
-//     const alertContent = document.createElement('div');
-//     alertContent.setAttribute('class', 'ui-alert');
-//     alertContent.setAttribute('role', 'alert');
-//     alertContent.setAttribute('data-id', str);
-    
-//     alertContent.innerHTML = 
-//     `<div class="pop-header"> 
-//         <h3>${set.title}</h3> 
-//         <button class="btn" onclick="closeAlert()">닫기</button> 
-//     </div> 
-//     <div class="pop-content">${set.text}</div> 
-//     <div class="pop-footer"> 
-//         <button class="btn confirm">확인</button> 
-//     </div>`
-//     document.body.append(alertContent)
-
-//     // 팝업 내에서 포커스 이벤트 관리를 위한 코드
-//     const focusElements = alertContent.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-//     const firstFocus = focusElements[0];
-//     const lastFocus = focusElements[focusElements.length - 1];
-
-//     const focus = document.querySelector('.ui-alert');
-    
-
-    
-//     alertContent.addEventListener('keydown', function (event) {
-//         // Tab 키를 눌렀을 때 포커스 이동을 위한 이벤트 처리
-//         if (event.key === 'Tab' && event.keyCode === 9 ) {
-//             if (event.shiftKey) {
-//                 // Shift 키와 함께 Tab 키를 눌렀을 때
-//                 if (document.activeElement === firstFocus) {
-//                     event.preventDefault();
-//                     lastFocus.focus();
-//                 }
-//             } else {
-//                 // Tab 키를 눌렀을 때
-//                 if (document.activeElement === lastFocus) {
-//                     event.preventDefault();
-//                     firstFocus.focus();
-//                 }
-//             }
-//         }
-//     });
-
-//     focus.setAttribute('tabindex', "0");
-//     focus.focus();
-// }
-
 function closeAlert() {
     const _this = event.currentTarget;
     const _body = document.querySelector('body');
-
-    const id = _this.closest('.ui-alert').getAttribute('data-id')
+    const _id = _this.closest('.ui-alert').getAttribute('data-alert')
     
     _body.classList.remove('isAlert');
     _this.closest('.ui-alert').remove();
     
     // 클릭한 요소의 아이디 값을 
-    document.getElementById(id).focus()
+    document.getElementById(_id).focus()
 }
 
-// function confirmAlert(){
-//     console.log('확인')
-// 실행할 코드 
-//     closeAlert()
-// }
 
-function submit(){}
 
-// openAlert('id', {
-//         title: 'ddd',
-//         tex: 'dddd',
-//         confirmfn: function(){
-//             console.log(11111)
-//         }
-//     }
-// )
+// 모달 레이어 팝업
+let isOpenPopup = false;
+function openPopup(str, options){
+
+    console.log(isOpenPopup);
+    if(isOpenPopup === true) {
+        return false;
+    }
+
+    isOpenPopup = true;
+
+    options = options || {}
+
+    // event.preventDefault()
+    const _this = event.currentTarget;
+    const _popup = document.getElementById(str); // 팝업 본체
+    const _body = document.querySelector('body');
+
+    //console.log(_popup , ":::::::")
+
+    const defaults = {
+        position : null,
+        confirmFn : null,
+    }
+
+    for(var key in defaults) {
+        options[key] = typeof options[key] !== 'undefined' ? options[key] : defaults[key];
+    }
+
+    // console.log(options.confirmFn , "실행이 되는것이 무엇일까?")
+    // 포지션 값이 null이면 기본으로 center로 하고 있으면 옵션의 포지션으로 셋팅
+    const position = (options.position == null) ? 'center' : options.position; 
+
+    _popup.classList.add(position);
+    _this.setAttribute('data-popup', str)
+
+    _popup.style.display = 'block';
+
+
+    console.log(document.querySelector(options.position) , "null?")    
+
+    // 확인 버특을 눌렀을 때 콜백 함수 실행 :: 반복 실행이 됨..
+    if(_popup.style.display = 'block' && _popup.style.height == '' ){
+        console.log('블럭임')
+        _popup.querySelector('.confirm').addEventListener('click', function(){
+            console.log(111111)
+        
+            options.confirmFn();
+            closePopup();
+        });
+    }
+
+
+    // 팝업이 여러개 일 경우에 루프를 돌려서 실행한다.
+    const popupStore = document.querySelectorAll('.pop-layer');
+    popupStore.forEach(()=>{
+        // el의 높이 값 
+        const popupHeight = _popup.scrollHeight;
+        
+        if(options.position === 'top') {
+             // 상단에 대한 노출 값.
+            _popup.style.height = popupHeight + 'rem';
+            _popup.style.top = - popupHeight + 'rem';
+
+            _popup.addEventListener('transitionend', function(){
+                if(_body.classList.contains('isPopup')){
+                    _popup.style.top = ''
+                }else {
+                    _popup.style.top = `- ${popupHeight}` + 'rem'
+                    _popup.style.height = ''
+                    _popup.style.display = 'none'
+
+                    const targetElement = document.querySelector(`[data-popup="${str}"]`);
+                    if (targetElement) {
+                        targetElement.focus(); // 이것이 실행이 안됨
+                    } 
+                
+                }
+            });
+
+        } else if(options.position === 'center') {
+            // 중앙 노출 
+            _popup.style.height =  'auto';
+            _popup.style.top = 50 + '%';
+            _popup.style.left = 50 + '%';
+            _popup.style.translate = '-50%, -50%';
+            
+        } else if (options.position === 'bottom'){
+            // 하단 노출 
+            _popup.style.height = popupHeight + 'rem';
+            _popup.style.bottom = - popupHeight + 'rem';
+            _popup.addEventListener('transitionend', function(){
+                if(_body.classList.contains('isPopup')){
+                    _popup.style.bottom = '';
+                }else {
+                    _popup.style.bottom = `- ${popupHeight}` + 'rem';
+                    _popup.style.height = '';
+                    _popup.style.display = 'none';
+
+                    const targetElement = document.querySelector(`[data-popup="${str}"]`);
+                    if (targetElement) {
+                        targetElement.focus(); // 이것이 실행이 안됨
+                    } 
+                }
+            });
+        } else {
+            // 중앙 노출 
+            _popup.style.height =  'auto';
+            _popup.style.top = 50 + '%';
+            _popup.style.left = 50 + '%';
+            _popup.style.translate = '-50%, -50%';
+            _popup.style.display = 'block';
+        }
+    });
+
+    _body.classList.add('isPopup'); // 팝업을 호출하면 body에 딤 처리 isPopup 클래스를 추가 
+
+    _popup.setAttribute('tabindex' , '0');
+
+    const focusElements = _popup.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+    const firstFocus = focusElements[0];
+    const lastFocus = focusElements[focusElements.length - 1];
+   
+    _popup.setAttribute('tabindex', "0");
+
+    // 알럿을 클릭 했을 때 강제로 처음 포커스로 이동 
+    _popup.addEventListener('click', ()=>{
+        if(_popup.getAttribute('tabindex') !== null) firstFocus.focus();
+    });
+        
+    firstFocus.focus(); // 알럿 실행 후 포커스 
+    
+    _popup.addEventListener('keydown', function (event) {
+        // Tab 키를 눌렀을 때 포커스 이동을 위한 이벤트 처리
+        if (event.key === 'Tab' ) {
+            if (event.shiftKey && event.keyCode === 9) {
+                // Shift 키와 함께 Tab 키를 눌렀을 때
+                if (document.activeElement === firstFocus) {
+                    event.preventDefault();
+                    lastFocus.focus();
+                }
+            } else {
+                // Tab 키를 눌렀을 때
+                if (document.activeElement === lastFocus) {
+                    event.preventDefault();
+                    firstFocus.focus();
+                }
+            }
+        }
+    });
+    isOpenPopup = false;
+}
+
+
+
+
+
+function closePopup() {
+    event.preventDefault()
+    const _this = event.currentTarget;
+    const _body = document.querySelector('body');
+
+    _body.classList.remove('isPopup');
+
+    const popupHeight = _this.closest('.pop-layer').scrollHeight;
+    const _id = _this.closest('.pop-layer').id
+
+    // console.log(_id , "id")
+
+    _this.closest('.pop-layer').setAttribute('tabindex', "-1");
+
+    if(_this.closest('.pop-layer').classList.contains('top')){
+        // 상단 종료 
+        _this.closest('.pop-layer').classList.remove('top');
+        _this.closest('.pop-layer').style.top = `-${popupHeight}` + 'rem'
+        _this.closest('.pop-layer').style.height = '';
+        
+    }else if(_this.closest('.pop-layer').classList.contains('center')) {
+        // 중앙 종료 
+        _this.closest('.pop-layer').style.display = 'none';
+    }else {
+        // 하단 종료 
+        _this.closest('.pop-layer').classList.remove('top');
+        _this.closest('.pop-layer').style.bottom = `-${popupHeight}` + 'rem'
+        _this.closest('.pop-layer').style.height = '';
+    }
+
+    const focusElement = document.querySelector(`[data-popup="${_id}"]`);
+    if (focusElement) {
+        focusElement.focus(); 
+    } 
+    // focusElement.removeAttribute('data-popup')
+    // document.querySelector(`[data-alert="${str}"] .confirm`)
+}
