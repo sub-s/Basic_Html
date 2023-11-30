@@ -343,16 +343,16 @@ function openPopup(str, options){
     // 확인 버특을 눌렀을 때 콜백 함수 실행 :: 반복 실행이 됨..
    
 
-    _popup.querySelector('.confirm').addEventListener('click', function(){
+    if(_popup.querySelector('.confirm').classList.contains('confirm')){
         _popup.querySelector('.confirm').classList.add('pop')
+            _popup.querySelector('.confirm').addEventListener('click', function(){
 
-        if(_popup.querySelector('.confirm').classList.contains('pop')){
             console.log(111111)
             options.confirmFn();
             closePopup();
-            _popup.querySelector('.confirm').classList.remove('pop')
-        }
-    });
+            // _popup.querySelector('.confirm').classList.remove('pop')
+        });
+    }
 
 
     // 팝업이 여러개 일 경우에 루프를 돌려서 실행한다.
