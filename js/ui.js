@@ -338,18 +338,21 @@ function openPopup(str, options){
     _popup.style.display = 'block';
 
 
-    console.log(document.querySelector(options.position) , "null?")    
+    // console.log(document.querySelector(options.position) , "null?")    
 
     // 확인 버특을 눌렀을 때 콜백 함수 실행 :: 반복 실행이 됨..
-    if(_popup.style.display = 'block' && _popup.style.height == '' ){
-        console.log('블럭임')
-        _popup.querySelector('.confirm').addEventListener('click', function(){
+   
+
+    _popup.querySelector('.confirm').addEventListener('click', function(){
+        _popup.querySelector('.confirm').classList.add('pop')
+
+        if(_popup.querySelector('.confirm').classList.contains('pop')){
             console.log(111111)
-        
             options.confirmFn();
             closePopup();
-        });
-    }
+            _popup.querySelector('.confirm').classList.remove('pop')
+        }
+    });
 
 
     // 팝업이 여러개 일 경우에 루프를 돌려서 실행한다.
