@@ -338,19 +338,13 @@ function openPopup(str, options){
     _popup.style.display = 'block';
 
 
-    // console.log(document.querySelector(options.position) , "null?")    
-
-    // 확인 버특을 눌렀을 때 콜백 함수 실행 :: 반복 실행이 됨..
-   
-
-    if(_popup.querySelector('.confirm').classList.contains('confirm')){
-        _popup.querySelector('.confirm').classList.add('pop')
+    // 확인 버특을 눌렀을 때 콜백 함수 실행 :: 반복 실행이 되어서 조건을 추가함.
+    if(!_popup.querySelector('.confirm').classList.contains('isPopupCheck')){
+        _popup.querySelector('.confirm').classList.add('isPopupCheck')
             _popup.querySelector('.confirm').addEventListener('click', function(){
-
             console.log(111111)
             options.confirmFn();
             closePopup();
-            // _popup.querySelector('.confirm').classList.remove('pop')
         });
     }
 
