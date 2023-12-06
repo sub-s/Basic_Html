@@ -1,4 +1,6 @@
 @charset "utf-8";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url("swiper-bundle.min.css");
 html{font-size: 1px;}
 
 .ut-scroll{overflow: hidden;max-height: 200rem;/* border: #ededed solid 1rem; */position: relative;}
@@ -89,22 +91,22 @@ a.btn.disabled{ pointer-events: none; }
 
 
 
-
 /* 라디오, 체크 디자인 */
-.radio,
-.checkbox {display: block; position: relative; padding-left: 35px; margin-bottom: 12px; cursor: pointer; font-size: 16px;}
-.radio input ,
-.checkbox input {position: absolute; opacity: 0; cursor: pointer;}
-.radio-mark {position: absolute; top: 0; left: 0; height: 25px; width: 25px; background-color: #eee; border-radius: 50%;}
-.check-mark {position: absolute; top: 0; left: 0; height: 25px; width: 25px; background-color: #eee; border-radius: 3px;}
-.radio input:checked ~ .radio-mark,
-.checkbox input:checked ~ .check-mark {background-color: #2196F3;}
-.radio .radio-mark:after,
-.checkbox .check-mark:after {content: ""; position: absolute; display: none;}
-.radio input:checked ~ .radio-mark:after,
-.checkbox input:checked ~ .check-mark:after {display: block;}
-.radio .radio-mark:after,
-.checkbox .check-mark:after {left: 10px; top: 5px; width: 5px; height: 10px; border: solid white; border-width: 0 3px 3px 0; transform: rotate(45deg); }
+.radio {display:inline-flex; align-items: center;}
+.radio span {font-size: 18rem;}
+.radio [type="radio"] {margin:0; padding:0; margin-right: 10rem; appearance: none; border: 2rem solid #777; border-radius: 50%; width: 20rem; height: 20rem; }
+.radio [type="radio"]:checked {border: 2rem solid #2196F3; background-color: #66b1ff;}
+.radio [type="radio"]:disabled { background-color: lightgray; opacity: 0.7}
+.radio [type="radio"]:disabled + span {opacity: 0.7;}
+
+.checkbox {display:inline-flex; align-items: center; }
+.checkbox span {font-size: 18rem;}
+.checkbox [type="checkbox"] {margin:0; padding:0; margin-right: 10rem; appearance: none; border: 2rem solid #777; width: 20rem; height: 20rem;}
+.checkbox [type="checkbox"]:checked {border: 2rem solid #2196F3; background-color: #66b1ff;}
+.checkbox [type="checkbox"]:disabled { background-color: lightgray; opacity: 0.7}
+.checkbox [type="checkbox"]:disabled + span {opacity: 0.7;}
+
+
 
 /* 스위치 */
 .switch {display: inline-flex; position: relative; width: 60px; height: 30px; }
@@ -126,20 +128,7 @@ a.btn.disabled{ pointer-events: none; }
 .ui-tab .tab-content > div.isActive {display: block;}
 
 
-
-
-
-
-
 /* 아코디언 */
-/* .accordion {}
-.accordion li { border-bottom: 1px solid #eff3f6; }
-.accordion li .headBtn {width: 100%; padding: 15rem; font-weight: 700; background-color: #fff; text-align: left;}
-.accordion li .headBtn.isActive {background-color: #409eff; color: #fff}
-.accordion li .content {opacity: 0; height: 0; overflow: hidden; display:none; transition: opacity 0.3s, height 0.3s;}
-.accordion li .content .inner { padding: 15rem; }
-.accordion li .content.isActive { opacity: 1; height:auto; display:block;}
-.accordion li .content.isActive .inner {} */
 .accordion {}
 .accordion li { border-bottom: 1px solid #eff3f6; }
 .accordion li .headBtn {width: 100%; padding: 15rem; font-weight: 700; background-color: #fff; text-align: left;}
@@ -173,12 +162,51 @@ a.btn.disabled{ pointer-events: none; }
 .isPopup {position: relative; overflow: hidden;}
 .isPopup::after {content:''; position: fixed; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.3);}
 
-.pop-layer {display: none; height: 0; position: fixed; z-index:10; width: 100%; font-size: 14rem;  background-color: #fff; border-radius: 8rem; overflow: auto; transition: all 0.3s;}
-.pop-layer .pop-header {display: flex; justify-content: space-between; align-items: center; padding: 20rem;}
-.pop-layer .pop-header h3{font-size: 16rem; font-weight: 700}
-.pop-layer .pop-content {padding: 20rem;}
-.pop-layer .pop-footer {padding: 20rem;}
+.ui-popup {display: none; position: fixed; z-index:10; width: 100%; font-size: 14rem;  background-color: #fff; border-radius: 8rem; overflow: auto;}
+.ui-popup .pop-header {display: flex; justify-content: space-between; align-items: center; padding: 20rem;}
+.ui-popup .pop-header h3{font-size: 16rem; font-weight: 700}
+.ui-popup .pop-content {padding: 20rem;}
+.ui-popup .pop-footer {padding: 20rem;}
+.ui-popup .pop-footer .btn {width: 100%;}
+.ui-popup.isAnimated {transition: all 0.3s;}
 
-.pop-layer.top {top: 0; left:0; right:0; border-radius: 0 0 8rem 8rem}
-.pop-layer.center {top: 50%; left: 50%; width: calc(100% - 40rem); transform: translate(-50%, -50%);}
-.pop-layer.bottom { bottom: 0; left: 0; right:0;}
+.ui-popup.top { border-radius: 0 0 8rem 8rem}
+.ui-popup.center { width: calc(100% - 40rem); height: auto; top:50%; left:50%; transform : translate(-50%, -70%);}
+.ui-popup.bottom { }
+
+
+
+
+
+
+/* 리스트 테이블  */
+.list-table {border-top: 2rem solid #000;}
+.list-table ul {display: flex; justify-content: space-between;  flex-wrap: wrap;;}
+.list-table ul li {display: flex; justify-content: flex-start; align-items: center; width: calc(100% / 2); border-bottom: 1rem solid #ddd;}
+.list-table ul li .th {background-color: #f2f2f2; color:#333; padding: 10rem; box-sizing: border-box;}
+.list-table ul li .td {color:#333; padding: 10rem; box-sizing: border-box}
+.list-table ul li.cols {width: 100%;}
+
+@media (max-width: 768px) {
+    /* 리스트 테이블 */
+    .list-table ul li {
+        width: 100%;
+    }
+}
+
+
+
+
+
+/* 스와이퍼 */
+.container-swiper {width : 400rem}
+.swiper {width: 100%; height: 100%; }
+.swiper-slide {text-align: center; font-size: 18px; background: #fff; display: flex; justify-content: center; align-items: center; }
+.swiper-slide img {display: block; width: 100%; height: 100%; object-fit: cover; }
+.swiper {width: 100%; height: 300px; margin-left: auto; margin-right: auto; }
+.swiper-slide {background-size: cover; background-position: center; }
+.mySwiper2 {height: 80%; width: 100%; }
+.mySwiper {height: 20%; box-sizing: border-box; padding: 10px 0; }
+.mySwiper .swiper-slide {width: 25%; height: 100%; opacity: 0.4; }
+.mySwiper .swiper-slide-thumb-active {opacity: 1;}
+.swiper-slide img {display: block; width: 100%; height: 100%; object-fit: cover; }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <style>
+    .swiper { width: 100%; height: 100%; }
+    .swiper-slide { text-align: center; font-size: 18px; background: #fff; display: flex; justify-content: center; align-items: center; }
+    .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .swiper { width: 100%; height: 300px; margin-left: auto; margin-right: auto; }
+    .swiper-slide { background-size: cover; background-position: center; }
+    .mySwiper2 { height: 80%; width: 100%; }
+    .mySwiper { height: 20%; box-sizing: border-box; padding: 10px 0; }
+    .mySwiper .swiper-slide { width: 25%; height: 100%; opacity: 0.4; }
+    .mySwiper .swiper-slide-thumb-active { opacity: 1; }
+    .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  </style>
+  <title>Swiper 팝업</title>
+</head>
+<body>
+  <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-1.jpg" data-large-src="https://swiperjs.com/demos/images/nature-1.jpg" />
+      </div>
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-2.jpg" data-large-src="https://swiperjs.com/demos/images/nature-2.jpg" />
+      </div>
+      <!-- 나머지 슬라이드들도 동일하게 작성 -->
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+  <div thumbsSlider="" class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+      </div>
+      <div class="swiper-slide">
+        <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+      </div>
+      <!-- 나머지 슬라이드들도 동일하게 작성 -->
+    </div>
+  </div>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  var mySwiper = new Swiper(".mySwiper", {
+    spaceBetween: 10,
+    slidesPerView: 6,
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
+
+  var mySwiper2 = new Swiper(".mySwiper2", {
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    thumbs: {
+      swiper: mySwiper,
+    },
+  });
+
+  mySwiper.on('slideClick', function () {
+    var clickedSlideIndex = mySwiper.clickedIndex;
+    var largeImageUrl = mySwiper.slides[clickedSlideIndex].querySelector('img').getAttribute('data-large-src');
+    mySwiper2.slideTo(clickedSlideIndex, 0);
+    mySwiper2.slides[clickedSlideIndex].querySelector('img').setAttribute('src', largeImageUrl);
+  });
+</script>
+</body>
+</html>

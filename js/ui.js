@@ -192,6 +192,175 @@ function accaordionFn(){
 
 
 
+
+
+
+
+// 모달 레이어 팝업
+function openPopup(str, options){
+
+    const _this = event.currentTarget;
+    const _popup = document.getElementById(str); // 팝업 본체
+    const _body = document.querySelector('body');
+
+    // 옵션값 셋팅 
+    options = options || {}
+    const defaults = {
+        position : null, // 포지션 값
+        confirmFn : null, // 콜백 함수 실행
+    }
+    for(var key in defaults) {
+        options[key] = typeof options[key] !== 'undefined' ? options[key] : defaults[key];
+        // 기본 포지션 값에 대한 조건문.. [포지션 값이 null이면 기본으로 center로 하고 있으면 옵션의 포지션으로 셋팅]
+        if (key === 'position' && (options[key] === '' || options[key] === null)) {
+            options[key] = 'center';
+            console.log(key);
+        }
+    }
+    // 포지션 값이 null이면 기본으로 center로 하고 있으면 옵션의 포지션으로 셋팅
+    // const position = (options.position == null || options.position == '')  ? 'center' : options.position; 
+
+
+
+    _popup.classList.add(options.position); // 팝업 위치
+
+    _this.setAttribute('data-popup', str) // ????????????????
+
+    _body.classList.add('isPopup'); // 팝업을 호출하면 body에 딤 처리 isPopup 클래스를 추가
+    
+    _popup.style.display = 'block'; // 팝업을 보이게 
+    
+    _popup.classList.add('isActive'); // 팝업이 오픈 되었는지 체크하는 클래스
+
+    const popupHeight = _popup.scrollHeight; // 팝업의 높이 값 찾아오기 
+
+    // 확인 버특을 눌렀을 때 콜백 함수 실행 :: 반복 실행이 되어서 조건을 추가함.
+    _popup.querySelector('.confirm').addEventListener('click', function(){
+        if (_popup.classList.contains('isActive')) {
+            console.log(111111)
+            if (typeof options.confirmFn === 'function') {
+                options.confirmFn();
+            }
+            closePopup()
+        }
+    }, {once: true});
+
+
+    if(_popup.classList.contains('top')) { 
+        // 상단에 대한 노출 값.
+        _popup.style.height = popupHeight + 'rem';
+        _popup.style.top = - popupHeight + 'rem';
+        setTimeout(() => {
+            _popup.classList.add('isAnimated');
+            _popup.style.top = 0 + 'rem';
+        }, 1);
+        
+    } else if(_popup.classList.contains('center') ) {
+        // 중앙 노출 
+        setTimeout(() => {
+            _popup.classList.add('isAnimated');
+            _popup.style.transform = 'translate(-50%, -50%)';
+        }, 1);
+        
+        
+    } else if (_popup.classList.contains('bottom') ){
+        // 하단 노출 
+        _popup.style.height = popupHeight + 'rem';
+        _popup.style.bottom = - popupHeight + 'rem';
+        setTimeout(() => {
+            _popup.classList.add('isAnimated');
+            _popup.style.bottom = 0 + 'rem';
+          
+        }, 1);
+        
+    } else {
+        // 중앙 노출 
+        setTimeout(() => {
+            _popup.classList.add('isAnimated');
+        }, 1);
+    }
+    
+
+    // 팝업 텝키 이벤트 
+    const focusElements = _popup.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+    const firstFocus = focusElements[0];
+    const lastFocus = focusElements[focusElements.length - 1];
+
+    // _popup.setAttribute('tabindex', "0");
+
+    // 알럿을 클릭 했을 때 강제로 처음 포커스로 이동 
+    // _popup.addEventListener('click', ()=>{
+    //     if(_popup.getAttribute('tabindex') !== null) firstFocus.focus();
+    // });
+        
+    firstFocus.focus(); // 알럿 실행 후 포커스 
+    
+    _popup.addEventListener('keydown', function (event) {
+        // Tab 키를 눌렀을 때 포커스 이동을 위한 이벤트 처리
+        if (event.key === 'Tab' ) {
+            if (event.shiftKey && event.keyCode === 9) {
+                // Shift 키와 함께 Tab 키를 눌렀을 때
+                if (document.activeElement === firstFocus) {
+                    event.preventDefault();
+                    lastFocus.focus();
+                }
+            } else {
+                // Tab 키를 눌렀을 때
+                if (document.activeElement === lastFocus) {
+                    event.preventDefault();
+                    firstFocus.focus();
+                }
+            }
+        }
+    });
+}
+
+
+// 모달 레이어 팝업 닫기
+function closePopup() { 
+    event.preventDefault()
+    const _this = event.currentTarget;
+    const _body = document.querySelector('body');
+
+    console.log(_this.closest('.ui-popup').closest('.ui-popup') , ":::::::::::")
+    
+    _this.closest('.ui-popup').classList.remove('isActive');
+
+    const popupHeight = _this.closest('.ui-popup').scrollHeight;
+    const _id = _this.closest('.ui-popup').id
+
+    if(_this.closest('.ui-popup').classList.contains('top')){
+        // 상단 종료 
+        _this.closest('.ui-popup').style.top = `-${popupHeight}` + 'rem'
+        
+    }else if(_this.closest('.ui-popup').classList.contains('center')) {
+        // 중앙 종료 
+        _this.closest('.ui-popup').style.transform = 'translate(-50%, -70%)';
+    }else {
+        // 하단 종료 
+        _this.closest('.ui-popup').style.bottom = `-${popupHeight}` + 'rem'
+    }
+
+
+    _this.closest('.ui-popup').addEventListener('transitionend', function(){
+        if(!_this.closest('.ui-popup').classList.contains('isActive') && _this.closest('.ui-popup').style.display === 'block') {
+            _this.closest('.ui-popup').classList.remove('isAnimated');
+            _this.closest('.ui-popup').style.display = 'none';
+            _body.classList.remove('isPopup');
+        }
+    })
+
+    // 팝업 종료 했을 때 포커스 이동
+    const focusElement = document.querySelector(`[data-popup="${_id}"]`);
+    if (focusElement) {
+        focusElement.focus(); 
+    } 
+
+    // focusElement.removeAttribute('data-popup')
+    // document.querySelector(`[data-alert="${str}"] .confirm`)
+}
+
+
 // 알럿, 컨펌 창
 function openAlert(str, options){
     options = options || {} // option에 값이 들어오면 option 없으면 {} 
@@ -295,198 +464,21 @@ function closeAlert() {
     
     // 클릭한 요소의 아이디 값을 
     document.getElementById(_id).focus()
-}
-
-
-
-// 모달 레이어 팝업
-let isOpenPopup = false;
-function openPopup(str, options){
-
-    console.log(isOpenPopup);
-    if(isOpenPopup === true) {
-        return false;
-    }
-
-    isOpenPopup = true;
-
-    options = options || {}
-
-    // event.preventDefault()
-    const _this = event.currentTarget;
-    const _popup = document.getElementById(str); // 팝업 본체
-    const _body = document.querySelector('body');
-
-    //console.log(_popup , ":::::::")
-
-    const defaults = {
-        position : null,
-        confirmFn : null,
-    }
-
-    for(var key in defaults) {
-        options[key] = typeof options[key] !== 'undefined' ? options[key] : defaults[key];
-    }
-
-    // console.log(options.confirmFn , "실행이 되는것이 무엇일까?")
-    // 포지션 값이 null이면 기본으로 center로 하고 있으면 옵션의 포지션으로 셋팅
-    const position = (options.position == null) ? 'center' : options.position; 
-
-    _popup.classList.add(position);
-    _this.setAttribute('data-popup', str)
-
-    _popup.style.display = 'block';
-
-
-    // 확인 버특을 눌렀을 때 콜백 함수 실행 :: 반복 실행이 되어서 조건을 추가함.
-    if(!_popup.querySelector('.confirm').classList.contains('isPopupCheck')){
-        _popup.querySelector('.confirm').classList.add('isPopupCheck')
-            _popup.querySelector('.confirm').addEventListener('click', function(){
-            console.log(111111)
-            options.confirmFn();
-            closePopup();
-        });
-    }
-
-
-    // 팝업이 여러개 일 경우에 루프를 돌려서 실행한다.
-    const popupStore = document.querySelectorAll('.pop-layer');
-    popupStore.forEach(()=>{
-        // el의 높이 값 
-        const popupHeight = _popup.scrollHeight;
-        
-        if(options.position === 'top') {
-             // 상단에 대한 노출 값.
-            _popup.style.height = popupHeight + 'rem';
-            _popup.style.top = - popupHeight + 'rem';
-
-            _popup.addEventListener('transitionend', function(){
-                if(_body.classList.contains('isPopup')){
-                    _popup.style.top = ''
-                }else {
-                    _popup.style.top = `- ${popupHeight}` + 'rem'
-                    _popup.style.height = ''
-                    _popup.style.display = 'none'
-
-                    const targetElement = document.querySelector(`[data-popup="${str}"]`);
-                    if (targetElement) {
-                        targetElement.focus(); // 이것이 실행이 안됨
-                    } 
-                
-                }
-            });
-
-        } else if(options.position === 'center') {
-            // 중앙 노출 
-            _popup.style.height =  'auto';
-            _popup.style.top = 50 + '%';
-            _popup.style.left = 50 + '%';
-            _popup.style.translate = '-50%, -50%';
-            
-        } else if (options.position === 'bottom'){
-            // 하단 노출 
-            _popup.style.height = popupHeight + 'rem';
-            _popup.style.bottom = - popupHeight + 'rem';
-            _popup.addEventListener('transitionend', function(){
-                if(_body.classList.contains('isPopup')){
-                    _popup.style.bottom = '';
-                }else {
-                    _popup.style.bottom = `- ${popupHeight}` + 'rem';
-                    _popup.style.height = '';
-                    _popup.style.display = 'none';
-
-                    const targetElement = document.querySelector(`[data-popup="${str}"]`);
-                    if (targetElement) {
-                        targetElement.focus(); // 이것이 실행이 안됨
-                    } 
-                }
-            });
-        } else {
-            // 중앙 노출 
-            _popup.style.height =  'auto';
-            _popup.style.top = 50 + '%';
-            _popup.style.left = 50 + '%';
-            _popup.style.translate = '-50%, -50%';
-            _popup.style.display = 'block';
-        }
-    });
-
-    _body.classList.add('isPopup'); // 팝업을 호출하면 body에 딤 처리 isPopup 클래스를 추가 
-
-    _popup.setAttribute('tabindex' , '0');
-
-    const focusElements = _popup.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
-    const firstFocus = focusElements[0];
-    const lastFocus = focusElements[focusElements.length - 1];
-   
-    _popup.setAttribute('tabindex', "0");
-
-    // 알럿을 클릭 했을 때 강제로 처음 포커스로 이동 
-    _popup.addEventListener('click', ()=>{
-        if(_popup.getAttribute('tabindex') !== null) firstFocus.focus();
-    });
-        
-    firstFocus.focus(); // 알럿 실행 후 포커스 
+    document.getElementById(_id).removeAttribute('id');
     
-    _popup.addEventListener('keydown', function (event) {
-        // Tab 키를 눌렀을 때 포커스 이동을 위한 이벤트 처리
-        if (event.key === 'Tab' ) {
-            if (event.shiftKey && event.keyCode === 9) {
-                // Shift 키와 함께 Tab 키를 눌렀을 때
-                if (document.activeElement === firstFocus) {
-                    event.preventDefault();
-                    lastFocus.focus();
-                }
-            } else {
-                // Tab 키를 눌렀을 때
-                if (document.activeElement === lastFocus) {
-                    event.preventDefault();
-                    firstFocus.focus();
-                }
-            }
-        }
-    });
-    isOpenPopup = false;
 }
 
+// 라디오 버튼 체크박스 버튼 
+// const radioChecked = document.querySelector('.radio') 
+
+// console.log(radioChecked , "radioChecked")
+// radioChecked.addEventListener('click', function(e){
+//     e.target;
+//     if(!event.currentTarget.checked === true){
+//         event.currentTarget.setAttribute('aria-checked', true)
+//     } else {
+//         event.currentTarget.setAttribute('aria-checked', false)
+//     }
+// });
 
 
-
-
-function closePopup() {
-    event.preventDefault()
-    const _this = event.currentTarget;
-    const _body = document.querySelector('body');
-
-    _body.classList.remove('isPopup');
-
-    const popupHeight = _this.closest('.pop-layer').scrollHeight;
-    const _id = _this.closest('.pop-layer').id
-
-    // console.log(_id , "id")
-
-    _this.closest('.pop-layer').setAttribute('tabindex', "-1");
-
-    if(_this.closest('.pop-layer').classList.contains('top')){
-        // 상단 종료 
-        _this.closest('.pop-layer').classList.remove('top');
-        _this.closest('.pop-layer').style.top = `-${popupHeight}` + 'rem'
-        _this.closest('.pop-layer').style.height = '';
-        
-    }else if(_this.closest('.pop-layer').classList.contains('center')) {
-        // 중앙 종료 
-        _this.closest('.pop-layer').style.display = 'none';
-    }else {
-        // 하단 종료 
-        _this.closest('.pop-layer').classList.remove('top');
-        _this.closest('.pop-layer').style.bottom = `-${popupHeight}` + 'rem'
-        _this.closest('.pop-layer').style.height = '';
-    }
-
-    const focusElement = document.querySelector(`[data-popup="${_id}"]`);
-    if (focusElement) {
-        focusElement.focus(); 
-    } 
-    // focusElement.removeAttribute('data-popup')
-    // document.querySelector(`[data-alert="${str}"] .confirm`)
-}
