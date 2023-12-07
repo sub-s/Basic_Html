@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <style>
+    /* 스와이퍼 및 이미지 스타일 */
     .swiper { width: 100%; height: 100%; }
     .swiper-slide { text-align: center; font-size: 18px; background: #fff; display: flex; justify-content: center; align-items: center; }
     .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -16,60 +16,43 @@
     .mySwiper .swiper-slide-thumb-active { opacity: 1; }
     .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
   </style>
-  <title>Swiper 팝업</title>
+  <title>Image Click Example</title>
 </head>
 <body>
-  <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-1.jpg" data-large-src="https://swiperjs.com/demos/images/nature-1.jpg" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-2.jpg" data-large-src="https://swiperjs.com/demos/images/nature-2.jpg" />
-      </div>
-      <!-- 나머지 슬라이드들도 동일하게 작성 -->
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+  <!-- 이미지를 표시할 엘리먼트 -->
+  <div id="image-container">
+    <img id="displayed-image" src="default-image.jpg" alt="Default Image">
   </div>
-  <div thumbsSlider="" class="swiper mySwiper">
+
+  <!-- 썸네일 이미지들 -->
+  <div class="mySwiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+        <img src="thumbnail-1.jpg" data-large-src="https://swiperjs.com/demos/images/nature-1.jpg" onclick="changeImage(this)">
       </div>
       <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+        <img src="thumbnail-2.jpg" data-large-src="https://swiperjs.com/demos/images/nature-2.jpg" onclick="changeImage(this)">
       </div>
-      <!-- 나머지 슬라이드들도 동일하게 작성 -->
+      <!-- 나머지 썸네일 이미지들 -->
     </div>
   </div>
 
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-  var mySwiper = new Swiper(".mySwiper", {
-    spaceBetween: 10,
-    slidesPerView: 6,
-    freeMode: true,
-    watchSlidesProgress: true,
-  });
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    // 클릭된 이미지로 변경하는 함수
+    function changeImage(clickedImage) {
+      // 표시할 이미지의 URL을 클릭된 이미지의 data-large-src 속성으로 설정
+      const imageUrl = clickedImage.getAttribute('data-large-src');
+      document.getElementById('displayed-image').src = imageUrl;
+    }
 
-  var mySwiper2 = new Swiper(".mySwiper2", {
-    spaceBetween: 10,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    thumbs: {
-      swiper: mySwiper,
-    },
-  });
-
-  mySwiper.on('slideClick', function () {
-    var clickedSlideIndex = mySwiper.clickedIndex;
-    var largeImageUrl = mySwiper.slides[clickedSlideIndex].querySelector('img').getAttribute('data-large-src');
-    mySwiper2.slideTo(clickedSlideIndex, 0);
-    mySwiper2.slides[clickedSlideIndex].querySelector('img').setAttribute('src', largeImageUrl);
-  });
-</script>
+    // Swiper 초기화
+    var mySwiper = new Swiper(".mySwiper", {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesProgress: true,
+    });
+  </script>
 </body>
 </html>
