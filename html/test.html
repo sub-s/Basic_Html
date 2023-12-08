@@ -1,58 +1,362 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    /* 스와이퍼 및 이미지 스타일 */
-    .swiper { width: 100%; height: 100%; }
-    .swiper-slide { text-align: center; font-size: 18px; background: #fff; display: flex; justify-content: center; align-items: center; }
-    .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    .swiper { width: 100%; height: 300px; margin-left: auto; margin-right: auto; }
-    .swiper-slide { background-size: cover; background-position: center; }
-    .mySwiper2 { height: 80%; width: 100%; }
-    .mySwiper { height: 20%; box-sizing: border-box; padding: 10px 0; }
-    .mySwiper .swiper-slide { width: 25%; height: 100%; opacity: 0.4; }
-    .mySwiper .swiper-slide-thumb-active { opacity: 1; }
-    .swiper-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  </style>
-  <title>Image Click Example</title>
+	<title>UI Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <link href="../img/common/favicon.ico" rel="shrtcut icon">
+	<link href="../img/common/favicon.png" rel="apple-touch-icon-precomposed"> -->
+	<link rel="stylesheet" href="../css/style.css">
+
+	
 </head>
-<body>
-  <!-- 이미지를 표시할 엘리먼트 -->
-  <div id="image-container">
-    <img id="displayed-image" src="default-image.jpg" alt="Default Image">
-  </div>
+<body class="body">
+	<div class="wrap">
+		<!-- 헤더 -->
+		
+		<main class="container">
+			<div class="">
+				<h2>스와이퍼</h2>
+				<div class="container-swiper">
+					<div class="swiper mySwiper2 bigSwiper" id="swiper-wrapper-2">
+						<div class="swiper-wrapper">
+							<!-- 스와이퍼 이미지 호출 -->
+						</div>
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div>
+					<div thumbsSlider="" class="swiper mySwiper smallSwiper" id="swiper-wrapper-1">
+						<div class="swiper-wrapper">
+							<!-- // 스와이퍼 이미지 호출 -->
+						</div>
+					</div>
+				</div>
+			</div>
 
-  <!-- 썸네일 이미지들 -->
-  <div class="mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="thumbnail-1.jpg" data-large-src="https://swiperjs.com/demos/images/nature-1.jpg" onclick="changeImage(this)">
-      </div>
-      <div class="swiper-slide">
-        <img src="thumbnail-2.jpg" data-large-src="https://swiperjs.com/demos/images/nature-2.jpg" onclick="changeImage(this)">
-      </div>
-      <!-- 나머지 썸네일 이미지들 -->
-    </div>
-  </div>
+			
+		</main>
+		<!-- 푸터 -->
+		
+	</div>
 
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script>
-    // 클릭된 이미지로 변경하는 함수
-    function changeImage(clickedImage) {
-      // 표시할 이미지의 URL을 클릭된 이미지의 data-large-src 속성으로 설정
-      const imageUrl = clickedImage.getAttribute('data-large-src');
-      document.getElementById('displayed-image').src = imageUrl;
+	<!-- 모달 팝업 -->
+	<div class="ui-popup" role="dialog" aria-modal="true" id="modal01">
+		<div class="pop-header">
+			<h3>팝업 헤드</h3>
+			<button class="btn" onclick="closePopup()"> 닫기</button>
+		</div>
+		<div class="pop-content">
+			팝업 컨텐츠
+		</div>
+		<div class="pop-footer">
+			<button class="btn confirm">확인</button>
+		</div>
+	</div>
+
+<script src="../js/swiper-bundle.min.js"></script>
+<!-- <script src="../js/ui.js"></script> -->
+<script>
+	const alertEx = () => {
+		console.log('알럿, 컨펌 함수 실행')
+	}
+	const popupEx = () => {
+		console.log('팝업 함수 실행')
+	}
+
+	document.addEventListener('DOMContentLoaded', function() {
+		// tabMenu 함수 호출
+		// tabMenu(2);
+		tabString('tab-content01');
+		// 클릭 이벤트 리스너 추가
+    const imgSwiper = document.getElementById('swiper-wrapper-1');
+            imgSwiper.addEventListener('click', function (event) {
+                var target = event.target;
+                // 이미지를 클릭했을 때
+                if (target.tagName === 'IMG' && target.hasAttribute('data-index')) {
+                    var index = parseInt(target.getAttribute('data-index'), 10);
+                    // 동적으로 생성된 팝업 호출
+                    openPopup(event, 'modal01', {
+                        confirmFn: function () {
+                            // 팝업 확인 버튼이 클릭될 때 실행할 코드 추가
+                            alertEx();
+                        }
+                    });
+                }
+            });
+	});
+		
+	
+	
+	// 수정된 데이터 예시
+	var jsonData = [
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-1.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-6.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-2.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-5.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-3.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-4.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-4.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-3.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-5.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-2.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-6.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-1.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-1.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-6.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-2.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-5.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-3.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-4.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-4.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-3.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-5.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-2.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-6.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-1.jpg" },
+		// 추가적인 데이터는 필요에 따라 계속해서 추가하세요.
+	];
+
+	// 슬라이드 동적으로 생성하는 함수
+	function createSlides(containerId, swiperInstance, data) {
+		var container = document.getElementById(containerId);
+		var swiperWrapper = container.querySelector(".swiper-wrapper");
+
+		data.forEach(function (item, index) {
+			var slide = document.createElement("div");
+			slide.className = "swiper-slide";
+			var image = document.createElement("img");
+			image.src = item.imageSrc;
+			image.setAttribute("data-index", index); // 이미지의 인덱스를 데이터 속성에 추가
+			slide.appendChild(image);
+			swiperWrapper.appendChild(slide);
+		});
+
+		// 스와이퍼에 업데이트, 초기화
+		swiperInstance.update();
+		swiperInstance.init();
+	}
+
+	var mySwiper = new Swiper(".mySwiper", {
+		spaceBetween: 0,
+		slidesPerView: 6,
+		freeMode: true,
+		watchSlidesProgress: true,
+	});
+
+	var mySwiper2 = new Swiper(".mySwiper2", {
+		spaceBetween: 0,
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev",
+		},
+		thumbs: {
+			swiper: mySwiper,
+		},
+	});
+
+	// Swiper1에 슬라이드 추가
+	createSlides("swiper-wrapper-1", mySwiper, jsonData);
+
+	// Swiper2에 슬라이드 추가
+	createSlides("swiper-wrapper-2", mySwiper2, jsonData);
+
+	// 클릭 이벤트 리스너 추가
+	const imgSwiper = document.getElementById('swiper-wrapper-1');
+	imgSwiper.addEventListener("click", function (event) {
+		var target = event.target;
+		// 이미지를 클릭했을 때
+		if (target.tagName === "IMG" && target.hasAttribute("data-index")) {
+			var index = parseInt(target.getAttribute("data-index"), 10);
+			var largeImageSrc = jsonData[index].largeImageSrc || jsonData[index].imageSrc;
+
+			// 작은 이미지 활성화 클래스 추가 및 이전에 활성화된 슬라이드 클래스 제거
+			var smallSwiperSlides = document.querySelectorAll('.mySwiper .swiper-slide');
+			smallSwiperSlides.forEach(function (slide) {
+				slide.classList.remove('swiper-slide-active');
+				slide.style.opacity = "0.4"; // 이전에 설정된 border를 제거
+			});
+			smallSwiperSlides[index].classList.add('swiper-slide-active');
+			smallSwiperSlides[index].style.opacity = "1"; // 클릭한 이미지에 border 추가
+
+			// 큰 이미지 호출 또는 다른 로직을 수행할 수 있습니다.
+			console.log("큰 이미지 호출:", largeImageSrc);
+			
+			// Swiper2에 슬라이드 추가
+			var slide = document.createElement("div");
+			slide.className = "swiper-slide";
+			var image = document.createElement("img");
+			image.src = largeImageSrc;
+			slide.appendChild(image);
+			mySwiper2.addSlide(mySwiper2.slides.length, slide);
+
+			// Swiper2의 마지막 슬라이드로 이동
+			mySwiper2.slideTo(mySwiper2.slides.length - 1);
+
+			// 활성화 클래스 추가 후, Swiper1에 이벤트를 강제로 발생시켜 활성화 상태를 업데이트
+			mySwiper.slideTo(index);
+		}
+    
+	});
+
+
+
+  
+  
+
+// 모달 레이어 팝업
+function openPopup(str, options){
+
+const _this = event.currentTarget;
+const _popup = document.getElementById(str); // 팝업 본체
+const _body = document.querySelector('body');
+
+// 옵션값 셋팅 
+options = options || {}
+const defaults = {
+    position : null, // 포지션 값
+    confirmFn : null, // 콜백 함수 실행
+}
+for(var key in defaults) {
+    options[key] = typeof options[key] !== 'undefined' ? options[key] : defaults[key];
+    // 기본 포지션 값에 대한 조건문.. [포지션 값이 null이면 기본으로 center로 하고 있으면 옵션의 포지션으로 셋팅]
+    if (key === 'position' && (options[key] === '' || options[key] === null)) {
+        options[key] = 'center';
+        console.log(key);
     }
+}
+// 포지션 값이 null이면 기본으로 center로 하고 있으면 옵션의 포지션으로 셋팅
+// const position = (options.position == null || options.position == '')  ? 'center' : options.position; 
 
-    // Swiper 초기화
-    var mySwiper = new Swiper(".mySwiper", {
-      spaceBetween: 10,
-      slidesPerView: 4,
-      freeMode: true,
-      watchSlidesProgress: true,
-    });
-  </script>
+
+
+_popup.classList.add(options.position); // 팝업 위치
+
+_this.setAttribute('data-popup', str) // ????????????????
+
+_body.classList.add('isPopup'); // 팝업을 호출하면 body에 딤 처리 isPopup 클래스를 추가
+
+_popup.style.display = 'block'; // 팝업을 보이게 
+
+_popup.classList.add('isActive'); // 팝업이 오픈 되었는지 체크하는 클래스
+
+const popupHeight = _popup.scrollHeight; // 팝업의 높이 값 찾아오기 
+
+// 확인 버특을 눌렀을 때 콜백 함수 실행 :: 반복 실행이 되어서 조건을 추가함.
+_popup.querySelector('.confirm').addEventListener('click', function(){
+    if (_popup.classList.contains('isActive')) {
+        console.log(111111)
+        if (typeof options.confirmFn === 'function') {
+            options.confirmFn();
+        }
+        closePopup()
+    }
+}, {once: true});
+
+
+if(_popup.classList.contains('top')) { 
+    // 상단에 대한 노출 값.
+    _popup.style.height = popupHeight + 'rem';
+    _popup.style.top = - popupHeight + 'rem';
+    setTimeout(() => {
+        _popup.classList.add('isAnimated');
+        _popup.style.top = 0 + 'rem';
+    }, 1);
+    
+} else if(_popup.classList.contains('center') ) {
+    // 중앙 노출 
+    setTimeout(() => {
+        _popup.classList.add('isAnimated');
+        _popup.style.transform = 'translate(-50%, -50%)';
+    }, 1);
+    
+    
+} else if (_popup.classList.contains('bottom') ){
+    // 하단 노출 
+    _popup.style.height = popupHeight + 'rem';
+    _popup.style.bottom = - popupHeight + 'rem';
+    setTimeout(() => {
+        _popup.classList.add('isAnimated');
+        _popup.style.bottom = 0 + 'rem';
+      
+    }, 1);
+    
+} else {
+    // 중앙 노출 
+    setTimeout(() => {
+        _popup.classList.add('isAnimated');
+    }, 1);
+}
+
+
+// 팝업 텝키 이벤트 
+const focusElements = _popup.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+const firstFocus = focusElements[0];
+const lastFocus = focusElements[focusElements.length - 1];
+
+// _popup.setAttribute('tabindex', "0");
+
+// 알럿을 클릭 했을 때 강제로 처음 포커스로 이동 
+// _popup.addEventListener('click', ()=>{
+//     if(_popup.getAttribute('tabindex') !== null) firstFocus.focus();
+// });
+    
+firstFocus.focus(); // 알럿 실행 후 포커스 
+
+_popup.addEventListener('keydown', function (event) {
+    // Tab 키를 눌렀을 때 포커스 이동을 위한 이벤트 처리
+    if (event.key === 'Tab' ) {
+        if (event.shiftKey && event.keyCode === 9) {
+            // Shift 키와 함께 Tab 키를 눌렀을 때
+            if (document.activeElement === firstFocus) {
+                event.preventDefault();
+                lastFocus.focus();
+            }
+        } else {
+            // Tab 키를 눌렀을 때
+            if (document.activeElement === lastFocus) {
+                event.preventDefault();
+                firstFocus.focus();
+            }
+        }
+    }
+});
+}
+
+
+// 모달 레이어 팝업 닫기
+function closePopup() { 
+event.preventDefault()
+const _this = event.currentTarget;
+const _body = document.querySelector('body');
+
+console.log(_this.closest('.ui-popup').closest('.ui-popup') , ":::::::::::")
+
+_this.closest('.ui-popup').classList.remove('isActive');
+
+const popupHeight = _this.closest('.ui-popup').scrollHeight;
+const _id = _this.closest('.ui-popup').id
+
+if(_this.closest('.ui-popup').classList.contains('top')){
+    // 상단 종료 
+    _this.closest('.ui-popup').style.top = `-${popupHeight}` + 'rem'
+    
+}else if(_this.closest('.ui-popup').classList.contains('center')) {
+    // 중앙 종료 
+    _this.closest('.ui-popup').style.transform = 'translate(-50%, -70%)';
+}else {
+    // 하단 종료 
+    _this.closest('.ui-popup').style.bottom = `-${popupHeight}` + 'rem'
+}
+
+
+_this.closest('.ui-popup').addEventListener('transitionend', function(){
+    if(!_this.closest('.ui-popup').classList.contains('isActive') && _this.closest('.ui-popup').style.display === 'block') {
+        _this.closest('.ui-popup').classList.remove('isAnimated');
+        _this.closest('.ui-popup').style.display = 'none';
+        _body.classList.remove('isPopup');
+    }
+})
+
+// 팝업 종료 했을 때 포커스 이동
+const focusElement = document.querySelector(`[data-popup="${_id}"]`);
+if (focusElement) {
+    focusElement.focus(); 
+} 
+
+// focusElement.removeAttribute('data-popup')
+// document.querySelector(`[data-alert="${str}"] .confirm`)
+}
+
+</script>
 </body>
 </html>

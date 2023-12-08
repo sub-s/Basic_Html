@@ -224,7 +224,18 @@ function openPopup(str, options){
 
     _popup.classList.add(options.position); // 팝업 위치
 
-    _this.setAttribute('data-popup', str) // ????????????????
+
+    // 클릭한 요소가 버튼인지 아닌지여부 체크 : 필요 태그 추가 
+    const isChecked = (
+        _this.tagName === 'A' || 
+        _this.tagName === 'BUTTON'
+    )
+
+    if(isChecked) {
+        _this.setAttribute('data-popup', str) 
+    }
+
+
 
     _body.classList.add('isPopup'); // 팝업을 호출하면 body에 딤 처리 isPopup 클래스를 추가
     
@@ -285,13 +296,6 @@ function openPopup(str, options){
     const focusElements = _popup.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
     const firstFocus = focusElements[0];
     const lastFocus = focusElements[focusElements.length - 1];
-
-    // _popup.setAttribute('tabindex', "0");
-
-    // 알럿을 클릭 했을 때 강제로 처음 포커스로 이동 
-    // _popup.addEventListener('click', ()=>{
-    //     if(_popup.getAttribute('tabindex') !== null) firstFocus.focus();
-    // });
         
     firstFocus.focus(); // 알럿 실행 후 포커스 
     
@@ -318,12 +322,10 @@ function openPopup(str, options){
 
 // 모달 레이어 팝업 닫기
 function closePopup() { 
-    event.preventDefault()
+    event.preventDefault();
     const _this = event.currentTarget;
     const _body = document.querySelector('body');
 
-    console.log(_this.closest('.ui-popup').closest('.ui-popup') , ":::::::::::")
-    
     _this.closest('.ui-popup').classList.remove('isActive');
 
     const popupHeight = _this.closest('.ui-popup').scrollHeight;
@@ -341,12 +343,20 @@ function closePopup() {
         _this.closest('.ui-popup').style.bottom = `-${popupHeight}` + 'rem'
     }
 
-
+    // 팝업 종료 될 때 transition이 끝난 후에 실행 되는 이벤트
     _this.closest('.ui-popup').addEventListener('transitionend', function(){
         if(!_this.closest('.ui-popup').classList.contains('isActive') && _this.closest('.ui-popup').style.display === 'block') {
             _this.closest('.ui-popup').classList.remove('isAnimated');
             _this.closest('.ui-popup').style.display = 'none';
             _body.classList.remove('isPopup');
+
+             // 스와이퍼 닫을 때 초기화 
+            if(_this.closest('.swiper-pop')){
+                console.log(1234321423423413421)
+                setTimeout(()=>{
+                    _this.closest('.swiper-pop').querySelector('.container-swiper').remove();
+                }, 50)
+            }
         }
     })
 
@@ -358,6 +368,7 @@ function closePopup() {
 
     // focusElement.removeAttribute('data-popup')
     // document.querySelector(`[data-alert="${str}"] .confirm`)
+
 }
 
 

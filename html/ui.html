@@ -148,7 +148,7 @@
 			
 			<div class="">
 				<h2>모달</h2>
-				<button class="btn" aria-haspopup="true" onclick="openPopup('modal01' , {position : 'top', confirmFn: function(){popupEx(), console.log('확인') } })">상단 팝업 호출해보자</button>
+				<!-- <button class="btn" aria-haspopup="true" onclick="openPopup('modal01' , {position : 'top', confirmFn: function(){popupEx(), console.log('확인') } })">상단 팝업 호출해보자</button> -->
 				<button class="btn" aria-haspopup="true" onclick="openPopup('modal02' , {confirmFn: function(){popupEx(), console.log('확인') } })">중앙 팝업 호출해보자</button>
 				<!-- <button class="btn" aria-haspopup="true" onclick="openPopup('modal02')">중앙 팝업 호출해보자</button> -->
 				<button class="btn" aria-haspopup="true" onclick="openPopup('modal03' , {position : 'bottom', confirmFn: function(){popupEx(), console.log('확인') } })">하단 팝업 호출해보자</button>
@@ -320,7 +320,7 @@
 			<button class="btn" onclick="closePopup()"> 닫기</button>
 		</div>
 		<div class="pop-content">
-			팝업 컨텐츠
+			
 		</div>
 		<div class="pop-footer">
 			<button class="btn confirm">확인</button>
@@ -378,6 +378,7 @@
 		console.log('알럿, 컨펌 함수 실행')
 	}
 	const popupEx = () => {
+		
 		console.log('팝업 함수 실행')
 	}
 
@@ -388,16 +389,8 @@
 		
 	});
 		
-	
-	
 	// 수정된 데이터 예시
 	var jsonData = [
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-1.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-6.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-2.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-5.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-3.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-4.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-4.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-3.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-5.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-2.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-6.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-1.jpg" },
 		{ "imageSrc": "https://swiperjs.com/demos/images/nature-1.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-6.jpg" },
 		{ "imageSrc": "https://swiperjs.com/demos/images/nature-2.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-5.jpg" },
 		{ "imageSrc": "https://swiperjs.com/demos/images/nature-3.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-4.jpg" },
@@ -408,34 +401,102 @@
 	];
 
 	// 슬라이드 동적으로 생성하는 함수
-	function createSlides(containerId, swiperInstance, data) {
-		var container = document.getElementById(containerId);
-		var swiperWrapper = container.querySelector(".swiper-wrapper");
+	function createSlides(str, swiperInstance, data) {
+		var container = document.getElementById(str); // swiper-wrapper-1, swiper-wrapper-2 가 호출...
+		var swiperWrapper = container.querySelector(".swiper-wrapper"); // 자식 wrapper
 
 		data.forEach(function (item, index) {
+			// console.log(item.largeImageSrc  , "item.largeImageSrc ")
 			var slide = document.createElement("div");
 			slide.className = "swiper-slide";
 			var image = document.createElement("img");
-			image.src = item.imageSrc;
+			// console.log()
+			if( swiperWrapper.closest('.bigSwiper') ) {
+				image.src = item.largeImageSrc;
+			}else {
+				image.src = item.imageSrc;
+			}
+
 			image.setAttribute("data-index", index); // 이미지의 인덱스를 데이터 속성에 추가
 			slide.appendChild(image);
 			swiperWrapper.appendChild(slide);
+
 		});
-
-		// 스와이퍼에 업데이트, 초기화
-		swiperInstance.update();
-		swiperInstance.init();
+		
 	}
+	
 
+	// 스와이퍼 팝업 함수
+	const swiperWrapper = document.querySelector(".container-swiper");
+	swiperWrapper.addEventListener('click', function (e) {
+		const currentTarget = e.target;
+		const bigSwiper = currentTarget.closest('.bigSwiper');
+
+		if (bigSwiper && currentTarget.tagName === 'IMG') {
+			openPopup('modal01', {});
+
+			var clickedSlide = currentTarget.closest('.container-swiper');
+			document.getElementById('modal01').classList.add('swiper-pop');
+
+			var clonedSlide = clickedSlide.cloneNode(true);
+			var popupContent = document.getElementById('modal01').querySelector('.pop-content');
+			popupContent.appendChild(clonedSlide);
+
+			document.getElementById('modal01').querySelector('.pop-content').querySelector('.bigSwiper').setAttribute('id', 'swiper-wrapper-4')
+			document.getElementById('modal01').querySelector('.pop-content').querySelector('.smallSwiper').setAttribute('id', 'swiper-wrapper-3')
+
+			// 수정된 부분: 기존 스와이퍼 id 중복을 방지하고 클론된 스와이퍼 초기화
+			var mySwiper3 = new Swiper("#swiper-wrapper-3", {
+				spaceBetween: 0,
+				slidesPerView: 6,
+				freeMode: true,
+				watchSlidesProgress: true,
+				observer: true, // 추가
+				observeParents: true, // 추가
+			});
+
+			var mySwiper4 = new Swiper("#swiper-wrapper-4", {
+				spaceBetween: 0,
+				observer: true, // 추가
+				observeParents: true, // 추가
+				navigation: {
+					nextEl: ".swiper-button-next",
+					prevEl: ".swiper-button-prev",
+				},
+				thumbs: {
+					swiper: mySwiper3, // 수정된 부분: 썸네일 스와이퍼 연결
+				},
+			});
+
+			// 수정된 부분: 클론된 스와이퍼에 슬라이드 추가
+			createSlides("swiper-wrapper-4", mySwiper4, jsonData);
+
+			createSlides("swiper-wrapper-3", mySwiper3, jsonData);
+		} else {
+			console.log(22);
+			return;
+		}
+	});
+
+// 나머지 코드는 그대로 유지
+
+
+	
 	var mySwiper = new Swiper(".mySwiper", {
 		spaceBetween: 0,
 		slidesPerView: 6,
 		freeMode: true,
 		watchSlidesProgress: true,
+
+		observer: true,	// 추가
+  		observeParents: true,	// 추가
+		
 	});
 
 	var mySwiper2 = new Swiper(".mySwiper2", {
 		spaceBetween: 0,
+		observer: true,	// 추가
+  		observeParents: true,	// 추가
 		navigation: {
 			nextEl: ".swiper-button-next",
 			prevEl: ".swiper-button-prev",
@@ -443,6 +504,7 @@
 		thumbs: {
 			swiper: mySwiper,
 		},
+		
 	});
 
 	// Swiper1에 슬라이드 추가
@@ -451,44 +513,7 @@
 	// Swiper2에 슬라이드 추가
 	createSlides("swiper-wrapper-2", mySwiper2, jsonData);
 
-	// 클릭 이벤트 리스너 추가
-	const imgSwiper = document.getElementById('swiper-wrapper-1');
-	imgSwiper.addEventListener("click", function (event) {
-		var target = event.target;
-		// 이미지를 클릭했을 때
-		if (target.tagName === "IMG" && target.hasAttribute("data-index")) {
-			var index = parseInt(target.getAttribute("data-index"), 10);
-			var largeImageSrc = jsonData[index].largeImageSrc || jsonData[index].imageSrc;
-
-			// 작은 이미지 활성화 클래스 추가 및 이전에 활성화된 슬라이드 클래스 제거
-			var smallSwiperSlides = document.querySelectorAll('.mySwiper .swiper-slide');
-			smallSwiperSlides.forEach(function (slide) {
-				slide.classList.remove('swiper-slide-active');
-				slide.style.opacity = "0.4"; // 이전에 설정된 border를 제거
-			});
-			smallSwiperSlides[index].classList.add('swiper-slide-active');
-			smallSwiperSlides[index].style.opacity = "1"; // 클릭한 이미지에 border 추가
-
-			// 큰 이미지 호출 또는 다른 로직을 수행할 수 있습니다.
-			console.log("큰 이미지 호출:", largeImageSrc);
-			
-			// Swiper2에 슬라이드 추가
-			var slide = document.createElement("div");
-			slide.className = "swiper-slide";
-			var image = document.createElement("img");
-			image.src = largeImageSrc;
-			slide.appendChild(image);
-			mySwiper2.addSlide(mySwiper2.slides.length, slide);
-
-			// Swiper2의 마지막 슬라이드로 이동
-			mySwiper2.slideTo(mySwiper2.slides.length - 1);
-
-			// 활성화 클래스 추가 후, Swiper1에 이벤트를 강제로 발생시켜 활성화 상태를 업데이트
-			mySwiper.slideTo(index);
-		}
-	});
-
-
+	
 </script>
 </body>
 </html>

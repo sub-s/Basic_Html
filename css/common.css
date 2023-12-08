@@ -160,9 +160,9 @@ a.btn.disabled{ pointer-events: none; }
 
 /* 모달 팝업 */
 .isPopup {position: relative; overflow: hidden;}
-.isPopup::after {content:''; position: fixed; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.3);}
+.isPopup::after {content:''; position: fixed; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.3); z-index:10}
 
-.ui-popup {display: none; position: fixed; z-index:10; width: 100%; font-size: 14rem;  background-color: #fff; border-radius: 8rem; overflow: auto;}
+.ui-popup {display: none; position: fixed; z-index:11; width: 100%; font-size: 14rem;  background-color: #fff; border-radius: 8rem; overflow: auto;}
 .ui-popup .pop-header {display: flex; justify-content: space-between; align-items: center; padding: 20rem;}
 .ui-popup .pop-header h3{font-size: 16rem; font-weight: 700}
 .ui-popup .pop-content {padding: 20rem;}
@@ -210,3 +210,10 @@ a.btn.disabled{ pointer-events: none; }
 .mySwiper .swiper-slide {width: 25%; height: 100%; opacity: 0.4; }
 .mySwiper .swiper-slide-thumb-active {opacity: 1;}
 .swiper-slide img {display: block; width: 100%; height: 100%; object-fit: cover; }
+
+
+
+
+.clonedSwiper {
+    display: block; /* 또는 필요한 스타일을 적용하세요. */
+}
