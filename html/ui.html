@@ -391,26 +391,24 @@
 		
 	// 수정된 데이터 예시
 	var jsonData = [
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-1.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-6.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-2.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-5.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-3.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-4.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-4.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-3.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-5.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-2.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-6.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-1.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-1.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-1.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-2.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-2.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-3.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-3.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-4.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-4.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-5.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-5.jpg" },
+		{ "imageSrc": "https://swiperjs.com/demos/images/nature-6.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-6.jpg" },
 		// 추가적인 데이터는 필요에 따라 계속해서 추가하세요.
 	];
 
 	// 슬라이드 동적으로 생성하는 함수
 	function createSlides(str, swiperInstance, data) {
-		var container = document.getElementById(str); // swiper-wrapper-1, swiper-wrapper-2 가 호출...
-		var swiperWrapper = container.querySelector(".swiper-wrapper"); // 자식 wrapper
-
+		const container = document.getElementById(str); // swiper-wrapper-1, swiper-wrapper-2 가 호출...
+		const swiperWrapper = container.querySelector(".swiper-wrapper"); // 자식 wrapper
 		data.forEach(function (item, index) {
-			// console.log(item.largeImageSrc  , "item.largeImageSrc ")
-			var slide = document.createElement("div");
+			const slide = document.createElement("div");
 			slide.className = "swiper-slide";
-			var image = document.createElement("img");
-			// console.log()
+			const image = document.createElement("img");
+
 			if( swiperWrapper.closest('.bigSwiper') ) {
 				image.src = item.largeImageSrc;
 			}else {
@@ -422,9 +420,10 @@
 			swiperWrapper.appendChild(slide);
 
 		});
-		
+		// 스와이퍼에 업데이트를 알리고 초기화
+		swiperInstance.update();
+    	swiperInstance.init();
 	}
-	
 
 	// 스와이퍼 팝업 함수
 	const swiperWrapper = document.querySelector(".container-swiper");
@@ -432,68 +431,73 @@
 		const currentTarget = e.target;
 		const bigSwiper = currentTarget.closest('.bigSwiper');
 
+
 		if (bigSwiper && currentTarget.tagName === 'IMG') {
+
+			var _index = parseInt(currentTarget.getAttribute("data-index"), 10);
+			const imageData = jsonData[_index];
+
+			// 팝업 호출 함수
 			openPopup('modal01', {});
 
-			var clickedSlide = currentTarget.closest('.container-swiper');
+			const clickedSlide = currentTarget.closest('.container-swiper');
 			document.getElementById('modal01').classList.add('swiper-pop');
 
-			var clonedSlide = clickedSlide.cloneNode(true);
-			var popupContent = document.getElementById('modal01').querySelector('.pop-content');
+			const clonedSlide = clickedSlide.cloneNode(true);
+			const popupContent = document.getElementById('modal01').querySelector('.pop-content');
+			
 			popupContent.appendChild(clonedSlide);
+			popupContent.querySelector('.bigSwiper').setAttribute('id', 'swiper-wrapper-4');
+			popupContent.querySelector('.smallSwiper').setAttribute('id', 'swiper-wrapper-3');
 
-			document.getElementById('modal01').querySelector('.pop-content').querySelector('.bigSwiper').setAttribute('id', 'swiper-wrapper-4')
-			document.getElementById('modal01').querySelector('.pop-content').querySelector('.smallSwiper').setAttribute('id', 'swiper-wrapper-3')
-
-			// 수정된 부분: 기존 스와이퍼 id 중복을 방지하고 클론된 스와이퍼 초기화
-			var mySwiper3 = new Swiper("#swiper-wrapper-3", {
+			// 기존 스와이퍼 id 중복을 방지하고 클론된 스와이퍼 초기화
+			const mySwiper3 = new Swiper("#swiper-wrapper-3", {
 				spaceBetween: 0,
 				slidesPerView: 6,
 				freeMode: true,
 				watchSlidesProgress: true,
-				observer: true, // 추가
-				observeParents: true, // 추가
+				observer: true, 
+				observeParents: true, 
+				initialSlide: _index, // 인덱스 값 초기화 
 			});
 
-			var mySwiper4 = new Swiper("#swiper-wrapper-4", {
+			const mySwiper4 = new Swiper("#swiper-wrapper-4", {
 				spaceBetween: 0,
-				observer: true, // 추가
-				observeParents: true, // 추가
+				observer: true, 
+				observeParents: true,
 				navigation: {
 					nextEl: ".swiper-button-next",
 					prevEl: ".swiper-button-prev",
 				},
 				thumbs: {
-					swiper: mySwiper3, // 수정된 부분: 썸네일 스와이퍼 연결
+					swiper: mySwiper3, // 썸네일 스와이퍼 연결
 				},
+				initialSlide: _index, // 인덱스 값 초기화 
 			});
 
-			// 수정된 부분: 클론된 스와이퍼에 슬라이드 추가
-			createSlides("swiper-wrapper-4", mySwiper4, jsonData);
-
-			createSlides("swiper-wrapper-3", mySwiper3, jsonData);
+			// Swiper3 및 Swiper4에 슬라이드 추가
+			if (mySwiper3.slides.length < jsonData.length) {
+				createSlides("swiper-wrapper-3", mySwiper3, [imageData]);
+			}
+			if (mySwiper4.slides.length < jsonData.length) {
+				createSlides("swiper-wrapper-4", mySwiper4, [imageData]);
+			}
 		} else {
-			console.log(22);
 			return;
 		}
 	});
 
-// 나머지 코드는 그대로 유지
-
-
-	
-	var mySwiper = new Swiper(".mySwiper", {
+	const mySwiper = new Swiper(".mySwiper", {
 		spaceBetween: 0,
 		slidesPerView: 6,
 		freeMode: true,
 		watchSlidesProgress: true,
-
 		observer: true,	// 추가
   		observeParents: true,	// 추가
 		
 	});
 
-	var mySwiper2 = new Swiper(".mySwiper2", {
+	const mySwiper2 = new Swiper(".mySwiper2", {
 		spaceBetween: 0,
 		observer: true,	// 추가
   		observeParents: true,	// 추가

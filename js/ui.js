@@ -1,5 +1,6 @@
 // Written by: sub's
 // Date: 30.11.2023
+//
 // Description: This code deals with HTML, CSS, and vanilla JavaScript.
 // Please specify any particular points or features you want to emphasize.
 // Feel free to reach out if you have any questions or need additional explanations!
