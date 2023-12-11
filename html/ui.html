@@ -9,7 +9,6 @@
 	<!-- <link href="../img/common/favicon.ico" rel="shrtcut icon">
 	<link href="../img/common/favicon.png" rel="apple-touch-icon-precomposed"> -->
 	<link rel="stylesheet" href="../css/style.css">
-
 	
 </head>
 <body class="body">
@@ -314,10 +313,10 @@
 	</div>
 
 	<!-- 모달 팝업 -->
-	<div class="ui-popup" role="dialog" aria-modal="true" id="modal01">
+	<div class="ui-popup swiperPopup" role="dialog" aria-modal="true" id="swiperPopup">
 		<div class="pop-header">
 			<h3>팝업 헤드</h3>
-			<button class="btn" onclick="closePopup()"> 닫기</button>
+			<button class="btn" onclick="closeSwiperPopup()"> 닫기</button>
 		</div>
 		<div class="pop-content">
 			
@@ -326,6 +325,9 @@
 			<button class="btn confirm">확인</button>
 		</div>
 	</div>
+
+
+
 	<div class="ui-popup" role="dialog" aria-modal="true" id="modal02">
 		<div class="pop-header">
 			<h3>팝업 헤드22222222222</h3>
@@ -348,12 +350,12 @@
 			팝업 컨텐츠22222 <br>
 			팝업 컨텐츠22222 <br>
 			팝업 컨텐츠22222 <br>
-
 		</div>
 		<div class="pop-footer">
 			<button class="btn confirm">확인</button>
 		</div>
 	</div>
+
 	<div class="ui-popup" role="dialog" aria-modal="true" id="modal03">
 		<div class="pop-header">
 			<h3>팝업 헤드 3333333</h3>
@@ -370,15 +372,13 @@
 			<button class="btn confirm">확인</button>
 		</div>
 	</div>
-
-<script src="../js/swiper-bundle.min.js"></script>
-<script src="../js/ui.js"></script>
-<script>
+	<script src="../js/swiper-bundle.min.js"></script>
+	<script src="../js/ui.js"></script>
+	<script>
 	const alertEx = () => {
 		console.log('알럿, 컨펌 함수 실행')
 	}
 	const popupEx = () => {
-		
 		console.log('팝업 함수 실행')
 	}
 
@@ -386,10 +386,14 @@
 		// tabMenu 함수 호출
 		// tabMenu(2);
 		tabString('tab-content01');
-		
 	});
+
 		
-	// 수정된 데이터 예시
+
+
+
+		
+	// 스와이퍼 데이터 
 	var jsonData = [
 		{ "imageSrc": "https://swiperjs.com/demos/images/nature-1.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-1.jpg" },
 		{ "imageSrc": "https://swiperjs.com/demos/images/nature-2.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-2.jpg" },
@@ -422,29 +426,28 @@
 		});
 		// 스와이퍼에 업데이트를 알리고 초기화
 		swiperInstance.update();
-    	swiperInstance.init();
+		swiperInstance.init();
+		
 	}
 
-	// 스와이퍼 팝업 함수
-	const swiperWrapper = document.querySelector(".container-swiper");
+	// 스와이퍼 함수 모음
+	const swiperWrapper = document.getElementById("swiper-wrapper-2");
 	swiperWrapper.addEventListener('click', function (e) {
 		const currentTarget = e.target;
 		const bigSwiper = currentTarget.closest('.bigSwiper');
 
-
 		if (bigSwiper && currentTarget.tagName === 'IMG') {
-
 			var _index = parseInt(currentTarget.getAttribute("data-index"), 10);
 			const imageData = jsonData[_index];
 
 			// 팝업 호출 함수
-			openPopup('modal01', {});
+			openPopup('swiperPopup'); 
 
 			const clickedSlide = currentTarget.closest('.container-swiper');
-			document.getElementById('modal01').classList.add('swiper-pop');
+			document.getElementById('swiperPopup').classList.add('swiper-pop');
 
 			const clonedSlide = clickedSlide.cloneNode(true);
-			const popupContent = document.getElementById('modal01').querySelector('.pop-content');
+			const popupContent = document.getElementById('swiperPopup').querySelector('.pop-content');
 			
 			popupContent.appendChild(clonedSlide);
 			popupContent.querySelector('.bigSwiper').setAttribute('id', 'swiper-wrapper-4');
@@ -487,20 +490,74 @@
 		}
 	});
 
+	
+	
+	// 모달 레이어 팝업 닫기
+	function closeSwiperPopup(event) {
+		event = event || window.event; 
+		event.preventDefault();
+		const _this = event.currentTarget;
+		const _body = document.querySelector('body');
+
+		_this.closest('.ui-popup').classList.remove('isActive');
+
+		const popupHeight = _this.closest('.ui-popup').scrollHeight;
+		const _id = _this.closest('.ui-popup').id
+
+		_this.closest('.ui-popup').style.transform = 'translate(-50%, -60%)';
+
+		// 팝업 종료 될 때 transition이 끝난 후에 실행 되는 이벤트
+		_this.closest('.ui-popup').addEventListener('transitionend', function(){
+			if(!_this.closest('.ui-popup').classList.contains('isActive') && _this.closest('.ui-popup').style.display === 'block') {
+				_this.closest('.ui-popup').classList.remove('isAnimated');
+				_this.closest('.ui-popup').style.display = 'none';
+				_body.classList.remove('isPopup');
+
+				// 스와이퍼 닫을 때 초기화 
+				if(_this.closest('.swiper-pop')){
+					
+					setTimeout(()=>{
+						_this.closest('.swiper-pop').querySelector('.container-swiper').remove();
+					}, 50)
+				}
+			}
+		})
+
+		// 팝업 종료 했을 때 포커스 이동
+		const focusElement = document.querySelector(`[data-popup="${_id}"]`);
+		if (focusElement) {
+			focusElement.focus(); 
+		} 
+
+		// Get the Swiper instances from the popup
+		const mySwiper3 = document.querySelector("#swiper-wrapper-3").swiper;
+		const mySwiper4 = document.querySelector("#swiper-wrapper-4").swiper;
+
+		// Get the active index from each Swiper instance
+		const indexSwiper3 = mySwiper3.activeIndex;
+		const indexSwiper4 = mySwiper4.activeIndex;
+
+		// 다시 인덱스 설정
+		mySwiper.slideTo(indexSwiper3);
+        mySwiper2.slideTo(indexSwiper4);
+	}
+
+
+
 	const mySwiper = new Swiper(".mySwiper", {
 		spaceBetween: 0,
 		slidesPerView: 6,
 		freeMode: true,
 		watchSlidesProgress: true,
 		observer: true,	// 추가
-  		observeParents: true,	// 추가
+		observeParents: true,	// 추가
 		
 	});
 
 	const mySwiper2 = new Swiper(".mySwiper2", {
 		spaceBetween: 0,
 		observer: true,	// 추가
-  		observeParents: true,	// 추가
+		observeParents: true,	// 추가
 		navigation: {
 			nextEl: ".swiper-button-next",
 			prevEl: ".swiper-button-prev",
@@ -513,11 +570,8 @@
 
 	// Swiper1에 슬라이드 추가
 	createSlides("swiper-wrapper-1", mySwiper, jsonData);
-
 	// Swiper2에 슬라이드 추가
 	createSlides("swiper-wrapper-2", mySwiper2, jsonData);
-
-	
-</script>
+	</script>
 </body>
 </html>

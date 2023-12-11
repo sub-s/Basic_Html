@@ -211,9 +211,6 @@ a.btn.disabled{ pointer-events: none; }
 .mySwiper .swiper-slide-thumb-active {opacity: 1;}
 .swiper-slide img {display: block; width: 100%; height: 100%; object-fit: cover; }
 
+/* 스와이퍼 팝업 */
+.swiperPopup .pop-footer {display: none; height: 0; width: 0; overflow: hidden;}
 
-
-
-.clonedSwiper {
-    display: block; /* 또는 필요한 스타일을 적용하세요. */
-}

@@ -5,8 +5,6 @@
 // Please specify any particular points or features you want to emphasize.
 // Feel free to reach out if you have any questions or need additional explanations!
 
-
-
 // elemet index return
 HTMLElement.prototype.getIndex = function(){
     let temp = -1;
@@ -48,13 +46,13 @@ HTMLElement.prototype.parent = function(t){
 
 // 탭에 대한 함수를 정의 하고 그 조건에 맞게 호출한다.
 function tabEvent(value){
-    // console.log(typeof value)
+    
     if(typeof value === 'string' || typeof value === 'object'){
         tabString(value)
-       //console.log('문자열')
+       
     } else { 
         tabNumber(value)
-        //console.log('숫자열')
+        
     }
 }
 
@@ -76,18 +74,12 @@ function tabNumber(num){
 }
 
 function tabString(str){
-    /// console.log(typeof str , "ddd") // typeof 로 어떤 형태로 넘어오는지 확인
-
     const _this = (typeof str === 'object') ? str : event.currentTarget; 
     const tabButtons = document.querySelectorAll('.tab-menu > button');
     const _getStr = (typeof str === 'object') ? str.getAttribute('aria-controls') : str
     const _id = (str !== undefined && typeof str === 'string') ? str : _this.getAttribute('aria-controls')
-    // console.log(_id, "id");
-
-    // console.log(str.getAttribute('aria-controls') , 'this?')
-
+    
     tabButtons.forEach((item, index)=>{
-        // console.log(controls , "controls")
         const controls = document.getElementById(item.getAttribute('aria-controls'));
         if(item.getAttribute('aria-controls') === _id){
             item.classList.add('isActive');
@@ -98,9 +90,6 @@ function tabString(str){
         }
     })
 }
-
-
-
 
 // 아코디언 이벤트 위임 메뉴
 const accordion = document.querySelector('.accordion')
@@ -156,50 +145,8 @@ function accaordionFn(){
 }
 
 
-// 아코디언 메뉴 forEach
-// const accordion = document.querySelectorAll('.accordion .headBtn')
-// accordion.forEach((currentElement, idx)=>{
-//     currentElement.addEventListener('click', function(){
-//         const controls = this.getAttribute('aria-controls');
-//         accordion.forEach((item, index)=>{
-//             const id = document.getElementById(item.getAttribute('aria-controls')).id
-//             const content = document.getElementById(id)
-
-//             if(controls === id) {
-//                 item.classList.add('isActive')
-//                 item.setAttribute('aria-expanded', true)    
-//                 content.setAttribute('aria-hidden', false)
-//                 content.classList.add('isActive')
-//                 content.style.display = 'block';
-//                 content.style.height = content.scrollHeight + 'rem'
-//             } else {
-//                 item.classList.remove('isActive')
-//                 content.classList.remove('isActive')
-//                 content.style.height = '';
-//                 content.addEventListener("transitionend", () => {
-//                     if (!content.classList.contains('isActive') && content.style.height == '') {
-//                         item.setAttribute('aria-expanded', false)
-//                         content.setAttribute('aria-hidden', true)
-//                         content.style.display = 'none';
-//                     }
-//                 });
-               
-//             }
-//         });
-        
-//     });
-// });
-
-
-
-
-
-
-
-
 // 모달 레이어 팝업
 function openPopup(str, options){
-
     const _this = event.currentTarget;
     const _popup = document.getElementById(str); // 팝업 본체
     const _body = document.querySelector('body');
@@ -215,16 +162,11 @@ function openPopup(str, options){
         // 기본 포지션 값에 대한 조건문.. [포지션 값이 null이면 기본으로 center로 하고 있으면 옵션의 포지션으로 셋팅]
         if (key === 'position' && (options[key] === '' || options[key] === null)) {
             options[key] = 'center';
-            console.log(key);
         }
     }
     // 포지션 값이 null이면 기본으로 center로 하고 있으면 옵션의 포지션으로 셋팅
     // const position = (options.position == null || options.position == '')  ? 'center' : options.position; 
-
-
-
     _popup.classList.add(options.position); // 팝업 위치
-
 
     // 클릭한 요소가 버튼인지 아닌지여부 체크 : 필요 태그 추가 
     const isChecked = (
@@ -236,12 +178,8 @@ function openPopup(str, options){
         _this.setAttribute('data-popup', str) 
     }
 
-
-
     _body.classList.add('isPopup'); // 팝업을 호출하면 body에 딤 처리 isPopup 클래스를 추가
-    
     _popup.style.display = 'block'; // 팝업을 보이게 
-    
     _popup.classList.add('isActive'); // 팝업이 오픈 되었는지 체크하는 클래스
 
     const popupHeight = _popup.scrollHeight; // 팝업의 높이 값 찾아오기 
@@ -249,14 +187,12 @@ function openPopup(str, options){
     // 확인 버특을 눌렀을 때 콜백 함수 실행 :: 반복 실행이 되어서 조건을 추가함.
     _popup.querySelector('.confirm').addEventListener('click', function(){
         if (_popup.classList.contains('isActive')) {
-            console.log(111111)
             if (typeof options.confirmFn === 'function') {
                 options.confirmFn();
             }
             closePopup()
         }
     }, {once: true});
-
 
     if(_popup.classList.contains('top')) { 
         // 상단에 대한 노출 값.
@@ -273,8 +209,6 @@ function openPopup(str, options){
             _popup.classList.add('isAnimated');
             _popup.style.transform = 'translate(-50%, -50%)';
         }, 1);
-        
-        
     } else if (_popup.classList.contains('bottom') ){
         // 하단 노출 
         _popup.style.height = popupHeight + 'rem';
@@ -282,16 +216,13 @@ function openPopup(str, options){
         setTimeout(() => {
             _popup.classList.add('isAnimated');
             _popup.style.bottom = 0 + 'rem';
-          
         }, 1);
-        
     } else {
         // 중앙 노출 
         setTimeout(() => {
             _popup.classList.add('isAnimated');
         }, 1);
     }
-    
 
     // 팝업 텝키 이벤트 
     const focusElements = _popup.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
@@ -335,10 +266,9 @@ function closePopup() {
     if(_this.closest('.ui-popup').classList.contains('top')){
         // 상단 종료 
         _this.closest('.ui-popup').style.top = `-${popupHeight}` + 'rem'
-        
     }else if(_this.closest('.ui-popup').classList.contains('center')) {
         // 중앙 종료 
-        _this.closest('.ui-popup').style.transform = 'translate(-50%, -70%)';
+        _this.closest('.ui-popup').style.transform = 'translate(-50%, -60%)';
     }else {
         // 하단 종료 
         _this.closest('.ui-popup').style.bottom = `-${popupHeight}` + 'rem'
@@ -353,7 +283,7 @@ function closePopup() {
 
              // 스와이퍼 닫을 때 초기화 
             if(_this.closest('.swiper-pop')){
-                console.log(1234321423423413421)
+                
                 setTimeout(()=>{
                     _this.closest('.swiper-pop').querySelector('.container-swiper').remove();
                 }, 50)
@@ -367,9 +297,7 @@ function closePopup() {
         focusElement.focus(); 
     } 
 
-    // focusElement.removeAttribute('data-popup')
-    // document.querySelector(`[data-alert="${str}"] .confirm`)
-
+    
 }
 
 
@@ -445,8 +373,7 @@ function openAlert(str, options){
     focus.addEventListener('click', ()=>{
         if(focus.getAttribute('tabindex') !== null) firstFocus.focus();
     })
-    
-    
+
     alertContent.addEventListener('keydown', function (event) {
         // Tab 키를 눌렀을 때 포커스 이동을 위한 이벤트 처리
         if (event.key === 'Tab' ) {
@@ -466,6 +393,7 @@ function openAlert(str, options){
         }
     });
 }
+// 알럿, 컨펌 닫기 함수
 function closeAlert() {
     const _this = event.currentTarget;
     const _body = document.querySelector('body');
@@ -479,18 +407,5 @@ function closeAlert() {
     document.getElementById(_id).removeAttribute('id');
     
 }
-
-// 라디오 버튼 체크박스 버튼 
-// const radioChecked = document.querySelector('.radio') 
-
-// console.log(radioChecked , "radioChecked")
-// radioChecked.addEventListener('click', function(e){
-//     e.target;
-//     if(!event.currentTarget.checked === true){
-//         event.currentTarget.setAttribute('aria-checked', true)
-//     } else {
-//         event.currentTarget.setAttribute('aria-checked', false)
-//     }
-// });
 
 
