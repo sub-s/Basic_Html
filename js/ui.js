@@ -44,15 +44,46 @@ HTMLElement.prototype.parent = function(t){
     return temp;
 }
 
+
+
+var ui = { 
+    // 초기구동
+	init:function(){ 
+		this.ex.init();
+	},
+    
+	ex:{ 
+		init: function() {
+            this.evt()
+		},
+        evt:function(){
+            
+		},
+		set:function(){
+		}
+	},
+};
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    ui.init();
+    // ui.update();
+
+    // tabMenu 함수 호출
+    // tabMenu(2);
+    tabString('tab-content01');
+});
+
+
+
+
 // 탭에 대한 함수를 정의 하고 그 조건에 맞게 호출한다.
 function tabEvent(value){
-    
     if(typeof value === 'string' || typeof value === 'object'){
         tabString(value)
-       
     } else { 
         tabNumber(value)
-        
     }
 }
 

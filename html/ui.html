@@ -18,7 +18,7 @@
 			<h1>헤더</h1>
 		</header>
 		<main class="container">
-			<div class="">
+			<div class=""><!-- 스와이퍼 커러셀 -->
 				<h2>스와이퍼</h2>
 				<div class="container-swiper">
 					<div class="swiper mySwiper2 bigSwiper" id="swiper-wrapper-2">
@@ -38,19 +38,87 @@
 					</div>
 				</div>
 			</div>
+			<div class=""><!-- 인풋 레인지 버튼 -->
+				<h2>인풋 레인지 버튼</h2>
+				<div>
+					<div class="price-input">
+						<div class="field">
+							<span>Min</span>
+							<input type="number" class="input-min" value="2500">
+						</div>
+						<div class="space">-</div>
+						<div class="field">
+							<span>Max</span>
+							<input type="number" class="input-max" value="75000">
+						</div>
+					</div>
+					<div class="range-wrap">
+						<div class="progress"></div>
+						<!-- range option : step 는 기본 이동단위 -->
+						<input type="range" class="range-min" min="0" max="75000" value="4000" step="100">
+						<input type="range" class="range-max" min="0" max="75000" value="75000" step="100">
+					</div>
+				</div>
 
-			<div class="">
-				<h2>클래스</h2>
-				<p>멀티 클래스는 a ~ * 로 진행</p>
+
+				<script>
+
+					const minRange = document.querySelector('.range-min')
+					const maxRange = document.querySelector('.range-max')
+					const wrap = document.querySelector('.range-wrap');
+					const progress = wrap.querySelector('.progress');
+
+					const gap = 0; // 양방향 range 여백
+
+					handleRange();
+					function handleRange(minRange, maxRange){
+
+						const minValue = parseInt(document.querySelector('.range-min').value)
+						const maxValue = parseInt(document.querySelector('.range-max').value)
+						const minNum = parseInt(document.querySelector('.range-min').max)
+						const maxNum = parseInt(document.querySelector('.range-max').max)
+						
+						// 100 퍼센트 구하기 
+						let progressLeft = (minValue / minNum) * 100;
+						let progressRight = 100 - (maxValue / maxNum) * 100;
+
+						// range가 0이 되었을 때 
+						if(maxValue - minValue <= gap){
+							// 충돌 이벤트 [멈춤]
+							if(minRange.className == 'range-min') {
+								document.querySelector('.range-min').value = maxValue - gap;
+								progress.style.left = maxValue - gap + '%';
+							} else {
+								document.querySelector('.range-max').value = minValue - gap;
+								progress.style.right = minValue - gap + '%';
+							}
+
+							// console.log('어랏')
+						} else {
+							progress.style.left = ( progressLeft + 1 ) + '%';
+							progress.style.right = ( progressRight + 1 ) + '%';
+						}
+					}
+
+					minRange.addEventListener('input', function(e){
+						handleRange(e.target, minRange)
+					})
+					maxRange.addEventListener('input', function(e) {
+						handleRange(e.target, maxRange)
+					})
+
+
+
+
+				</script>
 			</div>
-			<div class="">
+			<div class=""><!-- 아이콘 -->
 				<h2>아이콘</h2>
 				<div>
 					<div class="icon"><span class="blind">아이콘</span></div>
 				</div>
 			</div>
-			
-			<div class="">
+			<div class=""><!-- 버튼 Button -->
 				<h2>버튼 Button</h2>
 				<div>
 					<button class="btn">버튼</button>
@@ -82,13 +150,13 @@
 					<a href="javascript: void(0)" class="btn e disabled">버튼</a>
 				</div>
 			</div>
-			<div class="">
+			<div class=""><!-- 인풋박스  -->
 				<h2>인풋박스</h2>
 				<div>
 
 				</div>
 			</div>
-			<div class="">
+			<div class=""><!-- 라디오 버튼  -->
 				<h2>라디오 버튼</h2>
 				<label class="radio">
 					<input type="radio" name="radioGroup" aria-checked="true" checked />
@@ -103,9 +171,7 @@
 					<span>라디오 3</span>
 				</label>
 			</div>
-
-
-			<div class="">
+			<div class=""><!-- 체크 박스 -->
 				<h2>체크 박스</h2>
 				<label class="checkbox">
 					<input type="checkbox" name="checkboxGroup" aria-checked="true" checked>
@@ -120,14 +186,14 @@
 					<span>체크박스 2</span>
 				</label>
 			</div>
-			<div class="">
+			<div class=""><!-- 스위치 -->
 				<h2>스위치</h2>
 				<div class="switch">
 					<input type="checkbox" id="toggle">
 					<label for="toggle"></label>
 				</div>
 			</div>
-			<div class="">
+			<div class=""><!-- 텝 메뉴 -->
 				<h2>탭</h2>
 				<div class="ui-tab">
 					<div class="tab-menu">
@@ -144,8 +210,7 @@
 					</div>
 				</div>
 			</div>
-			
-			<div class="">
+			<div class=""><!-- 모달 팝업 -->
 				<h2>모달</h2>
 				<!-- <button class="btn" aria-haspopup="true" onclick="openPopup('modal01' , {position : 'top', confirmFn: function(){popupEx(), console.log('확인') } })">상단 팝업 호출해보자</button> -->
 				<button class="btn" aria-haspopup="true" onclick="openPopup('modal02' , {confirmFn: function(){popupEx(), console.log('확인') } })">중앙 팝업 호출해보자</button>
@@ -153,15 +218,14 @@
 				<button class="btn" aria-haspopup="true" onclick="openPopup('modal03' , {position : 'bottom', confirmFn: function(){popupEx(), console.log('확인') } })">하단 팝업 호출해보자</button>
 				<!-- <button class="btn openPopup" aria-haspopup="true" onclick="openPopup('modal02')">팝업 호출해보자</button> -->
 			</div>
-			<div class="">
+			<div class=""><!-- 알럿 / 컨펌 -->
 				<h2>알럿 / 컨펌</h2>
 				<!-- <button type="button" class="btn" onclick="openAlert('alert-id01', '제목입니다.', '여기가 알럿 내용입니다.')">알럿</button> -->
 				<button type="button" class="btn alert" aria-haspopup="true" onclick="openAlert('alert-id01', {title: '제목입니다', text:' 알럿 내용이지롱..', confirmFn: function() {alertEx(), console.log('실행후 함수')} })">알럿</button>
 				<button type="button" class="btn confirm" aria-haspopup="true" onclick="openAlert('confirmFn-id01', {title: '컨펌 제목입니다', text:' 컨펌 내용입니다.', confirmFn: function() {alertEx(), console.log('실행후 함수')}})">컨펌</button>
 				<!-- <div class="ui-alert"></div> -->
 			</div>
-			
-			<div class="">
+			<div class=""><!-- 아코디언 -->
 				<h2>아코디언</h2>
 				<div class="accordion">
 					<ul>
@@ -244,17 +308,17 @@
 					</ul>
 				</div>
 			</div>
-			<div class="">
-				<h2>스와이프</h2>
+			<div class=""><!--  -->
+				<h2></h2>
 			</div>
-			<div class="">
+			<div class=""><!-- 챠트 -->
 				<h2>차트</h2>
 			</div>
 			
-			<div class="">
+			<div class=""><!-- 로딩 -->
 				<h2>로딩</h2>
 			</div>
-			<div class="">
+			<div class=""><!-- 리스트 테이블[적응형] -->
 				<h2>리스트 테이블[적응형]</h2>
 				<div class="list-table">
 					<ul>
@@ -305,6 +369,8 @@
 					</ul>
 				</div>
 			</div>
+			
+			
 		</main>
 		<!-- 푸터 -->
 		<footer>
@@ -325,8 +391,6 @@
 			<button class="btn confirm">확인</button>
 		</div>
 	</div>
-
-
 
 	<div class="ui-popup" role="dialog" aria-modal="true" id="modal02">
 		<div class="pop-header">
@@ -387,10 +451,6 @@
 		// tabMenu(2);
 		tabString('tab-content01');
 	});
-
-		
-
-
 
 		
 	// 스와이퍼 데이터 
