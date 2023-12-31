@@ -1,5 +1,6 @@
 // Written by: sub's
 // Date: 30.11.2023
+// last-update: 22.12.2023
 //
 // Description: This code deals with HTML, CSS, and vanilla JavaScript.
 // Please specify any particular points or features you want to emphasize.
@@ -63,6 +64,8 @@ var ui = {
 		}
 	},
 };
+
+
 
 
 
@@ -152,6 +155,9 @@ accordion.addEventListener('click', function(e){
 });
 
 
+
+
+
 // 아코디언 함수형
 function accaordionFn(){
     const _this = event.currentTarget; 
@@ -174,6 +180,8 @@ function accaordionFn(){
     _this.closest('li').querySelector('.content').setAttribute('aria-hidden', false);
     _this.closest('li').querySelector('.headBtn').setAttribute('aria-expanded', true);
 }
+
+
 
 
 // 모달 레이어 팝업
@@ -225,6 +233,14 @@ function openPopup(str, options){
         }
     }, {once: true});
 
+
+    // 헤더와 푸터 높이값 빼주고 맥스 높이값 세팅
+    const headHeight = _popup.querySelector('.pop-header').scrollHeight;
+    const footHeight = _popup.querySelector('.pop-footer').scrollHeight;
+    const max = headHeight + footHeight;
+    _popup.querySelector('.pop-content').style.height = `calc(100% - ${max}rem)`;
+
+
     if(_popup.classList.contains('top')) { 
         // 상단에 대한 노출 값.
         _popup.style.height = popupHeight + 'rem';
@@ -235,6 +251,12 @@ function openPopup(str, options){
         }, 1);
         
     } else if(_popup.classList.contains('center') ) {
+        // 상단에 대한 노출 값.
+        if(window.innerHeight <= _popup.clientHeight){
+            _popup.style.height = popupHeight - 40 + 'rem';
+        }else {
+            _popup.style.height = popupHeight + 'rem';
+        }
         // 중앙 노출 
         setTimeout(() => {
             _popup.classList.add('isAnimated');
@@ -254,6 +276,7 @@ function openPopup(str, options){
             _popup.classList.add('isAnimated');
         }, 1);
     }
+
 
     // 팝업 텝키 이벤트 
     const focusElements = _popup.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
@@ -299,7 +322,7 @@ function closePopup() {
         _this.closest('.ui-popup').style.top = `-${popupHeight}` + 'rem'
     }else if(_this.closest('.ui-popup').classList.contains('center')) {
         // 중앙 종료 
-        _this.closest('.ui-popup').style.transform = 'translate(-50%, -60%)';
+        _this.closest('.ui-popup').style.transform = 'translate(-50%, -55%)';
     }else {
         // 하단 종료 
         _this.closest('.ui-popup').style.bottom = `-${popupHeight}` + 'rem'
@@ -312,7 +335,7 @@ function closePopup() {
             _this.closest('.ui-popup').style.display = 'none';
             _body.classList.remove('isPopup');
 
-             // 스와이퍼 닫을 때 초기화 
+            // 스와이퍼 닫을 때 초기화 
             if(_this.closest('.swiper-pop')){
                 
                 setTimeout(()=>{
@@ -326,10 +349,14 @@ function closePopup() {
     const focusElement = document.querySelector(`[data-popup="${_id}"]`);
     if (focusElement) {
         focusElement.focus(); 
-    } 
-
-    
+    }
 }
+
+
+
+
+
+
 
 
 // 알럿, 컨펌 창
@@ -424,6 +451,10 @@ function openAlert(str, options){
         }
     });
 }
+
+
+
+
 // 알럿, 컨펌 닫기 함수
 function closeAlert() {
     const _this = event.currentTarget;
@@ -440,3 +471,186 @@ function closeAlert() {
 }
 
 
+function settingRangeBox(){
+    const _rangeBox = document.querySelectorAll(".range-box2");
+    console.log("_rangeBox : ",_rangeBox);
+        _rangeBox.forEach((range,index)=>{
+
+						// <button type="button" class="btn sm a">최소</button>
+						// <div class="range-input">
+						// 	<div class="input-km">
+						// 		<input type="text" class="min" value="0"  oninput="updateSlider(this, 'min')"/>
+						// 		<span>km</span>
+						// 	</div>
+						// 	<span class="space">~</span>
+						// 	<div class="input-km">
+						// 		<input type="text" class="max" value="75000" oninput="updateSlider(this, 'max')" />
+						// 		<span>km</span>
+						// 	</div>
+						// </div>
+						// <button type="button" class="btn sm a">최대</button>
+						// <div class="range-wrap">
+						// 	<div class="hidden">
+						// 		<div class="progress"></div>
+						// 	</div>
+						// 	<!-- range option : step 는 기본 이동단위 -->
+						// 	<input type="range" class="range-min" min="0" max="75000" value="0" step="100"  oninput="handleRange(this,'minRange')">
+						// 	<input type="range" class="range-max" min="0" max="75000" value="75000" step="100"  oninput="handleRange(this,'maxRange')">
+						// 	<p class="left-txt">1 <span>km</span></p>
+						// 	<p class="right-txt">75000 <span>km</span></p>
+						// </div>
+        const _cancleBt = document.createElement("button");
+        _cancleBt.type = "button";
+        _cancleBt.setAttribute("class","btn sm a");
+        _cancleBt.innerText = "최소";
+        range.appendChild(_cancleBt);
+        _cancleBt.addEventListener("click",()=>{alert("dkdkdk")})
+
+        const _rangeInput = document.createElement("div");
+        _rangeInput.classList.add("range-input");
+
+        const _inputKmR = document.createElement("div");
+        _inputKmR.classList.add("input-km")
+
+        const _inputKmL = document.createElement("div");
+        _inputKmL.classList.add("input-km")
+
+        const _inputKmLInput = document.createElement("input");
+        _inputKmLInput.classList.add("min");
+        _inputKmLInput.type = "text";
+        
+
+        const _inputKmRInput = document.createElement("input");
+        _inputKmRInput.classList.add("max");
+        _inputKmRInput.type = "text";
+
+        const _inputKmLSpan = document.createElement("span");
+        const _inputKmRSpan = document.createElement("span");
+        _inputKmLSpan.innerText = "km";
+        _inputKmRSpan.innerText = "km";
+
+        const _space = document.createElement("span");
+        _space.classList.add("space");
+        _space.innerText = "~";
+
+
+        _rangeInput.appendChild(_inputKmL);
+        _rangeInput.appendChild(_space);
+        _rangeInput.appendChild(_inputKmR);
+
+        _inputKmL.appendChild(_inputKmLInput);
+        _inputKmL.appendChild(_inputKmLSpan);
+
+
+        _inputKmR.appendChild(_inputKmRInput);
+        _inputKmR.appendChild(_inputKmRSpan);
+
+        range.appendChild(_rangeInput);
+        range.classList.add('range-box')
+
+    })
+}
+
+
+// 인풋 레인지 입력
+function updateSlider(_this, inputType) {
+
+    const wrap = _this.closest('.range-box');
+    const minInput = wrap.querySelector('.min');
+    const maxInput = wrap.querySelector('.max');
+    const minSlider = wrap.querySelector('.range-min');
+    const maxSlider = wrap.querySelector('.range-max');
+    const progress = wrap.querySelector('.progress');
+
+    const maxNum = parseInt(maxSlider.max);
+    const gap = 0;
+    let minValue = parseInt(minInput.value);
+    let maxValue = parseInt(maxInput.value);
+    const progressLeft = (minValue / maxNum) * 100;
+    const progressRight = 100 - (maxValue / maxNum) * 100;
+    
+    // 맥스값을 넘어가지 못하게 
+    maxNum <= Number(_this.value) ? _this.value = maxNum : '';
+
+    if (inputType === 'min') {
+        minSlider.value = _this.value;
+        progress.style.left = (maxValue - gap) / maxNum * 100 + '%';
+
+        if (maxValue - minValue <= gap) {
+            _this.value = maxValue;
+            minSlider.value = maxValue;
+        }
+
+        // 인풋에 값이 있는지 없는지 체크
+        if (_this.value.trim() === '') {
+            // 인풋에 값이 없음
+            console.log('입력값이 없습니다.', );
+            minSlider.value = 0;
+            progress.style.left = 0;
+        }
+        
+    } else { 
+        maxSlider.value = _this.value;
+        progress.style.right = (100 - (minValue + gap) / maxNum * 100) + '%';
+
+        if (maxValue - minValue <= gap) {
+            _this.value = minValue;
+            maxSlider.value = minValue;
+        }
+
+        // 인풋에 값이 있는지 없는지 체크
+        if (_this.value.trim() === '') {
+            // 인풋에 값이 없음
+            console.log('입력값이 없습니다.', );
+            maxSlider.value = maxNum;
+            progress.style.right = 0;
+        }
+    }
+    // 진행 바 위치 업데이트
+    progress.style.left = progressLeft + '%';
+    progress.style.right = progressRight + '%';
+}
+
+// 인풋 레인지 
+function handleRange(_this, rangeType) {
+    
+    const wrap = _this.closest('.range-box');
+    const progress = wrap.querySelector('.progress');
+    const minValue = parseInt(wrap.querySelector('.range-min').value);
+    const maxValue = parseInt(wrap.querySelector('.range-max').value);
+    const maxNum = parseInt(wrap.querySelector('.range-max').max);
+    const gap = 0; // 갭 변수가 어디서 온 것인지 명시되어 있지 않아 임의로 설정
+
+    let progressLeft = (minValue / maxNum) * 100;
+    let progressRight = 100 - (maxValue / maxNum) * 100;
+
+    // 움직일때 값이 변경되면서 max와 min값을 빼준다. 그리고 gap이 크거나 작으면 실행
+
+    if (maxValue - minValue <= gap) {
+        // rangeType , "타입 : min 인지 max인지 체크 "
+        if (rangeType === 'minRange') {
+            _this.value = Math.min(maxValue - gap);
+            wrap.querySelector('.min').value = Math.min(maxValue - gap);
+            document.querySelector('.range-box .left-txt').innerText = Math.min(maxValue - gap) + ' km';
+            progress.style.left = (maxValue - gap) / maxNum * 100 + '%';
+            
+        } else {
+            _this.value = Math.min(minValue + gap)
+            wrap.querySelector('.max').value = Math.min(minValue + gap);
+            document.querySelector('.range-box .right-txt').innerText  = Math.min(minValue + gap) + ' km';
+            progress.style.right = (100 - (minValue + gap) / maxNum * 100)  + '%';
+            
+        }
+
+    } else {
+        wrap.querySelector('.min').value = minValue;
+        wrap.querySelector('.max').value = maxValue;
+
+        document.querySelector('.range-box .left-txt').innerText = minValue + ' km';
+        document.querySelector('.range-box .right-txt').innerText = maxValue + ' km';
+
+        progress.style.left = progressLeft + '%';
+        progress.style.right = progressRight + '%';
+    }
+
+}

@@ -41,76 +41,33 @@
 			<div class=""><!-- 인풋 레인지 버튼 -->
 				<h2>인풋 레인지 버튼</h2>
 				<div>
-					<div class="price-input">
-						<div class="field">
-							<span>Min</span>
-							<input type="number" class="input-min" value="2500">
+					<div value="range-box2"></div>
+					<div class="range-box">
+						<button type="button" class="btn sm a">최소</button>
+						<div class="range-input">
+							<div class="input-km">
+								<input type="text" class="min" value="0"  oninput="updateSlider(this, 'min')"/>
+								<span>km</span>
+							</div>
+							<span class="space">~</span>
+							<div class="input-km">
+								<input type="text" class="max" value="75000" oninput="updateSlider(this, 'max')" />
+								<span>km</span>
+							</div>
 						</div>
-						<div class="space">-</div>
-						<div class="field">
-							<span>Max</span>
-							<input type="number" class="input-max" value="75000">
+						<button type="button" class="btn sm a">최대</button>
+						<div class="range-wrap">
+							<div class="hidden">
+								<div class="progress"></div>
+							</div>
+							<!-- range option : step 는 기본 이동단위 -->
+							<input type="range" class="range-min" min="0" max="75000" value="0" step="100"  oninput="handleRange(this,'minRange')">
+							<input type="range" class="range-max" min="0" max="75000" value="75000" step="100"  oninput="handleRange(this,'maxRange')">
+							<p class="left-txt">1 <span>km</span></p>
+							<p class="right-txt">75000 <span>km</span></p>
 						</div>
-					</div>
-					<div class="range-wrap">
-						<div class="progress"></div>
-						<!-- range option : step 는 기본 이동단위 -->
-						<input type="range" class="range-min" min="0" max="75000" value="4000" step="100">
-						<input type="range" class="range-max" min="0" max="75000" value="75000" step="100">
 					</div>
 				</div>
-
-
-				<script>
-
-					const minRange = document.querySelector('.range-min')
-					const maxRange = document.querySelector('.range-max')
-					const wrap = document.querySelector('.range-wrap');
-					const progress = wrap.querySelector('.progress');
-
-					const gap = 0; // 양방향 range 여백
-
-					handleRange();
-					function handleRange(minRange, maxRange){
-
-						const minValue = parseInt(document.querySelector('.range-min').value)
-						const maxValue = parseInt(document.querySelector('.range-max').value)
-						const minNum = parseInt(document.querySelector('.range-min').max)
-						const maxNum = parseInt(document.querySelector('.range-max').max)
-						
-						// 100 퍼센트 구하기 
-						let progressLeft = (minValue / minNum) * 100;
-						let progressRight = 100 - (maxValue / maxNum) * 100;
-
-						// range가 0이 되었을 때 
-						if(maxValue - minValue <= gap){
-							// 충돌 이벤트 [멈춤]
-							if(minRange.className == 'range-min') {
-								document.querySelector('.range-min').value = maxValue - gap;
-								progress.style.left = maxValue - gap + '%';
-							} else {
-								document.querySelector('.range-max').value = minValue - gap;
-								progress.style.right = minValue - gap + '%';
-							}
-
-							// console.log('어랏')
-						} else {
-							progress.style.left = ( progressLeft + 1 ) + '%';
-							progress.style.right = ( progressRight + 1 ) + '%';
-						}
-					}
-
-					minRange.addEventListener('input', function(e){
-						handleRange(e.target, minRange)
-					})
-					maxRange.addEventListener('input', function(e) {
-						handleRange(e.target, maxRange)
-					})
-
-
-
-
-				</script>
 			</div>
 			<div class=""><!-- 아이콘 -->
 				<h2>아이콘</h2>
@@ -212,17 +169,15 @@
 			</div>
 			<div class=""><!-- 모달 팝업 -->
 				<h2>모달</h2>
-				<!-- <button class="btn" aria-haspopup="true" onclick="openPopup('modal01' , {position : 'top', confirmFn: function(){popupEx(), console.log('확인') } })">상단 팝업 호출해보자</button> -->
-				<button class="btn" aria-haspopup="true" onclick="openPopup('modal02' , {confirmFn: function(){popupEx(), console.log('확인') } })">중앙 팝업 호출해보자</button>
-				<!-- <button class="btn" aria-haspopup="true" onclick="openPopup('modal02')">중앙 팝업 호출해보자</button> -->
-				<button class="btn" aria-haspopup="true" onclick="openPopup('modal03' , {position : 'bottom', confirmFn: function(){popupEx(), console.log('확인') } })">하단 팝업 호출해보자</button>
-				<!-- <button class="btn openPopup" aria-haspopup="true" onclick="openPopup('modal02')">팝업 호출해보자</button> -->
+				<button class="btn" aria-haspopup="true" onclick="openPopup('modal01' , {position: 'top', confirmFn: function(){console.log('팝업 확인') } })">상단 팝업 호출해보자</button>
+				<button class="btn" aria-haspopup="true" onclick="openPopup('modal02' , {position: 'center', confirmFn: function(){console.log('팝업 확인') } })">중앙 팝업 호출해보자</button>
+				<button class="btn" aria-haspopup="true" onclick="openPopup('modal03' , {position: 'bottom', confirmFn: function(){console.log('팝업 확인') } })">하단 팝업 호출해보자</button>
 			</div>
 			<div class=""><!-- 알럿 / 컨펌 -->
 				<h2>알럿 / 컨펌</h2>
 				<!-- <button type="button" class="btn" onclick="openAlert('alert-id01', '제목입니다.', '여기가 알럿 내용입니다.')">알럿</button> -->
-				<button type="button" class="btn alert" aria-haspopup="true" onclick="openAlert('alert-id01', {title: '제목입니다', text:' 알럿 내용이지롱..', confirmFn: function() {alertEx(), console.log('실행후 함수')} })">알럿</button>
-				<button type="button" class="btn confirm" aria-haspopup="true" onclick="openAlert('confirmFn-id01', {title: '컨펌 제목입니다', text:' 컨펌 내용입니다.', confirmFn: function() {alertEx(), console.log('실행후 함수')}})">컨펌</button>
+				<button type="button" class="btn alert" aria-haspopup="true" onclick="openAlert('alert-id01', {title: '제목입니다', text:' 알럿 내용이지롱..', confirmFn: function() {console.log('실행후 함수')} })">알럿</button>
+				<button type="button" class="btn confirm" aria-haspopup="true" onclick="openAlert('confirmFn-id01', {title: '컨펌 제목입니다', text:' 컨펌 내용입니다.', confirmFn: function() {console.log('실행후 함수')}})">컨펌</button>
 				<!-- <div class="ui-alert"></div> -->
 			</div>
 			<div class=""><!-- 아코디언 -->
@@ -318,63 +273,12 @@
 			<div class=""><!-- 로딩 -->
 				<h2>로딩</h2>
 			</div>
-			<div class=""><!-- 리스트 테이블[적응형] -->
-				<h2>리스트 테이블[적응형]</h2>
-				<div class="list-table">
-					<ul>
-						<li>
-							<div class="th">테이블 헤드</div>
-							<div class="td">테이블 컨텐츠</div>
-						</li>
-						<li>
-							<div class="th">테이블 헤드</div>
-							<div class="td">테이블 컨텐츠</div>
-						</li>
-						<li>
-							<div class="th">테이블 헤드</div>
-							<div class="td">테이블 컨텐츠</div>
-						</li>
-						<li>
-							<div class="th">테이블 헤드</div>
-							<div class="td">테이블 컨텐츠</div>
-						</li>
-						<li class="cols">
-							<div class="th">테이블 헤드</div>
-							<div class="td">테이블 컨텐츠</div>
-						</li>
-						<li class="cols2">
-							<div class="th">테이블 헤드</div>
-							<div class="td">테이블 컨텐츠</div>
-						</li>
-						<li class="cols3">
-							<div class="th">테이블 헤드</div>
-							<div class="td">테이블 컨텐츠</div>
-						</li>
-						<li>
-							<div class="th">테이블 헤드</div>
-							<div class="td">테이블 컨텐츠</div>
-						</li>
-						<li>
-							<div class="th">테이블 헤드</div>
-							<div class="td">테이블 컨텐츠</div>
-						</li>
-						<li>
-							<div class="th">테이블 헤드</div>
-							<div class="td">테이블 컨텐츠</div>
-						</li>
-						<li>
-							<div class="th">테이블 헤드</div>
-							<div class="td">테이블 컨텐츠</div>
-						</li>
-					</ul>
-				</div>
-			</div>
 			
 			
 		</main>
 		<!-- 푸터 -->
 		<footer>
-			constant 
+			constant copyright
 		</footer>
 	</div>
 
@@ -392,28 +296,37 @@
 		</div>
 	</div>
 
+	<!-- 모달 팝업 -->
+	<div class="ui-popup" role="dialog" aria-modal="true" id="modal01">
+		<div class="pop-header">
+			<h3>팝업 헤드</h3>
+			<button class="btn" onclick="closePopup()"> 닫기</button>
+		</div>
+		<div class="pop-content">
+			<div class="inner">
+				팝업 노출 입니다.
+			</div>
+		</div>
+		<div class="pop-footer">
+			<button class="btn confirm">확인</button>
+		</div>
+	</div>
+
 	<div class="ui-popup" role="dialog" aria-modal="true" id="modal02">
 		<div class="pop-header">
-			<h3>팝업 헤드22222222222</h3>
+			<h3>팝업 헤드 22222222222</h3>
 			<button class="btn" onclick="closePopup()">닫기</button>
 		</div>
 		<div class="pop-content">
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
-			팝업 컨텐츠22222 <br>
+			<div class="inner">
+				팝업 노출 입니다. <br>
+				팝업 노출 입니다. <br>
+				팝업 노출 입니다. <br>
+				팝업 노출 입니다. <br>
+				팝업 노출 입니다. <br>
+				팝업 노출 입니다. <br>
+
+			</div>
 		</div>
 		<div class="pop-footer">
 			<button class="btn confirm">확인</button>
@@ -426,11 +339,9 @@
 			<button class="btn" onclick="closePopup()">닫기</button>
 		</div>
 		<div class="pop-content">
-			팝업 컨텐츠3333333 <br>
-			팝업 컨텐츠3333333 <br>
-			팝업 컨텐츠3333333 <br>
-			팝업 컨텐츠3333333 <br>
-			팝업 컨텐츠3333333 <br>
+			<div class="inner">
+				팝업 노출 입니다.
+			</div>
 		</div>
 		<div class="pop-footer">
 			<button class="btn confirm">확인</button>
@@ -439,12 +350,7 @@
 	<script src="../js/swiper-bundle.min.js"></script>
 	<script src="../js/ui.js"></script>
 	<script>
-	const alertEx = () => {
-		console.log('알럿, 컨펌 함수 실행')
-	}
-	const popupEx = () => {
-		console.log('팝업 함수 실행')
-	}
+	
 
 	document.addEventListener('DOMContentLoaded', function() {
 		// tabMenu 함수 호출
@@ -632,6 +538,8 @@
 	createSlides("swiper-wrapper-1", mySwiper, jsonData);
 	// Swiper2에 슬라이드 추가
 	createSlides("swiper-wrapper-2", mySwiper2, jsonData);
+
+	settingRangeBox();
 	</script>
 </body>
 </html>

@@ -17,24 +17,47 @@ button{cursor:pointer;background: none;border: none;}
 button[disabled]{/* cursor:default */}
 
 
-
-
-/* [class*="protected"].flx{display:flex; align-items: center; padding-left:0;}
-[class*="protected"].flx::before {flex:0 0 49rem; position: initial;}
-[class*="protected"].flx p.txt {padding-left:12rem;}
-*/
+/* 인풋 리셋 */
+input[type="number"], 
+input[type="text"] {border: 1rem solid #ddd; padding: 10rem; font-size: 14rem; border-radius: 3rem;}
 
 
 
+/* 라디오 박스 */
+.radio {display:inline-flex; align-items: center;}
+.radio span {font-size: 18rem;}
+.radio input[type="radio"] {margin:0; padding:0; margin-right: 10rem; appearance: none; border: 1rem solid #ddd; border-radius: 50%; width: 26rem; height: 26rem; }
+.radio input[type="radio"]:checked {background: url(../img/common/icon_radio.svg) no-repeat; background-size: cover; border: 0}
+.radio input[type="radio"]:disabled {background-color: lightgray; opacity: 0.7}
+.radio input[type="radio"]:disabled + span {opacity: 0.7;}
+
+/* 체크 박스 */
+.checkbox {display:inline-flex; align-items: center; }
+.checkbox span {font-size: 18rem;}
+.checkbox input[type="checkbox"] {margin:0; padding:0; margin-right: 10rem; appearance: none; border: 1rem solid #ddd; width: 26rem; height: 26rem;}
+.checkbox input[type="checkbox"]:checked {background: url(../img/common/icon_check.svg) no-repeat; background-size: cover; border: 0}
+.checkbox input[type="checkbox"]:disabled { background-color: lightgray; opacity: 0.7}
+.checkbox input[type="checkbox"]:disabled + span {opacity: 0.7;}
+
+
+
+/* 타이틀  */
 h1 {font-size: 18rem; font-weight: 700;}
 h2 {font-size: 16rem; font-weight: 700; margin-top: 20rem; margin-bottom: 10rem}
 
-/* 레이아웃 */
+
+
+/* START 레이아웃 */
+
 .wrap {padding: 0rem;}
 
-.header {padding: 10rem; background-color: #bcd6ff;}
+.header {padding: 10rem; border-bottom:1rem solid #ddd;; padding: 20rem}
 .container {padding: 10rem; background-color: #fff;}
 
+footer {border-top:1rem solid #ddd; padding: 20rem;}
+
+
+/* END 레이아웃 */
 
 /* 버튼 셋 */
 .btn{display: inline-flex; justify-content: center; align-items: center; vertical-align:middle; cursor:pointer; white-space:nowrap; border: 1rem solid #777; background-color: #fff; color: #333; height: 40rem; padding:0 12rem; border-radius: 4rem; font-size: 14rem;}
@@ -91,22 +114,6 @@ a.btn.disabled{ pointer-events: none; }
 
 
 
-/* 라디오, 체크 디자인 */
-.radio {display:inline-flex; align-items: center;}
-.radio span {font-size: 18rem;}
-.radio [type="radio"] {margin:0; padding:0; margin-right: 10rem; appearance: none; border: 2rem solid #777; border-radius: 50%; width: 20rem; height: 20rem; }
-.radio [type="radio"]:checked {border: 2rem solid #2196F3; background-color: #66b1ff;}
-.radio [type="radio"]:disabled { background-color: lightgray; opacity: 0.7}
-.radio [type="radio"]:disabled + span {opacity: 0.7;}
-
-.checkbox {display:inline-flex; align-items: center; }
-.checkbox span {font-size: 18rem;}
-.checkbox [type="checkbox"] {margin:0; padding:0; margin-right: 10rem; appearance: none; border: 2rem solid #777; width: 20rem; height: 20rem;}
-.checkbox [type="checkbox"]:checked {border: 2rem solid #2196F3; background-color: #66b1ff;}
-.checkbox [type="checkbox"]:disabled { background-color: lightgray; opacity: 0.7}
-.checkbox [type="checkbox"]:disabled + span {opacity: 0.7;}
-
-
 
 /* 스위치 */
 .switch {display: inline-flex; position: relative; width: 60px; height: 30px; }
@@ -128,6 +135,32 @@ a.btn.disabled{ pointer-events: none; }
 .ui-tab .tab-content > div.isActive {display: block;}
 
 
+
+
+
+
+/* 인풋 레인지 입력 */
+.range-box {width: 100%;  margin: 30px 0 35px; margin-bottom: 50px}
+.range-box .range-input {display: flex; margin-bottom: 20px}
+/* .range-box .field {height: 45px; width: 100%; display: flex; align-items: center; }
+.range-box .field input {width: 100%; height: 100%; margin-left: 12px; text-align: center; border-radius: 5px; border: 1px solid #999; -moz-appearance: none; } */
+.range-box input[type="number"]::-webkit-outer-spin-button,
+.range-box input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none;}
+.range-box .space {width: 100px; display: flex; align-items: center; justify-content: center; }
+
+/* 인풋레인지 슬라이더 */
+.range-box .range-wrap {width: 100%; height: 5px; border-radius: 5px; background: #ddd; position: relative; }
+.range-box .range-wrap .progress {height: 5px; border-radius: 5px; background: #C0D0FF; left: 0%; right: 0%; position: absolute; }
+.range-box .range-wrap input{outline: 0; position: absolute; width: 100%; height: 5px; top: -2px; background: none; pointer-events: none; -webkit-appearance: none; -moz-appearance: none; }
+.range-box .range-wrap input[type="range"]::-webkit-slider-thumb{ height: 20px; width: 20px; border-radius: 50%; background:#ccc url(../img/common/range_arrow.svg) no-repeat; background-position: center; background-size: 50%; pointer-events: auto; box-shadow: 0 0 6px rgba(0,0,0,0.05); margin:0 -2px; -webkit-appearance: none;}
+.range-box .range-wrap input[type="range"]:focus::-webkit-slider-thumb{outline: 1px auto -webkit-focus-ring-color; outline-color: rgba(0, 114, 255,0.2); outline-style: solid; }
+.range-box .range-wrap input[type="range"].range-min::-webkit-slider-thumb {transform: scaleX(-1);}
+.range-box .range-wrap input[type="range"].range-min::-moz-range-thumb {transform: scaleX(-1);}
+.range-box .range-wrap input[type="range"]::-moz-range-thumb{height: 20px; width: 20px; border: none; border-radius: 50%; background:#ccc url(../img/common/range_arrow.svg) no-repeat; background-position: center; background-size: 50%; pointer-events: auto; box-shadow: 0 0 6px rgba(0,0,0,0.05); margin:0 -2px; -moz-appearance: none; }
+
+
+
+
 /* 아코디언 */
 .accordion {}
 .accordion li { border-bottom: 1px solid #eff3f6; }
@@ -145,6 +178,10 @@ a.btn.disabled{ pointer-events: none; }
 .accordion2 li .content .inner { padding: 15rem; }
 .accordion2 li.isActive .content{ opacity: 1; }
 
+
+
+
+
 /* 팝업 알럿 */
 .isAlert {position: relative; overflow: hidden;}
 .isAlert::after {content:''; position: fixed; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.3);  white-space: nowrap; }
@@ -158,20 +195,36 @@ a.btn.disabled{ pointer-events: none; }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 모달 팝업 */
 .isPopup {position: relative; overflow: hidden;}
 .isPopup::after {content:''; position: fixed; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.3); z-index:10}
 
-.ui-popup {display: none; position: fixed; z-index:11; width: 100%; font-size: 14rem;  background-color: #fff; border-radius: 8rem; overflow: auto;}
+.ui-popup {display: none; position: fixed; z-index:11; width: 100%; font-size: 14rem;  background-color: #fff; border-radius: 8rem; max-height: 100%;}
 .ui-popup .pop-header {display: flex; justify-content: space-between; align-items: center; padding: 20rem;}
 .ui-popup .pop-header h3{font-size: 16rem; font-weight: 700}
-.ui-popup .pop-content {padding: 20rem;}
+.ui-popup .pop-content {padding: 0rem;  overflow: auto;}
+.ui-popup .pop-content .inner {padding: 20rem; box-sizing: border-box;}
 .ui-popup .pop-footer {padding: 20rem;}
 .ui-popup .pop-footer .btn {width: 100%;}
 .ui-popup.isAnimated {transition: all 0.3s;}
 
 .ui-popup.top { border-radius: 0 0 8rem 8rem}
-.ui-popup.center { width: calc(100% - 40rem); height: auto; top:50%; left:50%; transform : translate(-50%, -70%);}
+.ui-popup.center { width: calc(100% - 40rem); height: auto; top:50%; left:50%; transform : translate(-50%, -55%);}
 .ui-popup.bottom { }
 
 
@@ -179,26 +232,39 @@ a.btn.disabled{ pointer-events: none; }
 
 
 
-/* 리스트 테이블  */
-.list-table {border-top: 2rem solid #000;}
-.list-table ul {display: flex; justify-content: space-between;  flex-wrap: wrap;;}
-.list-table ul li {display: flex; justify-content: flex-start; align-items: center; width: calc(100% / 2); border-bottom: 1rem solid #ddd;}
-.list-table ul li .th {background-color: #f2f2f2; color:#333; padding: 10rem; box-sizing: border-box;}
-.list-table ul li .td {color:#333; padding: 10rem; box-sizing: border-box}
-.list-table ul li.cols {width: 100%;}
-
-@media (max-width: 768px) {
-    /* 리스트 테이블 */
-    .list-table ul li {
-        width: 100%;
-    }
-}
 
 
 
 
 
-/* 스와이퍼 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* swiper js css */
 .container-swiper {width : 400rem}
 .swiper {width: 100%; height: 100%; }
 .swiper-slide {text-align: center; font-size: 18px; background: #fff; display: flex; justify-content: center; align-items: center; }
@@ -217,34 +283,44 @@ a.btn.disabled{ pointer-events: none; }
 
 
 
-/* 인풋 레인지 */
-.price-input {width: 100%;  display: flex; margin: 30rem 0 35rem;}
-.price-input .field {height: 45rem; width: 100%; display: flex; align-items: center; }
-.price-input .field input {width: 100%; height: 100%; margin-left: 12rem; text-align: center; border-radius: 5rem; border: 1px solid #999; -moz-appearance: none; }
-.price-input input[type="number"]::-webkit-outer-spin-button,
-.price-input input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none;}
-.price-input .space {width: 100rem; display: flex; align-items: center; justify-content: center; }
 
-/* 레인지 부분 */
-.range-wrap {height: 5rem; border-radius: 5rem; background: #ddd; position: relative; }
-.range-wrap .progress {height: 5rem; border-radius: 5rem; background: #ddd; /* left: 25%; right: 25%; */ position: absolute; background: red; }
-.range-wrap input{position: absolute; width: 100%; height: 5rem; top: -2px; background: none; pointer-events: none; -webkit-appearance: none; -moz-appearance: none; }
-.range-wrap input[type="range"]::-webkit-slider-thumb{
-    height: 17px;
-    width: 17px;
-    border-radius: 50%;
-    background: #17A2B8;
-    pointer-events: auto;
-    -webkit-appearance: none;
-    box-shadow: 0 0 6px rgba(0,0,0,0.05);
+/* 작은 화면(예: 스마트폰)에 대한 스타일 */
+@media screen and (max-width: 600px) {
+    /* 여기에 작은 화면용 스타일을 추가하세요 */
 }
-.range-wrap input[type="range"]::-moz-range-thumb{
-    height: 17px;
-    width: 17px;
-    border: none;
-    border-radius: 50%;
-    background: #17A2B8;
-    pointer-events: auto;
-    -moz-appearance: none;
-    box-shadow: 0 0 6px rgba(0,0,0,0.05);
+
+/* 중간 크기의 화면(예: 태블릿)에 대한 스타일 */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    /* 여기에 중간 크기의 화면용 스타일을 추가하세요 */
+}
+
+/* 큰 화면(예: 데스크톱)에 대한 스타일 */
+@media screen and (min-width: 1025px) {
+    /* 여기에 큰 화면용 스타일을 추가하세요 */
+}
+
+
+
+/* iOS 기기에 대한 스타일 */
+@media only screen and (max-device-width: 480px) {
+    /* 여기에 iOS 기기용 스타일을 추가하세요 */
+}
+
+/* 안드로이드 기기에 대한 스타일 */
+@media only screen and (max-device-width: 800px) {
+    /* 여기에 안드로이드 기기용 스타일을 추가하세요 */
+}
+
+/* Retina 디스플레이에 대한 스타일 */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    /* 여기에 Retina 디스플레이용 스타일을 추가하세요 */
+}
+
+
+/* iOS의 Safe Area에 따른 스타일 조절 */
+@media (max-width: 768px) {
+    body {
+        padding: 15px 0 calc(constant(safe-area-inset-bottom) + 15px);
+        padding: 15px 0 calc(env(safe-area-inset-bottom) + 15px);
+    }
 }

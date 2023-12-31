@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scrollAnchor</title>
+  <style>
+    :root {
+      --header-height: 5rem;
+    }
+
+    *, ::after, ::before {box-sizing:border-box;}
+    html, body {margin:0;}
+    .container {max-width:1440px; margin:0 auto;}
+    #header {position:sticky; top:0; left:0; right:0; height:var(--header-height); background:rgba(0,0,0,.8);}
+    #footer {background:#000; height:28.125rem;}
+    #header .container,
+    #footer .container {padding:1rem; color:rgba(255,255,255,.8); font-size:1.25rem; text-align:center;}
+    section {min-height:50rem; padding:1.25rem; border-top:0.3125rem dashed #eee; text-align:center; font-size:2.5rem; line-height:2;}
+    .indicator {position:fixed; bottom:2%; left:2%; z-index:9999;}
+    .indicator .console {padding:0.3125rem 0 0.625rem; color:red; font-size:16px;}
+    .indicator button {margin:0 0.15625rem;}
+
+    @media (max-width:1024.98px) {
+      html {font-size:13px;}
+    }
+  </style>
+</head>
+<main>
+  <header id="header">
+    <div class="container">HEADER</div>
+  </header>
+
+  <main id="contents">
+    <div class="indicator">
+      <div class="console"></div>
+    </div>
+
+    <section style="height:calc(100vh - var(--header-height)); background:blue;" data-anchor>0</section>
+    <section style="height:calc(100vh - var(--header-height)); background:green;" data-anchor>1</section>
+    <section style="height:calc(100vh - var(--header-height)); background:yellow;" data-anchor>2</section>
+    <section style="height:160vh;">3</section>
+    <section style="height:90vh;">4</section>
+    <div>
+      <section style="height:400px; background:purple;" data-anchor>5</section>
+      <section style="height:600px; background:orange;" data-anchor>6</section>
+    </div>
+    <section>7</section>
+    <section>8</section>
+    <section style="background:brown;" data-anchor>9</section>
+  </main>
+
+  <footer id="footer">
+    <div class="container">FOOTER</div>
+  </footer>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mig8447/lodash-debounce-throttle@4.17.5/dist/lodash-debounce-throttle.min.js"></script>
+  <script>
+    (function() {
+      "use strict";
+
+      const sectionsEl = document.querySelectorAll('#contents section');
+      const indicatorEl = document.querySelector('.indicator');
+      const headerEl = document.getElementById('header');
+      const waitTime = 200;
+      const offset = [];
+      let headerH = 0;
+      let isScrolling = false;
+      let isTouching = false;
+      let touchStartY = 0;
+      let touchMovedY = 0;
+      let touchTimer = null;
+      let currentIndex = null;
+
+      // for debuging
+      const testConsole = function () {
+        const consoleEl = document.querySelector('.indicator .console');
+
+        if (consoleEl) {
+          consoleEl.innerHTML = `
+            isScrolling: ${isScrolling} /
+            currentIndex: ${currentIndex} /
+            offset[currentIndex].top: ${(currentIndex !== null) ? offset[currentIndex].top : null} /
+            scrollTop: ${window.scrollY}
+          `;
+        }
+      }
+      
+      const setOffset = function() {
+        const scrTop = window.scrollY;
+        headerH = headerEl ? headerEl.getBoundingClientRect().height : 0;
+        
+        sectionsEl.forEach(function(item, idx) {
+          const top = (item.getBoundingClientRect().top + scrTop) - headerH;
+          const bottom = top + item.getBoundingClientRect().height;
+
+          offset[idx] = {item, top, bottom};
+        });
+
+        // console.table(offset);
+      }
+
+      const setCurrentIndex = function() {
+        const scrTop = window.scrollY;
+        
+        for (let i = 0; i < offset.length; i++) {
+          const gap = 1;
+          const top = Math.trunc(offset[i].top) - gap;
+          const bottom = Math.trunc(offset[i].bottom) - gap;
+
+          if (scrTop >= top && scrTop < bottom) {
+            currentIndex = i;
+            offset[currentIndex].item.classList.add('is-current');
+          } else {
+            offset[i].item.classList.remove('is-current');
+            if (scrTop < offset[0].top || scrTop > offset[offset.length-1].bottom) {
+              currentIndex = null;
+            }
+          }
+        }
+
+        testConsole();
+      }
+
+      const setIndicator = function() {
+        if (indicatorEl) {
+          let html = '';
+          sectionsEl.forEach(function(item, idx) {
+            html += '<button type="button" onclick="pageScrollAnchor.toSection('+ idx +')">'+ idx +'</button>'
+          });
+
+          indicatorEl.insertAdjacentHTML('beforeend', html);
+        }
+      }
+
+      const scrollToSection = function(index) {
+        if (!isScrolling) {
+          isScrolling = true;
+
+          $('html, body').stop().animate({
+            scrollTop: offset[index].top
+          }, 1000, function() {
+            setTimeout(() => {
+              currentIndex = index;
+              isScrolling = false;
+              testConsole();
+            }, waitTime);
+          });
+        }
+      };
+
+      const wheelEvt = function(e) {
+        const isTouchEvt = e.touches;
+        const deltaY = isTouchEvt ? touchStartY - touchMovedY : e.deltaY;
+        const scrTop = window.scrollY;
+        const winHeight = document.documentElement.clientHeight;
+        const diffScrY = function(offset) { return offset - scrTop }
+        const isAnchor = function(item) { return item.hasAttribute('data-anchor') }
+        
+        if (currentIndex !== null) {
+          const _scrollToSection = function(index) {
+            if (isTouchEvt && Math.abs(deltaY) < 30) { // mobile touchThreshold
+              if (e.cancelable) {
+                e.preventDefault();
+              }
+              return;
+            }
+            scrollToSection(index);
+          }
+          
+          const currentSection = offset[currentIndex].item;
+
+          if (deltaY > 0) { // down
+            const nextIdx = currentIndex + 1;
+            
+            if (nextIdx < offset.length) {
+              const nextSection = offset[nextIdx].item;
+              if (isAnchor(currentSection) || (isAnchor(nextSection) && diffScrY(offset[currentIndex].bottom) < winHeight)) { // diffScrY(offset[currentIndex].bottom) < winHeight : currentIndex 섹션의 bottom 라인이 뷰포트 안에 들어 왔을때
+                _scrollToSection(nextIdx);
+              }
+            }
+          } else { // up
+              const prevIdx = currentIndex - 1;
+              
+              if (prevIdx >= 0 && diffScrY(offset[currentIndex].top) >= 0) { // diffScrY(offset[currentIndex].top) >= 0 : currentIndex 섹션의 top 라인이 화면 상단에 걸쳤을때
+                const prevSection = offset[prevIdx].item;
+                if (isAnchor(prevSection)) {
+                  _scrollToSection(prevIdx);
+                }
+              } else {
+                if (isAnchor(currentSection)) {
+                  _scrollToSection(currentIndex);
+                }
+              }
+          }
+        }
+
+        if (isScrolling) {
+          if (e.cancelable) {
+            e.preventDefault();
+          }
+        }
+      }
+      
+      const touchEvt = {
+        start: function(e) {
+          isTouching = false;
+          touchStartY = e.touches[0].clientY;
+        }, 
+        move: function(e) {
+          isTouching = true;
+          touchMovedY = e.changedTouches[0].clientY;
+          if (isTouching) {
+            wheelEvt(e);
+          }
+        }, 
+        end: function(e) {
+          isTouching = false;
+          // touchMovedY = e.changedTouches[0].clientY;
+          // wheelEvt(e);
+        }
+      };
+      
+      const onUpdate = function() {
+        setOffset();
+        setCurrentIndex();
+      }
+
+      const onInit = function() {
+        onUpdate();
+        setIndicator();
+        
+        window.addEventListener('scroll', _.throttle(setCurrentIndex, waitTime));
+        window.addEventListener('resize', _.debounce(onUpdate, waitTime));
+        window.addEventListener('wheel', wheelEvt, {passive: false});
+        window.addEventListener('touchstart', touchEvt.start);
+        window.addEventListener('touchmove', _.throttle(touchEvt.move, waitTime), {passive: false});
+        window.addEventListener('touchend', touchEvt.end);
+      }
+
+      window.pageScrollAnchor = {
+        init: onInit,
+        toSection: scrollToSection
+      }
+    })();
+
+    document.addEventListener('DOMContentLoaded', function () {
+      pageScrollAnchor.init();
+    });
+    
+  </script>
+</main>
+</html>

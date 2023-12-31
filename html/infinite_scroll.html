@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<title>UI Page</title>
+	<meta charset="UTF-8">
+	<style>
+	
+
+    /* 리스트 */
+    .list-item {margin-top: 50rem;}
+    .list-item .tit {display: block; }
+    .list-item .tit h3 {font-size: 28rem;}
+    .list-item .tit h3 span {font-size: inherit; color:#6384E5;}
+
+    .list-item .tit .check-switch .pc {display: none;}
+    .list-item .tit .check-switch .mo {display: flex; margin-top: 20rem;}
+    .list-item .tit .check-switch .mo select {width: 125rem; height: 44rem; margin-right: 10rem;}
+
+    .list-item .infinite-wrap {margin-top: 10rem; padding-bottom: 20rem; overflow-y: scroll; }
+    /* .list-item .infinite-wrap .list {display: block; justify-content: flex-start; align-items: flex-start; flex-wrap: wrap;} */
+    .list-item .infinite-wrap .list .row {display: block;}
+    .list-item .infinite-wrap .list .row > div:first-of-type {margin-left: 0;}
+    /* .list-item .infinite-wrap .list li:nth-child(4n + 1) {margin-left: 0;} */
+    .list-item .infinite-wrap .list .row > div {width: auto; margin-left: 0rem; margin-bottom: 30rem;}
+    .list-item .infinite-wrap .list .item-tit {font-size: 22rem; color: #222; margin-top: 20rem;}
+    .list-item .infinite-wrap .list .img {width: auto; height: auto; overflow: hidden; border-radius: 10rem;}
+    .list-item .infinite-wrap .list .tag {margin-top: 15rem;}
+    .list-item .infinite-wrap .list .tag span {font-size: 18rem; color:#666; padding: 5rem 8rem 5rem; border: 1rem solid #ddd}
+    .list-item .infinite-wrap .list .price {color:#6384E5; font-size: 30rem; margin-top: 20rem;}
+
+
+
+	</style>
+</head>
+<body> 
+	<div class="infinite-wrap">
+		<div class="list">
+			<!-- 무한스크롤 리스트 출력 위치-->
+		</div>
+	</div>
+	<script>
+		// 페이지 로드 시 초기 아이템 개수
+		const initialItemCount = 8;
+
+		// 초기 데이터
+		var jsonData = [
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리1",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "가격문의",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리2",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리3",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "가격문의",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리4",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리5",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "가격문의",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리6",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리7",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "가격문의",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리8",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리9",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "가격문의",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리10",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리11",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "가격문의",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리12",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리13",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "가격문의",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리14",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리15",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "가격문의",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리16",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			// 다른 아이템들 추가
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리16",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리16",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리16",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리16",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리16",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리16",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리16",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리16",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리16123123",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			{
+				"imageSrc": "../img/temp/temp_01.png",
+				"title": "BMW 5시리즈 GT (F07) GT ED Edition 럭셔리 ENDENDENDENDEND",
+				"year": "2022",
+				"distance": "50,000km",
+				"fuel": "가솔린",
+				"price": "20,000",
+			},
+			// 다른 아이템들 추가
+		];
+
+		const observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
+		const scrollableElement = document.querySelector('.infinite-wrap');
+		observer.observe(scrollableElement);
+
+		function handleIntersection(entries, observer) {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+			addItemsToScroll();
+			}
+		});
+		}
+
+		function addItemsToScroll() {
+		const list = document.querySelector('.list');
+		const row = document.createElement('div');
+		row.classList.add('row'); // 각 행을 식별하기 위한 클래스 추가
+
+
+		for (let i = 0; i < 4 && jsonData.length > 0; i++) {
+			const data = jsonData.shift();
+			const imageSrc = data.imageSrc || '기본 이미지 URL';
+
+			const newItem = document.createElement('div');
+			newItem.innerHTML = `
+			<div>
+				<p class="img">
+				<img src="${imageSrc}" alt="">
+				</p>
+				<p class="item-tit">${data.title}</p>
+				<div class="tag">
+				<span>${data.year}</span>
+				<span>${data.distance}</span>
+				<span>${data.fuel}</span>
+				</div>
+			</div>
+			<div class="price">${data.price}</div>
+			`;
+
+			row.appendChild(newItem);
+		}
+
+		list.appendChild(row);
+
+		// 새로운 row를 추가한 후 다시 Intersection Observer를 등록
+		observer.observe(row);
+		}
+
+		// 초기에 페이지 로드 시 실행
+		addItemsToScroll();
+
+
+
+	</script>
+</body>
+</html>
