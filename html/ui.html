@@ -15,11 +15,33 @@
 	<div class="wrap">
 		<!-- 헤더 -->
 		<header class="header">
-			<h1>헤더</h1>
+			<div class="inner">
+				<div class="item">
+					<h1>
+						<img src="../img/common/constant_logo.svg" alt="컨스턴트 로고" />
+					</h1>
+				</div>
+				<div class="item">
+					<div class="gnb">
+						<a href="javascript: void(0);">메뉴 1</a>
+						<a href="javascript: void(0);">메뉴 2</a>
+						<a href="javascript: void(0);">메뉴 3</a>
+					</div>
+					<div class="search">
+						<input type="text" oninput="searchText(this.value)" />
+						<button class="search-btn" type="button">
+							<span class="blind">검색버튼</span>
+						</button>
+						<button class="clear-btn" onclick="searchClearBtn()" type="button">
+							<span class="blind">검색삭제</span>
+						</button>
+					</div>
+				</div>
+			</div>
 		</header>
 		<main class="container">
 			<div class=""><!-- 스와이퍼 커러셀 -->
-				<h2>스와이퍼</h2>
+				<!-- <h2>스와이퍼</h2> -->
 				<div class="container-swiper">
 					<div class="swiper mySwiper2 bigSwiper" id="swiper-wrapper-2">
 						<div class="swiper-wrapper">
@@ -41,21 +63,25 @@
 			<div class=""><!-- 인풋 레인지 버튼 -->
 				<h2>인풋 레인지 버튼</h2>
 				<div>
-					<div value="range-box2"></div>
-					<div class="range-box">
-						<button type="button" class="btn sm a">최소</button>
-						<div class="range-input">
-							<div class="input-km">
-								<input type="text" class="min" value="0"  oninput="updateSlider(this, 'min')"/>
-								<span>km</span>
+
+
+					<div class="range-box" data-min="0" data-max="800000">
+						<div class="input-box">
+							<button type="button" class="btn sm a" onclick="rangeMin()">최소</button>
+							<div class="range-input">
+								<div class="input-km">
+									<input type="text" class="min" value="0"  oninput="updateSlider(this, 'min')"/>
+									<span>km</span>
+								</div>
+								<span class="space">~</span>
+								<div class="input-km">
+									<input type="text" class="max" value="750000" oninput="updateSlider(this, 'max')" />
+									<span>km</span>
+								</div>
 							</div>
-							<span class="space">~</span>
-							<div class="input-km">
-								<input type="text" class="max" value="75000" oninput="updateSlider(this, 'max')" />
-								<span>km</span>
-							</div>
+							<button type="button" class="btn sm a" onclick="rangeMax()">최대</button>
 						</div>
-						<button type="button" class="btn sm a">최대</button>
+
 						<div class="range-wrap">
 							<div class="hidden">
 								<div class="progress"></div>
@@ -63,10 +89,15 @@
 							<!-- range option : step 는 기본 이동단위 -->
 							<input type="range" class="range-min" min="0" max="75000" value="0" step="100"  oninput="handleRange(this,'minRange')">
 							<input type="range" class="range-max" min="0" max="75000" value="75000" step="100"  oninput="handleRange(this,'maxRange')">
-							<p class="left-txt">1 <span>km</span></p>
-							<p class="right-txt">75000 <span>km</span></p>
+							<div class="text-box">
+								<p class="left-txt">0 km</p>
+								<p class="right-txt">75000 km</p>
+							</div>
 						</div>
 					</div>
+
+
+
 				</div>
 			</div>
 			<div class=""><!-- 아이콘 -->
@@ -277,8 +308,10 @@
 			
 		</main>
 		<!-- 푸터 -->
-		<footer>
-			constant copyright
+		<footer class="footer">
+			<div class="inner">
+				Copyright © 2023 - <span class="year"></span> Constant Company All rights reserved.
+			</div>
 		</footer>
 	</div>
 
@@ -396,66 +429,6 @@
 		
 	}
 
-	// 스와이퍼 함수 모음
-	const swiperWrapper = document.getElementById("swiper-wrapper-2");
-	swiperWrapper.addEventListener('click', function (e) {
-		const currentTarget = e.target;
-		const bigSwiper = currentTarget.closest('.bigSwiper');
-
-		if (bigSwiper && currentTarget.tagName === 'IMG') {
-			var _index = parseInt(currentTarget.getAttribute("data-index"), 10);
-			const imageData = jsonData[_index];
-
-			// 팝업 호출 함수
-			openPopup('swiperPopup'); 
-
-			const clickedSlide = currentTarget.closest('.container-swiper');
-			document.getElementById('swiperPopup').classList.add('swiper-pop');
-
-			const clonedSlide = clickedSlide.cloneNode(true);
-			const popupContent = document.getElementById('swiperPopup').querySelector('.pop-content');
-			
-			popupContent.appendChild(clonedSlide);
-			popupContent.querySelector('.bigSwiper').setAttribute('id', 'swiper-wrapper-4');
-			popupContent.querySelector('.smallSwiper').setAttribute('id', 'swiper-wrapper-3');
-
-			// 기존 스와이퍼 id 중복을 방지하고 클론된 스와이퍼 초기화
-			const mySwiper3 = new Swiper("#swiper-wrapper-3", {
-				spaceBetween: 0,
-				slidesPerView: 6,
-				freeMode: true,
-				watchSlidesProgress: true,
-				observer: true, 
-				observeParents: true, 
-				initialSlide: _index, // 인덱스 값 초기화 
-			});
-
-			const mySwiper4 = new Swiper("#swiper-wrapper-4", {
-				spaceBetween: 0,
-				observer: true, 
-				observeParents: true,
-				navigation: {
-					nextEl: ".swiper-button-next",
-					prevEl: ".swiper-button-prev",
-				},
-				thumbs: {
-					swiper: mySwiper3, // 썸네일 스와이퍼 연결
-				},
-				initialSlide: _index, // 인덱스 값 초기화 
-			});
-
-			// Swiper3 및 Swiper4에 슬라이드 추가
-			if (mySwiper3.slides.length < jsonData.length) {
-				createSlides("swiper-wrapper-3", mySwiper3, [imageData]);
-			}
-			if (mySwiper4.slides.length < jsonData.length) {
-				createSlides("swiper-wrapper-4", mySwiper4, [imageData]);
-			}
-		} else {
-			return;
-		}
-	});
-
 	
 	
 	// 모달 레이어 팝업 닫기
@@ -539,7 +512,7 @@
 	// Swiper2에 슬라이드 추가
 	createSlides("swiper-wrapper-2", mySwiper2, jsonData);
 
-	settingRangeBox();
+	// settingRangeBox();
 	</script>
 </body>
 </html>

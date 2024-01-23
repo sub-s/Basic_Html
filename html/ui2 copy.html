@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>쇼핑몰 상품 목록</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px;
+    }
+
+    .product-card {
+      width: 250px;
+      margin: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .product-details {
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>쇼핑몰 상품 목록</h1>
+</header>
+
+<div class="product-container" id="product-container">
+  <!-- 여기에 상품이 동적으로 추가될 예정 -->
+</div>
+
+<script>
+  // JavaScript를 사용하여 동적으로 상품을 추가하는 예시
+  document.addEventListener('DOMContentLoaded', function() {
+    const productContainer = document.getElementById('product-container');
+
+    // 상품 데이터 (가정)
+    const products = [
+      { id: 1, name: '상품 1', price: 20.99, imageUrl: 'product1.jpg' },
+      { id: 2, name: '상품 2', price: 34.99, imageUrl: 'product2.jpg' },
+      // ... 더 많은 상품 데이터 추가 가능
+    ];
+
+    // 상품 목록을 동적으로 생성하여 추가
+    products.forEach(product => {
+      const productCard = document.createElement('div');
+      productCard.classList.add('product-card');
+
+      const productImage = document.createElement('img');
+      productImage.classList.add('product-image');
+      productImage.src = product.imageUrl;
+      productImage.alt = product.name;
+
+      const productDetails = document.createElement('div');
+      productDetails.classList.add('product-details');
+      productDetails.innerHTML = `
+        <h3>${product.name}</h3>
+        <p>가격: $${product.price.toFixed(2)}</p>
+      `;
+
+      const addToCartButton = document.createElement('button');
+      addToCartButton.innerText = '장바구니에 추가';
+      addToCartButton.addEventListener('click', function() {
+        // 장바구니에 상품 추가 동작 추가 가능
+        alert(`상품 "${product.name}"을 장바구니에 추가했습니다.`);
+      });
+
+      productCard.appendChild(productImage);
+      productCard.appendChild(productDetails);
+      productCard.appendChild(addToCartButton);
+
+      productContainer.appendChild(productCard);
+    });
+  });
+</script>
+
+</body>
+</html>
