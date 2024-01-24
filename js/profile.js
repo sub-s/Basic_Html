@@ -16,30 +16,30 @@
         // console.log('JSON 데이터:', data);
         
         // 추가적인 작업 수행
-        const profile = document.querySelector('.profile tbody')
+        // const profile = document.querySelector('.profile tbody')
         const school = document.querySelector('.school tbody')
         const projectList = document.querySelector('.project tbody')
 
         // 프로필 
         // console.log(data)
-        for(let i = 0; i < data[0].profile.length; i++){
-            const tr = document.createElement('tr');
+        // for(let i = 0; i < data[0].profile.length; i++){
+        //     const tr = document.createElement('tr');
             
-            const nameTd = document.createElement('td');
-            const phoneTd = document.createElement('td');
-            const jobTd = document.createElement('td');
+        //     const nameTd = document.createElement('td');
+        //     const phoneTd = document.createElement('td');
+        //     const jobTd = document.createElement('td');
             
-            nameTd.textContent = data[0].profile[i].name;
-            phoneTd.textContent = data[0].profile[i].phone;
-            jobTd.textContent = data[0].profile[i].job;
+        //     nameTd.textContent = data[0].profile[i].name;
+        //     phoneTd.textContent = data[0].profile[i].phone;
+        //     jobTd.textContent = data[0].profile[i].job;
 
-            profile.appendChild(tr);
+        //     profile.appendChild(tr);
 
-            tr.appendChild(nameTd);
-            tr.appendChild(phoneTd);
-            tr.appendChild(jobTd);
+        //     tr.appendChild(nameTd);
+        //     tr.appendChild(phoneTd);
+        //     tr.appendChild(jobTd);
             
-        }
+        // }
 
         // 학교 
         for(let i = 0; i < data[0].schoolProfile.length; i++){

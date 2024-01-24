@@ -18,12 +18,14 @@
 			<div class="inner">
 				<div class="item">
 					<h1>
-						<img src="../img/common/constant_logo.svg" alt="컨스턴트 로고" />
+						<a href="/">
+							<img src="../img/common/constant_logo.svg" alt="컨스턴트 로고" />
+						</a>
 					</h1>
 				</div>
 				<div class="item">
 					<div class="gnb">
-						<a href="profile.html">Profile</a>
+						<a href="profile.html">sub's Profile</a>
 						<a href="javascript: void(0);">메뉴 2</a>
 						<a href="javascript: void(0);">메뉴 3</a>
 					</div>
@@ -41,48 +43,27 @@
 		</header>
 		<main class="container">
 			<div>
-				<pre>
-const profile = {
-	name: "신용섭",
-	email: "spoon718@gmail.com",
-	mobile: "010-5127-3931",
-	site: "ing",
-	locate: "Seoul Korea",
-	skill: ["HTML", "CSS", "Javascript" ,"Jquery", "Git", "SASS", "Gulp", "NPM"],
-	opend:  true,
-	update: "2023-10-11",
-	call: e => {
-		ui.alert("Please contact me via email");
-	}
-};
-				</pre>
-				
-			</div>
-			<div class="">
-				<h2>프로필</h2>
-				<div class="ui-table">
-					<table class="table-list profile">
-						<caption>학력</caption>
-						<colgroup>
-							<col width="auto">
-						</colgroup>
-						<thead>
-							<tr>
-								<th><span>이름</span></th>
-								<th><span>연락처</span></th>
-								<th><span>담당업무</span></th>
-							</tr>
-						</thead>
-						<tbody>
-							<!-- 데이터 호출 -->
-						</tbody>
-					</table>
+				<div class="profile-wrap">
+					<div class="photo">
+						<img src="https://avatars.githubusercontent.com/u/53501966?v=4" alt="에에이~~">
+					</div>
+					<div class="profile">
+<pre>{
+	"Name" : "신용섭",
+	"E-mail" : "spoon718@gmail.com",
+	"Mobile" : "+82-10-5127-3931",
+	"Site" : "ing",
+	"Locate" : "Seoul Korea",
+	"Skill" : [Html, Css, Javascript, Accessibility, Figma, Zeplin, Jquery, Git, Sass, Gulp, Npm, Json],
+	"Opend" :  true,
+	"Update" : "2023-10-11",
+}</pre>
+						
+					</div>
 				</div>
 			</div>
-
-
 			<div class="">
-				<h2>프로필</h2>
+				<!-- <h2>프로필</h2> -->
 				<div class="ui-table">
 					<table class="table-list school">
 						<caption>학력</caption>
