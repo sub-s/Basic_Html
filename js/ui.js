@@ -648,37 +648,31 @@ function handleRange(_this, rangeType) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+import data from '../js/data/profile.json' assert{ type: "json" } ;
+
+
+
+
 (function(){
     // footer copyright 년도 
     const year = document.querySelector('footer.footer')
     year.querySelector('.year').innerHTML = new Date().getFullYear();
-
-
-
-    const jsonFilePath = '../../js/data/profile.json'
-
-    fetch(jsonFilePath)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json(); // 이 부분에서 fetch의 결과를 다음 then 블록으로 전달합니다.
-    })
-    .then(data => {
-        console.log('JSON 데이터:', data);
-        // 추가적인 작업 수행
-
-    })
-    .catch(error => {
-        console.error('Fetch 오류:', error);
-    });
-
+    
+    console.log(data);
 
     for(var i = 0 ; i < document.querySelectorAll('.table-list.a tr').length; i ++) {
         console.log(i)
     }
-
-
 
    
 })()
