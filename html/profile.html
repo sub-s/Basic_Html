@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<title>UI Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <link href="../img/common/favicon.ico" rel="shrtcut icon">
+	<link href="../img/common/favicon.png" rel="apple-touch-icon-precomposed"> -->
+	<link rel="stylesheet" href="../css/style.css">
+	
+</head>
+<body class="body">
+	<div class="wrap">
+		<!-- 헤더 -->
+		<header class="header">
+			<div class="inner">
+				<div class="item">
+					<h1>
+						<img src="../img/common/constant_logo.svg" alt="컨스턴트 로고" />
+					</h1>
+				</div>
+				<div class="item">
+					<div class="gnb">
+						<a href="profile.html">Profile</a>
+						<a href="javascript: void(0);">메뉴 2</a>
+						<a href="javascript: void(0);">메뉴 3</a>
+					</div>
+					<div class="search">
+						<input type="text" oninput="searchText(this.value)" />
+						<button class="search-btn" type="button">
+							<span class="blind">검색버튼</span>
+						</button>
+						<button class="clear-btn" onclick="searchClearBtn()" type="button">
+							<span class="blind">검색삭제</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="container">
+			<div>
+				<pre>
+const profile = {
+	name: "신용섭",
+	email: "spoon718@gmail.com",
+	mobile: "010-5127-3931",
+	site: "ing",
+	locate: "Seoul Korea",
+	skill: ["HTML", "CSS", "Javascript" ,"Jquery", "Git", "SASS", "Gulp", "NPM"],
+	opend:  true,
+	update: "2023-10-11",
+	call: e => {
+		ui.alert("Please contact me via email");
+	}
+};
+				</pre>
+				
+			</div>
+			<div class="">
+				<h2>프로필</h2>
+				<div class="ui-table">
+					<table class="table-list profile">
+						<caption>학력</caption>
+						<colgroup>
+							<col width="auto">
+						</colgroup>
+						<thead>
+							<tr>
+								<th><span>이름</span></th>
+								<th><span>연락처</span></th>
+								<th><span>담당업무</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- 데이터 호출 -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+			<div class="">
+				<h2>프로필</h2>
+				<div class="ui-table">
+					<table class="table-list school">
+						<caption>학력</caption>
+						<colgroup>
+							<col width="auto">
+						</colgroup>
+						<thead>
+							<tr>
+								<th><span>학력</span></th>
+								<th><span>졸업구분</span></th>
+								<th><span>학교명</span></th>
+								<th><span>졸업일</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- 데이터 호출 -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+			<div class="">
+				<h2>프로젝트경력</h2>
+				<div class="ui-table">
+					<table class="table-list project">
+						<caption>프로젝트경력</caption>
+						<colgroup>
+							<col width="auto" />
+							
+						</colgroup>
+						<thead>
+							<tr>
+								<th><span>프로젝트명</span></th>
+								<th><span>투입기간</span></th>
+								<th><span>발주처</span></th>
+								<th><span>개발환경</span></th>
+							</tr>
+						</thead>
+						<tbody>
+								<!-- 데이터 호출 -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			
+
+		</main>
+		<!-- 푸터 -->
+		<footer class="footer">
+			<div class="inner">
+				Copyright © 2023 - <span class="year"></span> Constant Company All rights reserved.
+			</div>
+		</footer>
+	</div>
+
+	<script src="../js/ui.js"></script>
+	<script src="../js/profile.js"></script>
+	
+</body>
+</html>

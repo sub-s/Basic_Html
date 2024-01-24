@@ -146,35 +146,35 @@ function tabString(str){
 
 // 아코디언 이벤트 위임 메뉴
 const accordion = document.querySelector('.accordion')
-accordion.addEventListener('click', function(e){
-    const currentTarget = e.target;
-    const prevActive = this.querySelector('.isActive');
 
-    if( e.target.closest('.content') ) return; // 컨텐츠를 클릭 했을때 리턴
-    if (prevActive) {
-        prevActive.classList.remove('isActive');
-        prevActive.querySelector('.content').style.height = ''; 
+if(accordion){
+    accordion.addEventListener('click', function(e){
+        const currentTarget = e.target;
+        const prevActive = this.querySelector('.isActive');
 
-        // 트랜지션이 종료 된 후 실행
-        prevActive.querySelector('.content').addEventListener('transitionend', ()=>{
-            if(!prevActive.classList.contains('isActive') && prevActive.querySelector('.content').style.height == ''){
-                prevActive.querySelector('.content').style.display = 'none';
-                prevActive.querySelector('.content').setAttribute('aria-hidden', true);
-                prevActive.querySelector('.headBtn').setAttribute('aria-expanded', false);
-            }
-        });
-    }
-    if(currentTarget.classList.contains('headBtn')) {
-        currentTarget.parentNode.classList.add('isActive');
-        currentTarget.parentNode.querySelector('.content').style.display = 'block';
-        currentTarget.parentNode.querySelector('.content').style.height = currentTarget.parentNode.querySelector('.content').scrollHeight + 'rem'
-        currentTarget.parentNode.querySelector('.content').setAttribute('aria-hidden', false);
-        currentTarget.parentNode.querySelector('.headBtn').setAttribute('aria-expanded', true);
-    }
-});
+        if( e.target.closest('.content') ) return; // 컨텐츠를 클릭 했을때 리턴
+        if (prevActive) {
+            prevActive.classList.remove('isActive');
+            prevActive.querySelector('.content').style.height = ''; 
 
-
-
+            // 트랜지션이 종료 된 후 실행
+            prevActive.querySelector('.content').addEventListener('transitionend', ()=>{
+                if(!prevActive.classList.contains('isActive') && prevActive.querySelector('.content').style.height == ''){
+                    prevActive.querySelector('.content').style.display = 'none';
+                    prevActive.querySelector('.content').setAttribute('aria-hidden', true);
+                    prevActive.querySelector('.headBtn').setAttribute('aria-expanded', false);
+                }
+            });
+        }
+        if(currentTarget.classList.contains('headBtn')) {
+            currentTarget.parentNode.classList.add('isActive');
+            currentTarget.parentNode.querySelector('.content').style.display = 'block';
+            currentTarget.parentNode.querySelector('.content').style.height = currentTarget.parentNode.querySelector('.content').scrollHeight + 'rem'
+            currentTarget.parentNode.querySelector('.content').setAttribute('aria-hidden', false);
+            currentTarget.parentNode.querySelector('.headBtn').setAttribute('aria-expanded', true);
+        }
+    });
+}
 
 
 // 아코디언 함수형
@@ -649,30 +649,9 @@ function handleRange(_this, rangeType) {
 
 
 
-
-
-
-
-
-
-
-
-
-import data from '../js/data/profile.json' assert{ type: "json" } ;
-
-
-
-
 (function(){
     // footer copyright 년도 
     const year = document.querySelector('footer.footer')
     year.querySelector('.year').innerHTML = new Date().getFullYear();
-    
-    console.log(data);
-
-    for(var i = 0 ; i < document.querySelectorAll('.table-list.a tr').length; i ++) {
-        console.log(i)
-    }
-
    
 })()
