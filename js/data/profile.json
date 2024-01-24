@@ -1,0 +1,547 @@
+
+
+[
+  {
+    "id": 1,
+    "name": "삼성 디스플레이 QMS2.0 품질관리 시스템",
+    "date": "2023.06.01 ~ 2023.10.31",
+    "client": "삼성디스플레이",
+    "skill": ["vue", "html", "javascript", "css", "git"]
+  },
+  {
+    "id": 2,
+    "name": "삼성전자DS WIS시스템",
+    "date": "2023.05.01 ~ 2023.05.31",
+    "client": "삼성전자",
+    "skill": ["html", "javascript", "css", "git"]
+  },
+  {
+    "id": 3,
+    "name": "한국 항공 우주연구원",
+    "date": "2023.02.01 ~ 2023.04.29",
+    "client": "한국 항공 우주연구원",
+    "skill": ["html", "javascript", "css", "git"]
+  },
+  {
+    "id": 4,
+    "name": "다올저축은행",
+    "date": "2022.07.01 ~ 2022.12.31",
+    "client": "다올저축은행",
+    "skill": ["html", "javascript", "css", "git"]
+  },
+  {
+    "id": 5,
+    "name": "IBK기업은행 I-NET",
+    "date": "2022.05.02 ~ 2022.07.30",
+    "client": "IBK기업은행",
+    "skill": ["html", "javascript", "css", "git"]
+  },
+  {
+    "id": 6,
+    "name": "교보생명보험",
+    "date": "2021.08.01 ~ 2022.04.29",
+    "client": "교보생명보험",
+    "skill": ["html", "javascript", "css", "git"]
+  },
+  {
+    "id": 7,
+    "name": "관광공사 근로자 휴가지원사업",
+    "date": "2021.05.03 ~ 2021.07.30",
+    "client": "SK",
+    "skill": ["vue", "html", "javascript", "css", "git"]
+  },
+  {
+    "id": 8,
+    "name": "AboutPet",
+    "date": "2021.01.04 ~ 2021.04.30",
+    "client": "GS Retail",
+    "skill": ["html", "javascript", "css", "git"]
+  },
+  {
+    "id": 9,
+    "name": "KAMP 인공지는 중소벤처 제조플랫폼",
+    "date": "2020.11.02 ~ 2021.01.29",
+    "client": "KAMP 인공지는 중소벤처",
+    "skill": ["html", "javascript", "css", "git"]
+  },
+  {
+    "id": 10,
+    "name": "아이마켓코리아",
+    "date": "2020.09.01 ~ 2020.11.30",
+    "client": "삼성SDS",
+    "skill": ["html", "javascript", "css", "git"]
+  },
+  {
+    "id": 11,
+    "name": "미식의시대",
+    "date": "2020.06.01 ~ 2020.09.30",
+    "client": "미식의시대",
+    "skill": ["react", "html", "javascript", "css", "git"]
+  },
+  {
+    "id": 12,
+    "name": "Michaatalk WEB APP",
+    "date": "2020.01.02 ~ 2020.04.30",
+    "client": "Michaa",
+    "skill": ["vue", "html", "javascript", "css", "git"]
+  },
+  {
+    "id": 13,
+    "name": "하나은행 비대면",
+    "date": "2019.09.01 ~ 2019.12.31",
+    "client": "하나은행",
+    "skill": ["html", "javascript", "css", "git"]
+  },
+
+  {
+    "id": 14,
+    "name": "여성가족부 모바일 아이돌보미",
+    "date": "2019.07.01 ~ 2019.09.30",
+    "client": "여성가족부",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 15,
+    "name": "우리은행 원터치 개인뱅킹",
+    "date": "2019.04.01 ~ 2019.06.28",
+    "client": "우리은행",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 16,
+    "name": "롯데호텔 TMS 식음예약",
+    "date": "2018.09.01 ~ 2019.03.29",
+    "client": "롯데호텔",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 17,
+    "name": "KB LiivMate",
+    "date": "2018.04.02 ~ 2018.09.28",
+    "client": "KB",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 18,
+    "name": "삼성닷컴",
+    "date": "2018.03.01 ~ 2018.04.30",
+    "client": "삼성SDS",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 19,
+    "name": "한국경제TV",
+    "date": "2017.09.01 ~ 2018.01.31",
+    "client": "한국경제TV",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 20,
+    "name": "롯데정보통신-ECM",
+    "date": "2016.11.01 ~ 2017.08.31",
+    "client": "롯데정보통신",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 21,
+    "name": "KB손해보험",
+    "date": "2016.06.01 ~ 2016.10.31",
+    "client": "KB손해보험",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 22,
+    "name": "ING 생명, 농협생명 보험 컨텐츠",
+    "date": "2016.04.01 ~ 2016.05.31",
+    "client": "ING, 농협생명",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 23,
+    "name": "초록마을 내부 관리자",
+    "date": "2016.03.01 ~ 2016.03.31",
+    "client": "초록마을",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 24,
+    "name": "재팬료칸넷",
+    "date": "2015.09.01 ~ 2015.11.30",
+    "client": "하나투어 JP",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 25,
+    "name": "쿠루쿠루버스",
+    "date": "2015.09.01 ~ 2015.11.30",
+    "client": "하나투어 JP",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 26,
+    "name": "하나투어 JP 3차통합관리 시스템",
+    "date": "2015.01.01 ~ 2015.11.30",
+    "client": "하나투어 JP",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 27,
+    "name": "신한은행 스마트펀드센터",
+    "date": "2015.02.02 ~ 2015.03.31",
+    "client": "신한은행",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 28,
+    "name": "클래비",
+    "date": "2015.02.02 ~ 2015.03.31",
+    "client": "클래비",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 29,
+    "name": "하나투어 JP 2차 시스템 사이트",
+    "date": "2015.01.01 ~ 2015.03.31",
+    "client": "하나투어 JP",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 30,
+    "name": "하나투어 JP 시스템 사이트",
+    "date": "2014.10.01 ~ 2014.12.31",
+    "client": "하나투어 JP",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 31,
+    "name": "농사로(농촌진흥청)웹사이트",
+    "date": "2014.08.01 ~ 2015.01.30",
+    "client": "농촌진흥청",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 32,
+    "name": "농림축산식품부 공공데이터포털",
+    "date": "2014.08.01 ~ 2014.12.31",
+    "client": "농림축산식품부",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 33,
+    "name": "퍼스트피부과",
+    "date": "2014.08.01 ~ 2014.10.31",
+    "client": "퍼스트피부과",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 34,
+    "name": "라이브스포츠 모바일 앱",
+    "date": "2014.08.01 ~ 2014.09.30",
+    "client": "라이브스포츠",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 35,
+    "name": "비상교육",
+    "date": "2014.08.01 ~ 2014.08.30",
+    "client": "비상교육",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 36,
+    "name": "현대해상 VOC시스템 사이트",
+    "date": "2014.07.01 ~ 2014.08.29",
+    "client": "현대해상",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+
+  {
+    "id": 37,
+    "name": "R&D도우미센터 웹사이트",
+    "date": "2014.07.01 ~ 2014.07.31",
+    "client": "R&D도우미센터",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 38,
+    "name": "대한항공 신갈 연수원",
+    "date": "2014.07.01 ~ 2014.07.31",
+    "client": "대한항공",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 39,
+    "name": "새만금 개발청",
+    "date": "2014.03.03 ~ 2014.07.31",
+    "client": "새만금 개발청",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 40,
+    "name": "대자연 쇼핑몰",
+    "date": "2014.02.03 ~ 2014.02.28",
+    "client": "대자연",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 41,
+    "name": "방송고 앱북",
+    "date": "2014.01.01 ~ 2014.02.28",
+    "client": "방송고",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 42,
+    "name": "공연예술포털 모바일",
+    "date": "2013.11.01 ~ 2013.12.31",
+    "client": "공연예술포털",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 43,
+    "name": "I Will센터",
+    "date": "2013.09.02 ~ 2013.10.31",
+    "client": "I Will센터",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 44,
+    "name": "메리츠화재 걱정인형 모바일",
+    "date": "2013.08.01 ~ 2013.09.30",
+    "client": "메리츠화재",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 45,
+    "name": "인제스피디움 반응형 웹사이트",
+    "date": "2013.07.01 ~ 2013.08.30",
+    "client": "인제스피디움",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 46,
+    "name": "현대오토에버 HKPRIMEPILOT 시스템 개발",
+    "date": "2013.05.01 ~ 2013.10.31",
+    "client": "현대오토에버",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+
+  {
+    "id": 47,
+    "name": "효성cms전자금융센터시스템 개발",
+    "date": "2013.06.03 ~ 2013.09.30",
+    "client": "효성cms",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 48,
+    "name": "하나생명",
+    "date": "2013.03.01 ~ 2013.06.28",
+    "client": "하나생명",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 49,
+    "name": "우리은행 차세대",
+    "date": "2012.11.01 ~ 2013.03.30",
+    "client": "우리은행 차세대",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 50,
+    "name": "KDB 산업은행 차세대",
+    "date": "2012.07.02 ~ 2012.11.30",
+    "client": "KDB 산업은행",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 51,
+    "name": "국가 암정보 센터",
+    "date": "2012.09.03 ~ 2012.10.31",
+    "client": "국가 암정보 센터",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 52,
+    "name": "전남대 안전망",
+    "date": "2012.05.01 ~ 2012.07.31",
+    "client": "전남대",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 53,
+    "name": "충북대 안전망",
+    "date": "2012.04.02 ~ 2012.06.29",
+    "client": "충북대",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 54,
+    "name": "인천대 안전망",
+    "date": "2012.03.01 ~ 2012.04.30",
+    "client": "인천대",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 55,
+    "name": "㈜말타니바이오",
+    "date": "2012.02.01 ~ 2012.03.30",
+    "client": "㈜말타니바이오",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 56,
+    "name": "삼성SVC",
+    "date": "2011.08.01 ~ 2011.11.30",
+    "client": "삼성",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+
+  {
+    "id": 57,
+    "name": "현대자동차 위치 기반포탈 SOI",
+    "date": "2011.06.01 ~ 2011.08.31",
+    "client": "현대자동차",
+    "skill": ["html", "javascript", "css", "svn"]
+  },
+  {
+    "id": 58,
+    "name": "GS Retail",
+    "date": "2010.10.01 ~ 2011.02.28",
+    "client": "GS Retail",
+    "skill": ["photoshop", "html", "css", "svn"]
+  },
+  {
+    "id": 59,
+    "name": "2011 현대자동차 키오스크",
+    "date": "2010.07.01 ~ 2010.10.29",
+    "client": "현대자동차",
+    "skill": ["photoshop", "flash"]
+  },
+  {
+    "id": 60,
+    "name": "한전 KDN 인트라망 작업",
+    "date": "2010.05.03 ~ 2010.06.30",
+    "client": "한전 KDN",
+    "skill": ["photoshop", "flash"]
+  },
+  {
+    "id": 61,
+    "name": "국립공원관리공단 다국어 홈페이지 구축",
+    "date": "2009.06.01 ~ 2010.04.30",
+    "client": "국립공원관리공단",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 62,
+    "name": "바이오 코리아",
+    "date": "2009.03.02 ~ 2009.05.29",
+    "client": "바이오 코리아",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 63,
+    "name": "심토스 2009",
+    "date": "2009.01.01 ~ 2009.03.31",
+    "client": "심토스",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 64,
+    "name": "연동교회",
+    "date": "2008.06.02 ~ 2008.12.31",
+    "client": "연동교회",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 65,
+    "name": "폰트포 디자인",
+    "date": "2008.03.03 ~ 2008.12.31",
+    "client": "엥끄닷컴",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 66,
+    "name": "서원무역",
+    "date": "2008.01.01 ~ 2008.03.31",
+    "client": "서원무역",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+ {
+    "id": 67,
+    "name": "애견 사이트 퍼펫",
+    "date": "2007.10.01 ~ 2007.12.31",
+    "client": "퍼펫",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 68,
+    "name": "울산 동구 문화원",
+    "date": "2007.08.01 ~ 2007.10.31",
+    "client": "울산 동구 문화원",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 69,
+    "name": "진영정보통신",
+    "date": "2007.06.01 ~ 2007.08.31",
+    "client": "진영정보통신",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 70,
+    "name": "키즈워십",
+    "date": "2007.02.01 ~ 2007.05.31",
+    "client": "키즈워십",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 71,
+    "name": "와이유엔 메디칼",
+    "date": "2007.01.01 ~ 2007.02.28",
+    "client": "와이유엔 메디칼",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 72,
+    "name": "희망원정대",
+    "date": "2016.10.03 ~ 2016.12.30",
+    "client": "희망원정대",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 73,
+    "name": "쇼핑몰 수피아",
+    "date": "2006.09.01 ~ 2006.10.31",
+    "client": "수피아",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 74,
+    "name": "쇼핑몰 깡년",
+    "date": "2006.08.01 ~ 2006.09.30",
+    "client": "쇼핑몰 깡년",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 75,
+    "name": "빅텍",
+    "date": "2006.02.01 ~ 2006.04.28",
+    "client": "빅텍",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 76,
+    "name": "PDBOX",
+    "date": "2005.08.01 ~ 2005.12.30",
+    "client": "PDBOX",
+    "skill": ["photoshop", "html", "css", "flash"]
+  },
+  {
+    "id": 77,
+    "name": "알폰",
+    "date": "2005.06.01 ~ 2005.08.31",
+    "client": "알폰",
+    "skill": ["photoshop", "html", "css", "flash"]
+  }
+] 

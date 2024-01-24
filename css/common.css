@@ -214,6 +214,14 @@ a.btn.disabled{ pointer-events: none; }
 
 
 
+/* 테이블 */
+.ui-table .table-list {width: 100%;}
+.ui-table .table-list th {padding: 5rem; background: #ccc; color: #fff; border: 1rem solid #aaa; }
+.ui-table .table-list td {border: 1rem solid #aaa; padding: 5rem;}
+
+
+
+
 
 /* 팝업 알럿 */
 .isAlert {position: relative; overflow: hidden;}
