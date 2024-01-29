@@ -1,143 +1,39 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f0f0f0;
-    }
-
-    .flip-clock {
-      display: flex;
-      font-family: 'Arial', sans-serif;
-    }
-
-    .flip {
-      perspective: 1000px;
-      margin: 0 5px;
-    }
-
-    .flip-inner {
-      position: relative;
-      width: 50px;
-      height: 80px;
-      transform-style: preserve-3d;
-      transform-origin: center bottom;
-      animation: flip 1s forwards;
-    }
-
-    .flip-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 20px;
-      font-weight: bold;
-      background-color: #333;
-      color: #fff;
-    }
-
-    .flip-front {
-      transform: rotateX(0deg);
-    }
-
-    .flip-back {
-      transform: rotateX(180deg);
-    }
-
-    @keyframes flip {
-      0% {
-        transform: rotateX(0deg);
-      }
-      100% {
-        transform: rotateX(0deg);
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary to Image</title>
 </head>
 <body>
 
-<div class="flip-clock">
-  <div class="flip" id="hour-tens"></div>
-  <div class="flip" id="hour-units"></div>
-  <div class="flip">:</div>
-  <div class="flip" id="minute-tens"></div>
-  <div class="flip" id="minute-units"></div>
-  <div class="flip">:</div>
-  <div class="flip" id="second-tens"></div>
-  <div class="flip" id="second-units"></div>
-</div>
-
 <script>
-  function createFlipElement(id) {
-    const flipElement = document.createElement('div');
-    flipElement.id = id;
-    flipElement.classList.add('flip');
-    return flipElement;
-  }
+    // 가상의 이진 데이터 (예: 8x8 픽셀)
+    const binaryData = "0011001100110011001100110011001100110011001100110011001100110011";
 
-  function createFlipInner() {
-    const flipInner = document.createElement('div');
-    flipInner.classList.add('flip-inner');
-    return flipInner;
-  }
-
-  function createFlipFace(value) {
-    const flipFace = document.createElement('div');
-    flipFace.classList.add('flip-face', 'flip-front');
-    flipFace.textContent = value;
-    return flipFace;
-  }
-
-  function createFlipBack(value) {
-    const flipBack = document.createElement('div');
-    flipBack.classList.add('flip-face', 'flip-back');
-    flipBack.textContent = value;
-    return flipBack;
-  }
-
-  function updateFlip(id, value) {
-    const flipElement = document.getElementById(id);
-    flipElement.innerHTML = '';
-
-    const valueString = value < 10 ? '0' + value : value.toString();
-
-    for (let i = 0; i < valueString.length; i++) {
-      const flipInner = createFlipInner();
-      const flipFront = createFlipFace(valueString[i]);
-      const flipBack = createFlipBack(valueString[i]);
-
-      flipInner.appendChild(flipFront);
-      flipInner.appendChild(flipBack);
-      flipElement.appendChild(flipInner);
+    // 이진 데이터를 Uint8Array로 변환
+    const binaryArray = new Uint8Array(binaryData.length);
+    for (let i = 0; i < binaryData.length; i++) {
+        binaryArray[i] = parseInt(binaryData[i], 10);
     }
-  }
 
-  function updateClock() {
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
+    // Uint8Array를 Blob으로 변환
+    const blob = new Blob([binaryArray], { type: 'image/png' });
 
-    updateFlip('hour-tens', Math.floor(hours / 10));
-    updateFlip('hour-units', hours % 10);
-    updateFlip('minute-tens', Math.floor(minutes / 10));
-    updateFlip('minute-units', minutes % 10);
-    updateFlip('second-tens', Math.floor(seconds / 10));
-    updateFlip('second-units', seconds % 10);
-  }
+    // Blob을 Data URL로 변환
+    const reader = new FileReader();
+    reader.onload = function () {
+        const base64Data = reader.result;
 
-  setInterval(updateClock, 1000);
-  updateClock();
+        // 이미지 태그에 Base64 데이터 적용
+        const imgElement = document.createElement('img');
+        imgElement.src = base64Data;
+
+        // 이미지를 body에 추가
+        document.body.appendChild(imgElement);
+    };
+
+    reader.readAsDataURL(blob);
 </script>
 
 </body>

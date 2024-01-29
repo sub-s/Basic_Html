@@ -146,7 +146,6 @@ function tabString(str){
 
 // 아코디언 이벤트 위임 메뉴
 const accordion = document.querySelector('.accordion')
-
 if(accordion){
     accordion.addEventListener('click', function(e){
         const currentTarget = e.target;
@@ -374,6 +373,43 @@ function closePopup() {
 
 
 
+
+// 체크 박스 관련 
+// const _checkBox = document.querySelector('.all-checkbox')
+const _checkBox = document.querySelector('.checkbox.all');
+
+if (_checkBox) {
+    _checkBox.addEventListener('click', (e) => {
+        e.preventDefault();
+        const _this = e.currentTarget;
+        const isChecked = !_this.querySelector('input[type="checkbox"]').checked;
+
+        const checkboxes = document.querySelectorAll('.check-list .checkbox input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = isChecked;
+        });
+
+        console.log(isChecked, "LLLLLLL");
+    });
+}
+const childCheckboxes = document.querySelectorAll('.check-list .checkbox input[type="checkbox"]');
+childCheckboxes.forEach((childCheckbox) => {
+    childCheckbox.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isChecked = e.currentTarget.checked;
+
+        if (!isChecked) {
+            // 하나라도 체크가 해제되면 전체 체크 해제
+            _checkBox.querySelector('input[type="checkbox"]').checked = false;
+        } else {
+            // 모든 자식 체크박스가 체크되어 있으면 전체 체크
+            const allChecked = Array.from(childCheckboxes).every((checkbox) => checkbox.checked);
+            _checkBox.querySelector('input[type="checkbox"]').checked = allChecked;
+        }
+
+        console.log(isChecked, "Child Checkbox Clicked");
+    });
+});
 
 
 
