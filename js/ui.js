@@ -685,6 +685,11 @@ function handleRange(_this, rangeType) {
 
 
 
+
+
+
+
+// 푸터 
 (function(){
     // footer copyright 년도 
     const year = document.querySelector('footer.footer')
