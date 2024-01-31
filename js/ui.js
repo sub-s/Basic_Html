@@ -376,40 +376,63 @@ function closePopup() {
 
 // 체크 박스 관련 
 // const _checkBox = document.querySelector('.all-checkbox')
-const _checkBox = document.querySelector('.checkbox.all');
+// const _checkBox = document.querySelector('.checkbox.all');
 
-if (_checkBox) {
-    _checkBox.addEventListener('click', (e) => {
-        e.preventDefault();
-        const _this = e.currentTarget;
-        const isChecked = !_this.querySelector('input[type="checkbox"]').checked;
+// if (_checkBox) {
+//     _checkBox.addEventListener('click', (e) => {
+//         e.preventDefault();
+//         const _this = e.currentTarget;
+//         const isChecked = !_this.querySelector('input[type="checkbox"]').checked;
 
-        const checkboxes = document.querySelectorAll('.check-list .checkbox input[type="checkbox"]');
-        checkboxes.forEach((checkbox) => {
-            checkbox.checked = isChecked;
-        });
+//         const checkboxes = document.querySelectorAll('.check-list .checkbox input[type="checkbox"]');
+//         checkboxes.forEach((checkbox) => {
+//             checkbox.checked = isChecked;
+//         });
 
-        console.log(isChecked, "LLLLLLL");
-    });
-}
-const childCheckboxes = document.querySelectorAll('.check-list .checkbox input[type="checkbox"]');
-childCheckboxes.forEach((childCheckbox) => {
-    childCheckbox.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isChecked = e.currentTarget.checked;
+//         console.log(isChecked, "LLLLLLL");
+//     });
+// }
+// const childCheckboxes = document.querySelectorAll('.check-list .checkbox input[type="checkbox"]');
+// childCheckboxes.forEach((childCheckbox) => {
+//     childCheckbox.addEventListener('click', (e) => {
+//         e.stopPropagation();
+//         const isChecked = e.currentTarget.checked;
 
-        if (!isChecked) {
-            // 하나라도 체크가 해제되면 전체 체크 해제
-            _checkBox.querySelector('input[type="checkbox"]').checked = false;
-        } else {
-            // 모든 자식 체크박스가 체크되어 있으면 전체 체크
-            const allChecked = Array.from(childCheckboxes).every((checkbox) => checkbox.checked);
-            _checkBox.querySelector('input[type="checkbox"]').checked = allChecked;
-        }
+//         if (!isChecked) {
+//             // 하나라도 체크가 해제되면 전체 체크 해제
+//             _checkBox.querySelector('input[type="checkbox"]').checked = false;
+//         } else {
+//             // 모든 자식 체크박스가 체크되어 있으면 전체 체크
+//             const allChecked = Array.from(childCheckboxes).every((checkbox) => checkbox.checked);
+//             _checkBox.querySelector('input[type="checkbox"]').checked = allChecked;
+//         }
 
-        console.log(isChecked, "Child Checkbox Clicked");
-    });
-});
+//         console.log(isChecked, "Child Checkbox Clicked");
+//     });
+// });
+
+
+// 체크 박스 관련 
+// 전체 체크를 클릭하면 아래 있는 체크 리스트에 체크드
+// 체크 리스트에서 한개라도 체크가 헤제 되어있으면 체크 올 체크 해제
+
+const allChecked = document.querySelector('.checkbox.all');
+
+allChecked.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    
+    const checkList = document.querySelectorAll('.check-list label');
+    checkList.forEach((item, index)=>{
+        console.log(item, ":::::")
+    })
+})
+
+
+
+
+
+
+
 
 
 
@@ -618,23 +641,12 @@ function updateSlider(_this, inputType) {
 // 인풋 레인지 
 function handleRange(_this, rangeType) {
     
-    // const minNumber = Number(document.querySelector('.range-box').getAttribute('data-min'));
-    // const maxNumber = Number(document.querySelector('.range-box').getAttribute('data-max'));
-
-    // console.log(minNumber, maxNumber , "::::::::::::" )
-    
-    
 
     const wrap = _this.closest('.range-box');
     const progress = wrap.querySelector('.progress');
     
     const leftText = wrap.querySelector('.left-txt');
     const rightText = wrap.querySelector('.right-txt'); 
-
-    // let harf = rightText.clientWidth / 2 
-    // rightText.style.marginRight = - harf + 'rem'
-    // leftText.style.marginLeft = - harf + 'rem'
-    
 
 
     const minValue = parseInt(wrap.querySelector('.range-min').value); // 이동하는 가변에 따라서 value값이 가변적으로 변동됨
