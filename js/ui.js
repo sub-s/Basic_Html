@@ -374,65 +374,41 @@ function closePopup() {
 
 
 
-// 체크 박스 관련 
-// const _checkBox = document.querySelector('.all-checkbox')
-// const _checkBox = document.querySelector('.checkbox.all');
+// 체크 박스 전체 체크 
+function check(str){
+    const checkbox = str.closest('.check-list').querySelectorAll('input[type="checkbox"]');
+    const allCheckbox = str.closest('.check-list').querySelectorAll('input[type="checkbox"]:checked');
+    if(str.checked == true) {
+        str.setAttribute('aria-checked', true);
+    } else {
+        str.setAttribute('aria-checked', false);
+    }
+    for(let i = 0; i < checkbox.length; i++) {
+        if(allCheckbox.length == checkbox.length) {
+            str.closest('.all-checkbox').querySelector('.all input[type="checkbox"]').checked = true;
+        } else {
+            str.closest('.all-checkbox').querySelector('.all input[type="checkbox"]').checked = false;
+        }
+    }
+}
 
-// if (_checkBox) {
-//     _checkBox.addEventListener('click', (e) => {
-//         e.preventDefault();
-//         const _this = e.currentTarget;
-//         const isChecked = !_this.querySelector('input[type="checkbox"]').checked;
-
-//         const checkboxes = document.querySelectorAll('.check-list .checkbox input[type="checkbox"]');
-//         checkboxes.forEach((checkbox) => {
-//             checkbox.checked = isChecked;
-//         });
-
-//         console.log(isChecked, "LLLLLLL");
-//     });
-// }
-// const childCheckboxes = document.querySelectorAll('.check-list .checkbox input[type="checkbox"]');
-// childCheckboxes.forEach((childCheckbox) => {
-//     childCheckbox.addEventListener('click', (e) => {
-//         e.stopPropagation();
-//         const isChecked = e.currentTarget.checked;
-
-//         if (!isChecked) {
-//             // 하나라도 체크가 해제되면 전체 체크 해제
-//             _checkBox.querySelector('input[type="checkbox"]').checked = false;
-//         } else {
-//             // 모든 자식 체크박스가 체크되어 있으면 전체 체크
-//             const allChecked = Array.from(childCheckboxes).every((checkbox) => checkbox.checked);
-//             _checkBox.querySelector('input[type="checkbox"]').checked = allChecked;
-//         }
-
-//         console.log(isChecked, "Child Checkbox Clicked");
-//     });
-// });
-
-
-// 체크 박스 관련 
-// 전체 체크를 클릭하면 아래 있는 체크 리스트에 체크드
-// 체크 리스트에서 한개라도 체크가 헤제 되어있으면 체크 올 체크 해제
-
-const allChecked = document.querySelector('.checkbox.all');
-
-allChecked.addEventListener('click', (e)=>{
-    e.stopPropagation();
-    
-    const checkList = document.querySelectorAll('.check-list label');
-    checkList.forEach((item, index)=>{
-        console.log(item, ":::::")
-    })
-})
-
-
-
-
-
-
-
+function allCheck(str) {
+    // 체크가 되어있으면 true 아니면 false 로 세팅 하고 
+    console.log(str.checked)
+    if(str.checked == true) {
+        str.setAttribute('aria-checked', true) 
+        str.closest('.all-checkbox').querySelectorAll('.check-list label').forEach((item)=>{
+            item.querySelector('input[type="checkbox"]').checked = true;
+            item.querySelector('input[type="checkbox"]').setAttribute('aria-checked', true)
+        });
+    }else {
+        str.setAttribute('aria-checked', false)
+        str.closest('.all-checkbox').querySelectorAll('.check-list label').forEach((item)=>{
+            item.querySelector('input[type="checkbox"]').checked = false;
+            item.querySelector('input[type="checkbox"]').setAttribute('aria-checked', false)
+        });
+    }
+}
 
 
 

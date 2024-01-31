@@ -168,21 +168,21 @@
 			<div class=""><!-- 체크 박스 -->
 				<h2>체크 박스</h2>
 				<div class="all-checkbox" style="margin-bottom: 50rem;">
-					<label class="checkbox all"style="margin-bottom: 10rem;">
-						<input type="checkbox" name="checkboxGroup" aria-checked="true" checked>
+					<label class="checkbox all" style="margin-bottom: 10rem;">
+						<input type="checkbox" name="checkboxGroup" aria-checked="false" onclick="allCheck(this)" />
 						<span>전체 체크</span>
 					</label>
 					<div class="check-list">
 						<label class="checkbox">
-							<input type="checkbox" name="checkboxGroup" aria-checked="true" checked>
+							<input type="checkbox" name="checkboxGroup" aria-checked="true" onclick="check(this)" />
 							<span>체크박스 1</span>
 						</label>
 						<label class="checkbox">
-							<input type="checkbox" name="checkboxGroup" aria-checked="false" >
+							<input type="checkbox" name="checkboxGroup" aria-checked="false" onclick="check(this)" />
 							<span>체크박스 2</span>
 						</label>
 						<label class="checkbox">
-							<input type="checkbox" name="checkboxGroup" aria-checked="false" >
+							<input type="checkbox" name="checkboxGroup" aria-checked="false" onclick="check(this)" />
 							<span>체크박스 2</span>
 						</label>
 					</div>
