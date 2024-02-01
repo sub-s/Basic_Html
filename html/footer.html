@@ -1,0 +1,16 @@
+<!-- 푸터 -->
+<footer class="footer">
+    <div class="inner">
+        Copyright © 2023 - <span class="year"></span> Constant Company All rights reserved.
+    </div>
+</footer>
+
+<script>
+    // 푸터 
+    (function(){
+        // footer copyright 년도 
+        const year = document.querySelector('footer.footer')
+        year.querySelector('.year').innerHTML = new Date().getFullYear();
+       
+    })()
+</script>

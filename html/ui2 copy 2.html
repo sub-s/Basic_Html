@@ -3,37 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binary to Image</title>
+    <style>
+        .custom-select-trigger {
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .custom-options {
+            display: none;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            width: 200px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .custom-options select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .custom-option {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .custom-option:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
 
+<div class="custom-select" id="customSelect">
+    <div class="custom-select-trigger">Select an option</div>
+    <div class="custom-options">
+        <ul>
+            <li class="custom-option" value="option1">Option 1</li>
+            <li class="custom-option" value="option2">Option 2</li>
+            <li class="custom-option" value="option3">Option 3</li>
+        </ul>
+    </div>
+</div>
+
 <script>
-    // 가상의 이진 데이터 (예: 8x8 픽셀)
-    const binaryData = "0011001100110011001100110011001100110011001100110011001100110011";
+    document.addEventListener('DOMContentLoaded', function () {
+        // 초기에는 div 구조를 유지
+        var customSelect = document.getElementById('customSelect');
+        var customOptions = customSelect.querySelector('.custom-options');
+        var selectContent = customOptions.innerHTML;
 
-    // 이진 데이터를 Uint8Array로 변환
-    const binaryArray = new Uint8Array(binaryData.length);
-    for (let i = 0; i < binaryData.length; i++) {
-        binaryArray[i] = parseInt(binaryData[i], 10);
-    }
+        // 로드 후 select로 변경
+        customSelect.innerHTML = '<select>' + selectContent + '</select>';
 
-    // Uint8Array를 Blob으로 변환
-    const blob = new Blob([binaryArray], { type: 'image/png' });
+        // 이하 custom-select-trigger와 custom-option 이벤트 핸들링 코드 유지
+        var trigger = document.querySelector('.custom-select-trigger');
+        var options = document.querySelector('.custom-options');
 
-    // Blob을 Data URL로 변환
-    const reader = new FileReader();
-    reader.onload = function () {
-        const base64Data = reader.result;
+        trigger.addEventListener('click', function () {
+            options.style.display = options.style.display === 'none' ? 'block' : 'none';
+        });
 
-        // 이미지 태그에 Base64 데이터 적용
-        const imgElement = document.createElement('img');
-        imgElement.src = base64Data;
-
-        // 이미지를 body에 추가
-        document.body.appendChild(imgElement);
-    };
-
-    reader.readAsDataURL(blob);
+        options.addEventListener('click', function (event) {
+            if (event.target.tagName === 'OPTION') {
+                trigger.textContent = event.target.textContent;
+                options.style.display = 'none';
+            }
+        });
+    });
 </script>
 
 </body>

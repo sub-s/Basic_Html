@@ -710,10 +710,30 @@ function handleRange(_this, rangeType) {
 
 
 
-// 푸터 
-(function(){
-    // footer copyright 년도 
-    const year = document.querySelector('footer.footer')
-    year.querySelector('.year').innerHTML = new Date().getFullYear();
-   
-})()
+// 페이지에 있는 모든 테그네임을 가져와서 배열로 변환
+var allElements = document.getElementsByTagName('*');
+// console.log(allElements , "allElements")
+// 배열의 각 요소에 대해 반복문 실행
+Array.prototype.forEach.call(allElements, function (el) {
+    // 현재 요소의 data-include-path 속성 값을 가져옴
+    var includePath = el.dataset.includePath;
+
+    // data-include-path 속성이 존재하는 경우
+    if (includePath) {
+        // XMLHttpRequest를 사용하여 외부 HTML 파일을 가져옴
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            // 요청이 완료되고 성공한 경우
+            if (this.readyState == 4 && this.status == 200) {
+                // 현재 요소의 outerHTML을 가져온 파일의 내용으로 대체
+                el.outerHTML = this.responseText;
+            }
+        };
+        xhttp.open('GET', includePath, true);
+        xhttp.send(); // 서버에 요청을 보냄
+    }
+});
+
+
+
+

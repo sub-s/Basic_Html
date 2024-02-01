@@ -2,7 +2,7 @@
 
 (function(){
     // 프로필 
-    const profileData = 'https://raw.githubusercontent.com/sub-s/Basic_Html/main/js/data/profile.json'
+    const profileData = '../js/data/profile.json'
     // const profileData = '../js/data/profile.json'
 
     fetch(profileData)
@@ -20,26 +20,6 @@
         const school = document.querySelector('.school tbody')
         const projectList = document.querySelector('.project tbody')
 
-        // 프로필 
-        // console.log(data)
-        // for(let i = 0; i < data[0].profile.length; i++){
-        //     const tr = document.createElement('tr');
-            
-        //     const nameTd = document.createElement('td');
-        //     const phoneTd = document.createElement('td');
-        //     const jobTd = document.createElement('td');
-            
-        //     nameTd.textContent = data[0].profile[i].name;
-        //     phoneTd.textContent = data[0].profile[i].phone;
-        //     jobTd.textContent = data[0].profile[i].job;
-
-        //     profile.appendChild(tr);
-
-        //     tr.appendChild(nameTd);
-        //     tr.appendChild(phoneTd);
-        //     tr.appendChild(jobTd);
-            
-        // }
 
         // 학교 
         for(let i = 0; i < data[0].schoolProfile.length; i++){
@@ -78,7 +58,19 @@
             nameTd.textContent = data[0].careerProfile[i].name; // 데이터의 구조에 맞게 수정하세요.
             dateTd.textContent = data[0].careerProfile[i].date; // 데이터의 구조에 맞게 수정하세요.
             clientTd.textContent = data[0].careerProfile[i].client; // 데이터의 구조에 맞게 수정하세요.
-            skillTd.textContent = data[0].careerProfile[i].skill; // 데이터의 구조에 맞게 수정하세요.
+            //skillTd.textContent = "<img src='"+data[0].careerProfile[i].skill+"'>"; // 데이터의 구조에 맞게 수정하세요.
+            
+            let imgstr = data[0].careerProfile[i].skill;
+            if(imgstr.length > 0){
+                for (let index = 0; index < imgstr.length; index++) {
+                    // let img[index] = document.createElement('img');
+                    let img = document.createElement('img');
+                    img.src=imgstr[index];
+                    console.log(img);
+                    skillTd.append(img);
+                }
+            }
+        
             
             // projectList에 tr을 추가
             projectList.appendChild(tr);

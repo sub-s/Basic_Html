@@ -14,38 +14,8 @@
 <body class="body">
 	<div class="wrap">
 		<!-- 헤더 -->
-		<header class="header">
-			<div class="inner">
-				<div class="item">
-					<h1>
-						<a href="ui.html">
-							<img src="../img/common/constant_logo.svg" alt="컨스턴트 로고" />
-						</a>
-					</h1>
-				</div>
-				<div class="item">
-					<div class="gnb">
-						<a href="profile.html">sub's Profile</a>
-						<a href="javascript: void(0);">메뉴 2</a>
-						<a href="javascript: void(0);">메뉴 3</a>
-					</div>
-					<div class="search">
-						<input type="text" oninput="searchText(this.value)" />
-						<button class="search-btn" type="button">
-							<span class="blind">검색버튼</span>
-						</button>
-						<button class="clear-btn" onclick="searchClearBtn()" type="button">
-							<span class="blind">검색삭제</span>
-						</button>
-					</div>
-					<div class="util">
-						<a href="https://github.com/sub-s" target="_blank" class="git" title="sub's git page">
-							<span class="blind">sub's git page</span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</header>
+		<div data-include-path="header.html"></div>
+		<!-- 헤더 -->
 		<main class="container">
 			<div>
 				<div class="profile-wrap">
@@ -98,7 +68,6 @@
 						<caption>프로젝트경력</caption>
 						<colgroup>
 							<col width="auto" />
-							
 						</colgroup>
 						<thead>
 							<tr>
@@ -119,11 +88,7 @@
 
 		</main>
 		<!-- 푸터 -->
-		<footer class="footer">
-			<div class="inner">
-				Copyright © 2023 - <span class="year"></span> Constant Company All rights reserved.
-			</div>
-		</footer>
+		<div data-include-path="footer.html"></div>
 	</div>
 
 	<script src="../js/ui.js"></script>
