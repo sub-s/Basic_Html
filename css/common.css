@@ -37,6 +37,20 @@ input[type="text"] {border: 1rem solid #394254; padding: 10rem; font-size: 14rem
 .radio input[type="radio"]:disabled {background-color: lightgray; opacity: 0.7}
 .radio input[type="radio"]:disabled + span {opacity: 0.7;}
 
+
+
+.radio-tabmenu {margin-top: 30rem;}
+.radio-menu {display: flex; justify-content: flex-start; align-items: center; margin-bottom: 10rem;}
+.radio-menu label:first-of-type {margin-left: 0;}
+.radio-menu label {margin-left: 10rem;}
+
+.radio-content {}
+.radio-content > div {display: none; padding: 20rem; border: 1rem solid #293445; background: #1e293b;}
+.radio-content > div.isActive {display: block;}
+
+
+
+
 /* 체크 박스 */
 .checkbox {display:inline-flex; align-items: center; }
 .checkbox span {font-size: 18rem; color:#fff;}
@@ -44,7 +58,8 @@ input[type="text"] {border: 1rem solid #394254; padding: 10rem; font-size: 14rem
 .checkbox input[type="checkbox"]:checked {background: url(../img/common/icon_check.svg) no-repeat; background-size: cover; border: 0}
 .checkbox input[type="checkbox"]:disabled { background-color: lightgray; opacity: 0.7}
 .checkbox input[type="checkbox"]:disabled + span {opacity: 0.7;}
-
+.checkbox:first-of-type {margin-left: 0;}
+.checkbox {margin-left: 10rem;}
 
 
 /* 타이틀  */
@@ -171,10 +186,10 @@ a.btn.disabled{ pointer-events: none; }
 /* 탭 메뉴 */
 .ui-tab {}
 .ui-tab .tab-menu {display: flex; justify-content: space-between; align-items: center;}
-.ui-tab .tab-menu button {display: inline-flex; justify-content: center; align-items: center; width: 100%; padding: 15rem; background-color: #eee;}
-.ui-tab .tab-menu button.isActive {background-color: #409eff; color: #fff;}
+.ui-tab .tab-menu button {display: inline-flex; justify-content: center; align-items: center; width: 100%; padding: 15rem; background-color: #94a3b8;}
+.ui-tab .tab-menu button.isActive { background-color: #1e293b; color: #fff;}
 .ui-tab .tab-content {}
-.ui-tab .tab-content > div {display: none; padding: 20rem; border: 1px solid #eee; background: #fff;}
+.ui-tab .tab-content > div {display: none; padding: 20rem;  background-color: #1e293b;}
 .ui-tab .tab-content > div.isActive {display: block;}
 
 
@@ -214,17 +229,17 @@ a.btn.disabled{ pointer-events: none; }
 
 /* 아코디언 */
 .accordion {}
-.accordion li { border-bottom: 1px solid #eff3f6; }
-.accordion li .headBtn {width: 100%; padding: 15rem; font-weight: 700; background-color: #fff; text-align: left;}
-.accordion li.isActive .headBtn {background-color: #409eff; color: #fff}
+.accordion li { border-bottom: 1px solid #0b1120; }
+.accordion li .headBtn {width: 100%; padding: 15rem; font-weight: 700; background-color: #1e293b; text-align: left; color: #94a3b8;}
+.accordion li.isActive .headBtn {background-color: #1e293b; color: #fff}
 .accordion li .content {opacity: 0; height: 0; overflow: hidden; display:none; transition: opacity 0.3s, height 0.3s;}
 .accordion li .content .inner { padding: 15rem; }
 .accordion li.isActive .content{ opacity: 1; }
 
 .accordion2 {}
-.accordion2 li { border-bottom: 1px solid #eff3f6; }
-.accordion2 li .headBtn {width: 100%; padding: 15rem; font-weight: 700; background-color: #fff; text-align: left;}
-.accordion2 li.isActive .headBtn {background-color: #409eff; color: #fff}
+.accordion2 li { border-bottom: 1px solid #0b1120;}
+.accordion2 li .headBtn {width: 100%; padding: 15rem; font-weight: 700; background-color: #1e293b; text-align: left; color: #94a3b8;}
+.accordion2 li.isActive .headBtn {background-color: #1e293b; color: #fff}
 .accordion2 li .content {opacity: 0; height: 0; overflow: hidden; display:none; transition: opacity 0.3s, height 0.3s;}
 .accordion2 li .content .inner { padding: 15rem; }
 .accordion2 li.isActive .content{ opacity: 1; }
@@ -234,7 +249,7 @@ a.btn.disabled{ pointer-events: none; }
 
 /* 테이블 */
 .ui-table .table-list {width: 100%;}
-.ui-table .table-list th {padding: 10rem; background: #0f172a; color: #94a3b8; border: 1rem solid #394254;}
+.ui-table .table-list th {padding: 10rem; background: #293445; color: #94a3b8; border: 1rem solid #394254;}
 .ui-table .table-list tr:first-of-type td {border-top: 0;}
 .ui-table .table-list td {border: 1rem solid #394254; padding: 10rem; color: #94a3b8;}
 /* .ui-table .table-list tr:nth-child(even) td {background: #fafafa;} */

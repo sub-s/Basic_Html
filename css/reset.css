@@ -9,9 +9,9 @@ article, aside, details, figcaption, figure, dialog,
 footer, header, hgroup, menu, main, nav, section{display:block;}
 /* html{scroll-behavior: smooth;} */
 h1, h2, h3, h4, h5, h6{font-size:100%; font-weight:normal;}
-body{word-wrap:break-word;word-break:keep-all;color: #242424;line-height: normal;-webkit-text-size-adjust:none; font-size: 14rem;}
+body{word-wrap:break-word;word-break:keep-all;color: #94a3b8;line-height: normal;-webkit-text-size-adjust:none; font-size: 14rem;}
 /* html *{max-height:1000rem} Android tablet bug fix */
-a{color:#000; }
+a{color:#94a3b8; }
 a:link{text-decoration:none;}
 a:visited{text-decoration:none;}
 a:hover{text-decoration:none;}

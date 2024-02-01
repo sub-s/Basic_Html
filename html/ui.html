@@ -164,12 +164,40 @@
 					<input type="radio" name="radioGroup" aria-checked="false" disabled="disabled">
 					<span>라디오 3</span>
 				</label>
+
+				<div class="radio-tabmenu">
+					<div class="radio-menu">
+						<label class="radio" aria-controls="radio-content01">
+							<input type="radio" name="radioTabGroup" onclick="radioTabMenu(this)" aria-checked="true" checked />
+							<span>라디오 텝메뉴1</span>
+						</label>
+						<label class="radio" aria-controls="radio-content02">
+							<input type="radio" name="radioTabGroup" onclick="radioTabMenu(this)" aria-checked="false" />
+							<span>라디오 텝메뉴2</span>
+						</label>
+						<label class="radio" aria-controls="radio-content03">
+							<input type="radio" name="radioTabGroup" onclick="radioTabMenu(this)" aria-checked="false">
+							<span>라디오 텝메뉴3</span>
+						</label>
+					</div>
+					<div class="radio-content">
+						<div id="radio-content01" class="isActive">
+							라디오 텝메뉴 내용
+						</div>
+						<div id="radio-content02">
+							라디오 텝메뉴 내용 2
+						</div>
+						<div id="radio-content03">
+							라디오 텝메뉴 내용 3
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class=""><!-- 체크 박스 -->
 				<h2>체크 박스</h2>
 				<div class="all-checkbox" style="margin-bottom: 50rem;">
 					<label class="checkbox all" style="margin-bottom: 10rem;">
-						<input type="checkbox" name="checkboxGroup" aria-checked="false" onclick="allCheck(this)" />
+						<input type="checkbox" name="checkboxGroupAll" aria-checked="false" onclick="allCheck(this)" />
 						<span>전체 체크</span>
 					</label>
 					<div class="check-list">
@@ -429,12 +457,12 @@
 		
 	// 스와이퍼 데이터 
 	var jsonData = [
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-1.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-1.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-2.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-2.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-3.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-3.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-4.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-4.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-5.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-5.jpg" },
-		{ "imageSrc": "https://swiperjs.com/demos/images/nature-6.jpg", "largeImageSrc": "https://swiperjs.com/demos/images/nature-6.jpg" },
+		{ "imageSrc": "../img/visual/visual_img01.jpg", "largeImageSrc": "../img/visual/visual_img01.jpg" },
+		{ "imageSrc": "../img/visual/visual_img02.jpg", "largeImageSrc": "../img/visual/visual_img02.jpg" },
+		{ "imageSrc": "../img/visual/visual_img03.jpg", "largeImageSrc": "../img/visual/visual_img03.jpg" },
+		{ "imageSrc": "../img/visual/visual_img04.jpg", "largeImageSrc": "../img/visual/visual_img04.jpg" },
+		{ "imageSrc": "../img/visual/visual_img05.jpg", "largeImageSrc": "../img/visual/visual_img05.jpg" },
+		{ "imageSrc": "../img/visual/visual_img06.jpg", "largeImageSrc": "../img/visual/visual_img06.jpg" },
 		// 추가적인 데이터는 필요에 따라 계속해서 추가하세요.
 	];
 

@@ -144,6 +144,39 @@ function tabString(str){
     })
 }
 
+
+
+
+
+// 라디오 버튼 텝 메뉴 
+function radioTabMenu(str){
+    const _this = (typeof str === 'object') ? str : event.currentTarget;
+    const _id = _this.parentNode.getAttribute('aria-controls');
+
+    console.log(_id, "_아이디")
+    const radioButton = _this.closest('.radio-tabmenu').querySelectorAll('.radio-menu > label')
+
+    radioButton.forEach((item)=>{
+        const controls = document.getElementById(item.getAttribute('aria-controls'));
+        console.log(controls)
+        if(item.getAttribute('aria-controls') === _id){
+            item.classList.add('isActive');
+            controls.classList.add('isActive')
+        } else {
+            item.classList.remove('isActive');
+            controls.classList.remove('isActive')
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
 // 아코디언 이벤트 위임 메뉴
 const accordion = document.querySelector('.accordion')
 if(accordion){
