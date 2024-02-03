@@ -211,6 +211,7 @@ a.btn.disabled{ pointer-events: none; }
 
 /* 인풋레인지 슬라이더 */
 .range-box .range-wrap {width: 100%; height: 5px; border-radius: 5px; background: #394254; position: relative; }
+.range-box .range-wrap .hidden {overflow: hidden; position: relative; height: 5rem}
 .range-box .range-wrap .progress {height: 5px; border-radius: 5px; background: #C0D0FF; left: 0%; right: 0%; position: absolute; }
 .range-box .range-wrap input{outline: 0; position: absolute; width: 100%; height: 5px; top: -2px; background: none; pointer-events: none; -webkit-appearance: none; -moz-appearance: none; }
 .range-box .range-wrap input[type="range"]::-webkit-slider-thumb{ height: 20px; width: 20px; border-radius: 50%; background:#ccc url(../img/common/range_arrow.svg) no-repeat; background-position: center; background-size: 50%; pointer-events: auto; box-shadow: 0 0 6px rgba(0,0,0,0.05); margin:0 -2px; -webkit-appearance: none;}
@@ -271,7 +272,7 @@ a.btn.disabled{ pointer-events: none; }
 
 
 
-
+/* margin-left: 50% */
 
 
 

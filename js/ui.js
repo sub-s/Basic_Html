@@ -539,9 +539,6 @@ function openAlert(str, options){
     });
 }
 
-
-
-
 // 알럿, 컨펌 닫기 함수
 function closeAlert() {
     const _this = event.currentTarget;
@@ -558,9 +555,15 @@ function closeAlert() {
 }
 
 
+
+
+
+
+
+
+
 // 인풋 레인지 입력
 function updateSlider(_this, inputType) {
-
     const wrap = _this.closest('.range-box');
     const minInput = wrap.querySelector('.min');
     const maxInput = wrap.querySelector('.max');
@@ -570,8 +573,10 @@ function updateSlider(_this, inputType) {
 
     const maxNum = parseInt(maxSlider.max);
     const gap = 100;
+
     let minValue = parseInt(minInput.value);
     let maxValue = parseInt(maxInput.value);
+    
     const progressLeft = (minValue / maxNum) * 100;
     const progressRight = 100 - (maxValue / maxNum) * 100;
     
@@ -580,6 +585,9 @@ function updateSlider(_this, inputType) {
 
     if (inputType === 'min') {
         minSlider.value = _this.value;
+
+        console.log( minSlider.value)
+
         progress.style.left = (maxValue - gap) / maxNum * 100 + '%';
 
         if (maxValue - minValue <= gap) {
@@ -615,19 +623,31 @@ function updateSlider(_this, inputType) {
     // 진행 바 위치 업데이트
     progress.style.left = progressLeft + '%';
     progress.style.right = progressRight + '%';
+
+
+    // 레인지 텍스트 박스 초기 위치 
+    const leftText = document.querySelector('.range-box .left-txt');
+    const rightText = document.querySelector('.range-box .right-txt'); 
+
+
+    leftText.style.transform = 'translate(-50%, 0)';
+    leftText.style.left = progressLeft  + '%';
+    rightText.style.right = progressRight + '%';
+    rightText.style.transform = 'translate(50%, 0)';
 }
 
 
-
-
+// 레인지 텍스트 박스 초기 위치 
 const leftText = document.querySelector('.range-box .left-txt');
 const rightText = document.querySelector('.range-box .right-txt'); 
+
+// 너비 값.
+const leftWidth = leftText.clientWidth;
+const rightWidth = rightText.clientWidth;
 
 leftText.style.transform = 'translate(-50%, 0)';
 rightText.style.transform = 'translate(50%, 0)';
 
-
-// console.log(leftText)
 
 
 // 인풋 레인지 
@@ -646,20 +666,9 @@ function handleRange(_this, rangeType) {
     let progressRight = 100 - (maxValue / maxNum) * 100;
 
     // 움직일때 값이 변경되면서 max와 min값을 빼준다. 그리고 gap이 크거나 작으면 실행
-
-
-
     
     const leftText = wrap.querySelector('.left-txt');
     const rightText = wrap.querySelector('.right-txt'); 
-
-   // 너비 값.
-   const leftWidth = leftText.clientWidth;
-   const rightWidth = rightText.clientWidth;
-
-
-
-   
 
     if (maxValue - minValue <= gap) {
         // rangeType , "타입 : min 인지 max인지 체크 "
@@ -687,7 +696,7 @@ function handleRange(_this, rangeType) {
 
         progress.style.left = progressLeft + '%';
         progress.style.right = progressRight + '%';
-        
+
 
         leftText.style.transform = 'translate(-50%, 0)';
         leftText.style.left = progressLeft  + '%';
@@ -705,6 +714,7 @@ function rangeMin(){
     const _this = event.currentTarget;
     _this.closest('.range-box').querySelector('.input-km .min').value = 0;
     _this.closest('.range-box').querySelector('.text-box .left-txt').innerText = 0 + ' km'
+    _this.closest('.range-box').querySelector('.text-box .left-txt').style.left = 0;
     _this.closest('.range-box').querySelector('.range-min').value = 0;
     _this.closest('.range-box').querySelector('.range-wrap .progress').style.left = 0;
 }
@@ -714,8 +724,10 @@ function rangeMax(){
     const maxNum = Number(_this.closest('.range-box').querySelector('.range-max').max)
     _this.closest('.range-box').querySelector('.input-km .max').value = maxNum;
     _this.closest('.range-box').querySelector('.text-box .right-txt').innerText = maxNum + ' km'
+    _this.closest('.range-box').querySelector('.text-box .right-txt').style.right = 0;
     _this.closest('.range-box').querySelector('.range-max').value = maxNum;
     _this.closest('.range-box').querySelector('.range-wrap .progress').style.right = 0 + '%';
+    
 }
 
 
