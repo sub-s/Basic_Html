@@ -220,11 +220,11 @@ a.btn.disabled{ pointer-events: none; }
 .range-box .range-wrap input[type="range"].range-min::-moz-range-thumb {transform: scaleX(-1);}
 .range-box .range-wrap input[type="range"]::-moz-range-thumb{height: 20px; width: 20px; border: none; border-radius: 50%; background:#ccc url(../img/common/range_arrow.svg) no-repeat; background-position: center; background-size: 50%; pointer-events: auto; box-shadow: 0 0 6px rgba(0,0,0,0.05); margin:0 -2px; -moz-appearance: none; }
 
-.range-box .range-wrap .text-box {display: flex; justify-content: space-between; padding-top: 20rem;}
-.range-box .range-wrap .text-box .left-txt,
-.range-box .range-wrap .text-box .right-txt{background: #333; border-radius: 3rem; color:#fff; padding: 5rem; position: relative;}
-.range-box .range-wrap .text-box .left-txt::after,
-.range-box .range-wrap .text-box .right-txt::after {display: block; content:''; background: #333; width: 8rem; height: 8rem; position: absolute; left:50%; top: 0rem; transform: rotate(45deg) translate( -50%, 0);}
+.range-box .range-wrap .item-box {width: 100%; margin-top: 10rem;}
+.range-box .range-wrap .item-box .left-txt {background: #333; border-radius: 3rem; color:#fff; text-align: center; padding: 5rem; position: absolute; top:30rem; min-width: 50rem;  }
+.range-box .range-wrap .item-box .right-txt {background: #333; border-radius: 3rem; color:#fff;  text-align: center; padding: 5rem; position: absolute; top:30rem; right:0; min-width: 60rem;}
+.range-box .range-wrap .item-box .left-txt::after,
+.range-box .range-wrap .item-box .right-txt::after {display: block; content:''; background: #333; width: 8rem; height: 8rem; position: absolute; left:50%; top: 0rem; transform: rotate(45deg) translate( -50%, 0);}
 
 
 

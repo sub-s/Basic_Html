@@ -557,11 +557,6 @@ function closeAlert() {
 
 
 
-
-
-
-
-
 // 인풋 레인지 입력
 function updateSlider(_this, inputType) {
     const wrap = _this.closest('.range-box');
@@ -605,6 +600,7 @@ function updateSlider(_this, inputType) {
         
     } else { 
         maxSlider.value = _this.value;
+        console.log( maxSlider.value)
         progress.style.right = (100 - (minValue + gap) / maxNum * 100) + '%';
 
         if (maxValue - minValue <= gap) {
@@ -666,28 +662,35 @@ function handleRange(_this, rangeType) {
     let progressRight = 100 - (maxValue / maxNum) * 100;
 
     // 움직일때 값이 변경되면서 max와 min값을 빼준다. 그리고 gap이 크거나 작으면 실행
-    
     const leftText = wrap.querySelector('.left-txt');
     const rightText = wrap.querySelector('.right-txt'); 
 
-    if (maxValue - minValue <= gap) {
+    // z-index setting
+    if(rangeType === 'minRange' ) {
+        _this.closest('.range-wrap').querySelector('.range-min').style.zIndex = 1;
+        _this.closest('.range-wrap').querySelector('.left-txt').style.zIndex = 1;
+    }else {
+        _this.closest('.range-wrap').querySelector('.range-min').style.zIndex = 0;
+        _this.closest('.range-wrap').querySelector('.left-txt').style.zIndex = 0;
+    }
+
+
+    if (maxValue - minValue <= gap) { // 충돌 지점
         // rangeType , "타입 : min 인지 max인지 체크 "
         if (rangeType === 'minRange') {
             _this.value = Math.min(maxValue - gap);
             wrap.querySelector('.min').value = Math.min(maxValue - gap);
             document.querySelector('.range-box .left-txt').innerText = Math.min(maxValue - gap) + ' km';
-            progress.style.left = (maxValue - gap) / maxNum * 100 + '%';
-        } else {
 
-   
+            progress.style.left = (maxValue - gap) / maxNum * 100 + '%';
+
+        } else {
             _this.value = Math.min(minValue + gap)
             wrap.querySelector('.max').value = Math.min(minValue + gap);
             document.querySelector('.range-box .right-txt').innerText  = Math.min(minValue + gap) + ' km';
             progress.style.right = (100 - (minValue + gap) / maxNum * 100)  + '%';
         }
     } else {
-        
-
         wrap.querySelector('.min').value = minValue;
         wrap.querySelector('.max').value = maxValue;
 
@@ -696,7 +699,6 @@ function handleRange(_this, rangeType) {
 
         progress.style.left = progressLeft + '%';
         progress.style.right = progressRight + '%';
-
 
         leftText.style.transform = 'translate(-50%, 0)';
         leftText.style.left = progressLeft  + '%';
@@ -713,8 +715,8 @@ function handleRange(_this, rangeType) {
 function rangeMin(){
     const _this = event.currentTarget;
     _this.closest('.range-box').querySelector('.input-km .min').value = 0;
-    _this.closest('.range-box').querySelector('.text-box .left-txt').innerText = 0 + ' km'
-    _this.closest('.range-box').querySelector('.text-box .left-txt').style.left = 0;
+    _this.closest('.range-box').querySelector('.item-box .left-txt').innerText = 0 + ' km'
+    _this.closest('.range-box').querySelector('.item-box .left-txt').style.left = 0;
     _this.closest('.range-box').querySelector('.range-min').value = 0;
     _this.closest('.range-box').querySelector('.range-wrap .progress').style.left = 0;
 }
@@ -723,8 +725,8 @@ function rangeMax(){
     const _this = event.currentTarget;
     const maxNum = Number(_this.closest('.range-box').querySelector('.range-max').max)
     _this.closest('.range-box').querySelector('.input-km .max').value = maxNum;
-    _this.closest('.range-box').querySelector('.text-box .right-txt').innerText = maxNum + ' km'
-    _this.closest('.range-box').querySelector('.text-box .right-txt').style.right = 0;
+    _this.closest('.range-box').querySelector('.item-box .right-txt').innerText = maxNum + ' km'
+    _this.closest('.range-box').querySelector('.item-box .right-txt').style.right = 0;
     _this.closest('.range-box').querySelector('.range-max').value = maxNum;
     _this.closest('.range-box').querySelector('.range-wrap .progress').style.right = 0 + '%';
     
