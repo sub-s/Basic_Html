@@ -234,6 +234,37 @@ function accaordionFn(){
 
 
 
+// select
+function selectClicked(str){
+    const _this = str;
+  
+    if(_this.closest('.styled-combo').classList.contains('isActive')) {
+        _this.closest('.styled-combo').classList.remove('isActive');
+    } else {
+        _this.closest('.styled-combo').classList.add('isActive');
+    }
+
+    const selectOption = document.querySelectorAll('.custom-select-box li');
+
+    selectOption.forEach((item, index)=>{
+        const _index =  Array.from(selectOption).indexOf(item);
+
+        item.addEventListener('click', (e)=>{
+            console.log(item.getAttribute('data-value') , ":::::::::::")
+            if(index === _index) {
+                item.closest('.styled-combo').querySelector('.combo-title').innerText = item.innerText
+                item.closest('.styled-combo').classList.remove('isActive');
+            }
+        })
+    })
+
+    
+
+}
+
+
+
+
 
 // 모달 레이어 팝업
 function openPopup(str, options){

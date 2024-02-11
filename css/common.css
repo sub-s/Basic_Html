@@ -272,7 +272,18 @@ a.btn.disabled{ pointer-events: none; }
 
 
 
-/* margin-left: 50% */
+/* 스타일 컴보박스 */
+.styled-combo { border-radius: 4rem; position: relative;}
+.styled-combo.isActive .custom-select-box{ display: block;}
+
+
+.styled-combo .combo-title {font-size: 14rem; padding: 10rem; border: 1rem solid #C0D0FF; border-radius: 5rem;}
+
+
+.styled-combo .custom-select-box {display: none; border: 1rem solid #C0D0FF; border-radius: 5rem; position: absolute; top: 42rem; left:0; right:0; z-index: 1;;}
+.styled-combo .custom-select-box ul {}
+.styled-combo .custom-select-box ul li:first-of-type {border-top: 0;}
+.styled-combo .custom-select-box ul li {padding: 10rem; border-top: 1rem solid #C0D0FF; background: #fff;}
 
 
 
