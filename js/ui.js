@@ -768,30 +768,122 @@ function rangeMax(){
 
 
 
+// 헤더 인쿨르드 
+document.addEventListener("DOMContentLoaded", function() {
 
-// 페이지에 있는 모든 테그네임을 가져와서 배열로 변환
-var allElements = document.getElementsByTagName('*');
-// console.log(allElements , "allElements")
-// 배열의 각 요소에 대해 반복문 실행
-Array.prototype.forEach.call(allElements, function (el) {
-    // 현재 요소의 data-include-path 속성 값을 가져옴
-    var includePath = el.dataset.includePath;
+    const parentDiv = document.querySelector('.wrap');
+    const header = document.createElement('header');
+    header.classList.add('header')
+    header.innerHTML = 
+    `<div class="inner">
+        <div class="item">
+            <h1>
+                <a href="ui.html">
+                    <img src="../img/common/constant_logo.svg" alt="컨스턴트 로고" />
+                </a>
+            </h1>
+        </div>
+        <div class="item">
+            <div class="gnb">
+                <a href="profile.html">sub's Profile</a>
+                <a href="javascript: void(0);">메뉴 2</a>
+                <a href="javascript: void(0);">메뉴 3</a>
+            </div>
+            <div class="search">
+                <input type="text" oninput="searchText(this.value)" />
+                <button class="search-btn" type="button">
+                    <span class="blind">검색버튼</span>
+                </button>
+                <button class="clear-btn" onclick="searchClearBtn()" type="button">
+                    <span class="blind">검색삭제</span>
+                </button>
+            </div>
+            <div class="util">
+                <a href="https://github.com/sub-s" target="_blank" class="git" title="sub's git page">
+                    <span class="blind">sub's git page</span>
+                </a>
+            </div>
+        </div>
+    </div>`
 
-    // data-include-path 속성이 존재하는 경우
-    if (includePath) {
-        // XMLHttpRequest를 사용하여 외부 HTML 파일을 가져옴
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            // 요청이 완료되고 성공한 경우
-            if (this.readyState == 4 && this.status == 200) {
-                // 현재 요소의 outerHTML을 가져온 파일의 내용으로 대체
-                el.outerHTML = this.responseText;
-            }
-        };
-        xhttp.open('GET', includePath, true);
-        xhttp.send(); // 서버에 요청을 보냄
-    }
+    const parentNode = parentDiv.firstChild;
+    parentDiv.insertBefore(header, parentNode);
+
 });
+
+
+// .innerHTML = 
+//         `<div class="pop-header"> 
+//             <h3>${options.title}</h3> 
+//             <button class="btn" onclick="closeAlert()">닫기</button> 
+//         </div> 
+//         <div class="pop-content">${options.text}</div> 
+//         <div class="pop-footer"> 
+//             <button class="btn confirm">확인</button> 
+//             <button class="btn" onclick="closeAlert()">취소</button> 
+//         </div>`
+
+
+
+// '<header class="header">', +
+// '    <div class="inner">', +
+// '        <div class="item">', +
+// '            <h1>', +
+// '                <a href="ui.html">', +
+// '                    <img src="../img/common/constant_logo.svg" alt="컨스턴트 로고" />', +
+// '                </a>', +
+// '            </h1>', +
+// '        </div>', +
+// '        <div class="item">', +
+// '            <div class="gnb">', +
+// '                <a href="profile.html">sub's Profile</a>', +
+// '                <a href="javascript: void(0);">메뉴 2</a>', +
+// '                <a href="javascript: void(0);">메뉴 3</a>', +
+// '            </div>', +
+// '            <div class="search">', +
+// '                <input type="text" oninput="searchText(this.value)" />', +
+// '                <button class="search-btn" type="button">', +
+// '                    <span class="blind">검색버튼</span>', +
+// '                </button>', +
+// '                <button class="clear-btn" onclick="searchClearBtn()" type="button">', +
+// '                    <span class="blind">검색삭제</span>', +
+// '                </button>', +
+// '            </div>', +
+// '            <div class="util">', +
+// '                <a href="https://github.com/sub-s" target="_blank" class="git" title="sub's git page">', +
+// '                    <span class="blind">sub's git page</span>', +
+// '                </a>', +
+// '            </div>', +
+// '        </div>', +
+// '    </div>', +
+// '</header>', +
+
+
+
+
+// // 페이지에 있는 모든 테그네임을 가져와서 배열로 변환
+// var allElements = document.getElementsByTagName('*');
+// // console.log(allElements , "allElements")
+// // 배열의 각 요소에 대해 반복문 실행
+// Array.prototype.forEach.call(allElements, function (el) {
+//     // 현재 요소의 data-include-path 속성 값을 가져옴
+//     var includePath = el.dataset.includePath;
+
+//     // data-include-path 속성이 존재하는 경우
+//     if (includePath) {
+//         // XMLHttpRequest를 사용하여 외부 HTML 파일을 가져옴
+//         var xhttp = new XMLHttpRequest();
+//         xhttp.onreadystatechange = function () {
+//             // 요청이 완료되고 성공한 경우
+//             if (this.readyState == 4 && this.status == 200) {
+//                 // 현재 요소의 outerHTML을 가져온 파일의 내용으로 대체
+//                 el.outerHTML = this.responseText;
+//             }
+//         };
+//         xhttp.open('GET', includePath, true);
+//         xhttp.send(); // 서버에 요청을 보냄
+//     }
+// });
 
 
 
