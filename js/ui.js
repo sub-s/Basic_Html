@@ -265,18 +265,23 @@ if(document.querySelector('.styled-combo')) {
         })
     }
 
+    
     // select closed
     document.addEventListener('click', function(e){
-        const _this = e.target;
-        const combo = _this.closest('body').querySelectorAll('.styled-combo');
-
-        combo.forEach((item)=>{
-            if(item !== _this.closest('.styled-combo')) {
-                item.classList.remove('isActive');
-            }
-        });
-    })
+        if(document.querySelector('.styled-combo').classList.contains('isActive')){
+            console.log('ddddddddd');
+            const _this = e.target;
+            const combo = document.querySelector('body').querySelectorAll('.styled-combo');
+        
+            combo.forEach((item)=>{
+                if(item !== _this.closest('.styled-combo')) {
+                    item.classList.remove('isActive');
+                }
+            });
+        }
+    });    
 }
+    
 
 
 
@@ -787,7 +792,7 @@ function rangeMax(){
 
 
 // 헤더 인쿨르드 
-document.addEventListener("DOMContentLoaded", function() {
+// document.addEventListener("DOMContentLoaded", function() {
 
     const parentDiv = document.querySelector('.wrap');
     const header = document.createElement('header');
@@ -827,54 +832,24 @@ document.addEventListener("DOMContentLoaded", function() {
     const parentNode = parentDiv.firstChild;
     parentDiv.insertBefore(header, parentNode);
 
-});
+    const footer = document.createElement('footer');
+    footer.classList.add('footer')
+    footer.innerHTML = 
+    `<footer class="footer">
+        <div class="inner">
+            Copyright © 2023 - <span class="year"></span> Constant Company All rights reserved.
+        </div>
+    </footer>`
+    parentDiv.appendChild(footer)
+    
+    // footer copyright 년도 
+    const year = document.querySelector('footer.footer')
+    year.querySelector('.year').innerHTML = new Date().getFullYear();
 
 
-// .innerHTML = 
-//         `<div class="pop-header"> 
-//             <h3>${options.title}</h3> 
-//             <button class="btn" onclick="closeAlert()">닫기</button> 
-//         </div> 
-//         <div class="pop-content">${options.text}</div> 
-//         <div class="pop-footer"> 
-//             <button class="btn confirm">확인</button> 
-//             <button class="btn" onclick="closeAlert()">취소</button> 
-//         </div>`
 
-
-
-// '<header class="header">', +
-// '    <div class="inner">', +
-// '        <div class="item">', +
-// '            <h1>', +
-// '                <a href="ui.html">', +
-// '                    <img src="../img/common/constant_logo.svg" alt="컨스턴트 로고" />', +
-// '                </a>', +
-// '            </h1>', +
-// '        </div>', +
-// '        <div class="item">', +
-// '            <div class="gnb">', +
-// '                <a href="profile.html">sub's Profile</a>', +
-// '                <a href="javascript: void(0);">메뉴 2</a>', +
-// '                <a href="javascript: void(0);">메뉴 3</a>', +
-// '            </div>', +
-// '            <div class="search">', +
-// '                <input type="text" oninput="searchText(this.value)" />', +
-// '                <button class="search-btn" type="button">', +
-// '                    <span class="blind">검색버튼</span>', +
-// '                </button>', +
-// '                <button class="clear-btn" onclick="searchClearBtn()" type="button">', +
-// '                    <span class="blind">검색삭제</span>', +
-// '                </button>', +
-// '            </div>', +
-// '            <div class="util">', +
-// '                <a href="https://github.com/sub-s" target="_blank" class="git" title="sub's git page">', +
-// '                    <span class="blind">sub's git page</span>', +
-// '                </a>', +
-// '            </div>', +
-// '        </div>', +
-// '    </div>', +
-// '</header>', +
+   
+// });
 
 
 

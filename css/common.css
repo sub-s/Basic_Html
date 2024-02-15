@@ -72,13 +72,12 @@ h2 {font-size: 16rem; font-weight: 700; margin-top: 20rem; margin-bottom: 10rem;
 .wrap {
     padding: 0rem; width: 100%; height: 100%;
     background: linear-gradient(-60deg, #0b1120, #0f172c, #3f1e3d);
-
-
 }
+
 
 /* 레이아웃 */
 .header {width: 100%; border-bottom:1rem solid #394254 } 
-.header .inner { max-width: 1280rem; height: 100rem; margin: 0 auto; padding: 20rem; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; border-radius: 10rem;} 
+.header .inner { width: 1280rem; height: 100rem; margin: 0 auto; padding: 20rem; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; border-radius: 10rem;} 
 .header .inner .item {display: flex;align-items: center;}
 .header .inner .item input {margin-left: 20rem;}
 .header .inner h1 {width: 50rem; height: 50rem;}
@@ -98,9 +97,16 @@ h2 {font-size: 16rem; font-weight: 700; margin-top: 20rem; margin-bottom: 10rem;
 .header .inner .util .git {display: block; width: 28rem; height: 28rem; background: url(../img/common/icon_git.svg);}
 
 
+.container {width: 1280rem; padding-top: 20rem; margin: 0 auto}
 
-.container {padding:40rem 10rem 80rem; }
-.container > div {max-width: 1280rem; margin: 0 auto;}
+.container-wrap {width: 1280rem; margin: 0 auto; height: 100%; position: relative; display: flex; }
+.container-wrap .lnb {padding:20rem 10rem 0rem; width: 200rem; height: 100%; position: absolute; top: 0; overflow: auto;}
+.container-wrap .lnb ul li {margin-bottom: 20rem;}
+.container-wrap .lnb ul li button {color: #94a3b8; white-space: nowrap;}
+
+.container-wrap .container {width: 100%; height: 100%; border-left: 1rem solid #394254; padding: 0; padding-left: 50rem; margin-left: 200rem;}
+
+
 
 
 
@@ -198,7 +204,7 @@ a.btn.disabled{ pointer-events: none; }
 
 
 /* 인풋 레인지 입력 */
-.range-box {width: 100%;  margin: 30px 0 35px; margin-bottom: 50px;}
+.range-box {width: 100%;  margin: 30px 0 35px; margin-bottom: 50px; box-sizing: border-box;}
 .range-box .range-input {display: flex; margin-bottom: 20px; width: 100%;  margin:0 10rem 10rem;}
 .range-box .input-box {display: flex; justify-content: space-between;}
 .range-box .input-box .input-km {width: 100%;  position: relative;}
@@ -347,7 +353,7 @@ a.btn.disabled{ pointer-events: none; }
 
 
 /* swiper js css */
-.container-swiper {width : 100%; height: 400rem;}
+.container-swiper {width: 500rem; height: 400rem;}
 .swiper {width: 100%; height: 100%; }
 .swiper-slide {text-align: center; font-size: 18px; background: #fff; display: flex; justify-content: center; align-items: center; }
 .swiper-slide img {display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -361,6 +367,19 @@ a.btn.disabled{ pointer-events: none; }
 
 /* 스와이퍼 팝업 */
 .swiperPopup .pop-footer {display: none; height: 0; width: 0; overflow: hidden;}
+
+
+
+
+
+
+
+@media screen and (max-width: 1279rem) {
+    
+    .header .inner {width: 100%;}
+    .container-wrap {width: 100%;}
+    .container {width: 100%;}
+}
 
 
 

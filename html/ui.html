@@ -16,342 +16,361 @@
 </head>
 <body class="body">
 	<div class="wrap">
-		<main class="container">
-			<div class=""><!-- 스와이퍼 커러셀 -->
-				<!-- <h2>스와이퍼</h2> -->
-				<div class="container-swiper">
-					<div class="swiper mySwiper2 bigSwiper" id="swiper-wrapper-2">
-						<div class="swiper-wrapper">
-							<!-- 스와이퍼 이미지 호출 -->
-						</div>
-						<div class="swiper-button-next"></div>
-						<div class="swiper-button-prev"></div>
-					</div>
-					<div thumbsSlider="" class="swiper mySwiper smallSwiper" id="swiper-wrapper-1">
-						<div class="swiper-wrapper">
-							<!-- // 스와이퍼 이미지 호출 -->
-							<!-- <div class="swiper-slide">
-								<img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-							</div> -->
-						</div>
-					</div>
-				</div>
-			</div>
-			<div>
-				<h2>디자인 셀렉트 박스</h2>
-				<div class="styled-combo">
-					<p class="combo-title" onclick="selectClicked(this)">title</p>
-					<div class="custom-select-box">
-						<ul>
-							<li data-value="option 1">option 1</li>
-							<li data-value="option 2">option 2</li>
-							<li data-value="option 3">option 3</li>
-						</ul>
-					</div>
-				</div>
 
+		<div class="container-wrap">
+			<div class="lnb">
+				<ul>
+					<li><button onclick="scrollMovie('scrollSwiper')">스와이퍼</button></li>
+					<li><button onclick="scrollMovie('scrollSelect')">디자인 셀렉트 박스</button></li>
+					<li><button onclick="scrollMovie('scrollRange')">인풋 레인지 버튼</button></li>
+					<li><button onclick="scrollMovie('scrollIcon')">아이콘</button></li>
+					<li><button onclick="scrollMovie('scrollButton')">버튼 Button</button></li>
+					<li><button onclick="scrollMovie('scrollInput')">인풋박스</button></li>
+					<li><button onclick="scrollMovie('scrollRadio')">라디오 버튼</button></li>
+					<li><button onclick="scrollMovie('scrollCheckBox')">체크 박스</button></li>
+					<li><button onclick="scrollMovie('scrollSwitch')">스위치</button></li>
+					<li><button onclick="scrollMovie('scrollTab')">탭</button></li>
+					<li><button onclick="scrollMovie('scrollModal')">모달 팝업</button></li>
+					<li><button onclick="scrollMovie('scrollAlert')">알럿 / 컨펌</button></li>
+					<li><button onclick="scrollMovie('scrollAccordion')">아코디언</button></li>
+				</ul>
 			</div>
-			<div class=""><!-- 인풋 레인지 버튼 -->
-				<h2>인풋 레인지 버튼 - 수정중 .... </h2>
-				<div style="padding: 40rem; border: 1px solid #C0D0FF">
-					<div class="range-box" data-min="0" data-max="800000">
-						<div class="input-box">
-							<button type="button" class="btn sm a" onclick="rangeMin()">최소</button>
-							<div class="range-input">
-								<div class="input-km">
-									<input type="number" class="min" value="0"  oninput="updateSlider(this, 'min')"/>
-									<span>km</span>
-								</div>
-								<span class="space">~</span>
-								<div class="input-km">
-									<input type="number" class="max" value="75000" oninput="updateSlider(this, 'max')" />
-									<span>km</span>
-								</div>
+
+			<main class="container">
+				<div class="scrollSwiper"><!-- 스와이퍼 커러셀 -->
+					<h2>스와이퍼</h2>
+					<div class="container-swiper">
+						<div class="swiper mySwiper2 bigSwiper" id="swiper-wrapper-2">
+							<div class="swiper-wrapper">
+								<!-- 스와이퍼 이미지 호출 -->
 							</div>
-							<button type="button" class="btn sm a" onclick="rangeMax()">최대</button>
+							<div class="swiper-button-next"></div>
+							<div class="swiper-button-prev"></div>
 						</div>
-
-						<div class="range-wrap">
-							<div class="item-box">
-								<div class="hidden">
-									<div class="progress"></div>
-								</div>
-								<p class="left-txt">0 km</p>
-								<p class="right-txt">75000 km</p>
+						<div thumbsSlider="" class="swiper mySwiper smallSwiper" id="swiper-wrapper-1">
+							<div class="swiper-wrapper">
+								<!-- // 스와이퍼 이미지 호출 -->
+								<!-- <div class="swiper-slide">
+									<img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+								</div> -->
 							</div>
-							<!-- range option : step 는 기본 이동단위 -->
-							<input type="range" class="range-min" min="0" max="75000" value="0" step="100"  oninput="handleRange(this,'minRange')">
-							<input type="range" class="range-max" min="0" max="75000" value="75000" step="100"  oninput="handleRange(this,'maxRange')">
-							
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class=""><!-- 아이콘 -->
-				<h2>아이콘</h2>
-				<div>
-					<div class="icon"><span class="blind">아이콘</span></div>
-				</div>
-			</div>
-			<div class=""><!-- 버튼 Button -->
-				<h2>버튼 Button</h2>
-				<div>
-					<button class="btn">버튼</button>
-					<button class="btn a">버튼</button>
-					<button class="btn b">버튼</button>
-					<button class="btn c">버튼</button>
-					<button class="btn d">버튼</button>
-					<button class="btn e">버튼</button>
-					<button class="btn disabled">버튼</button>
-					<button class="btn a disabled">버튼</button>
-					<button class="btn b disabled">버튼</button>
-					<button class="btn c disabled">버튼</button>
-					<button class="btn d disabled">버튼</button>
-					<button class="btn e disabled">버튼</button>
-				</div>
-				<h2>버튼 Link</h2>
-				<div>
-					<a href="javascript: void(0)" class="btn">버튼</a>
-					<a href="javascript: void(0)" class="btn a">버튼</a>
-					<a href="javascript: void(0)" class="btn b">버튼</a>
-					<a href="javascript: void(0)" class="btn c">버튼</a>
-					<a href="javascript: void(0)" class="btn d">버튼</a>
-					<a href="javascript: void(0)" class="btn e">버튼</a>
-					<a href="javascript: void(0)" class="btn disabled">버튼</a>
-					<a href="javascript: void(0)" class="btn a disabled">버튼</a>
-					<a href="javascript: void(0)" class="btn b disabled">버튼</a>
-					<a href="javascript: void(0)" class="btn c disabled">버튼</a>
-					<a href="javascript: void(0)" class="btn d disabled">버튼</a>
-					<a href="javascript: void(0)" class="btn e disabled">버튼</a>
-				</div>
-			</div>
-			<div class=""><!-- 인풋박스  -->
-				<h2>인풋박스</h2>
-				<div>
+				<div class="scrollSelect"><!-- 디자인 셀렉트 박스 -->
+					<h2>디자인 셀렉트 박스</h2>
+					<div class="styled-combo">
+						<p class="combo-title" onclick="selectClicked(this)">title</p>
+						<div class="custom-select-box">
+							<ul>
+								<li data-value="option 1">option 1</li>
+								<li data-value="option 2">option 2</li>
+								<li data-value="option 3">option 3</li>
+							</ul>
+						</div>
+					</div>
+				
 
 				</div>
-			</div>
-			<div class=""><!-- 라디오 버튼  -->
-				<h2>라디오 버튼</h2>
-				<label class="radio">
-					<input type="radio" name="radioGroup" aria-checked="true" checked />
-					<span>라디오 1</span>
-				</label>
-				<label class="radio">
-					<input type="radio" name="radioGroup" aria-checked="false" />
-					<span>라디오 2</span>
-				</label>
-				<label class="radio">
-					<input type="radio" name="radioGroup" aria-checked="false" disabled="disabled">
-					<span>라디오 3</span>
-				</label>
+				<div class="scrollRange"><!-- 인풋 레인지 버튼 -->
+					<h2>인풋 레인지 버튼 - 수정중 .... </h2>
+					<div style="padding: 40rem; border: 1px solid #C0D0FF">
+						<div class="range-box" data-min="0" data-max="800000">
+							<div class="input-box">
+								<button type="button" class="btn sm a" onclick="rangeMin()">최소</button>
+								<div class="range-input">
+									<div class="input-km">
+										<input type="number" class="min" value="0"  oninput="updateSlider(this, 'min')"/>
+										<span>km</span>
+									</div>
+									<span class="space">~</span>
+									<div class="input-km">
+										<input type="number" class="max" value="75000" oninput="updateSlider(this, 'max')" />
+										<span>km</span>
+									</div>
+								</div>
+								<button type="button" class="btn sm a" onclick="rangeMax()">최대</button>
+							</div>
 
-				<div class="radio-tabmenu">
-					<div class="radio-menu">
-						<label class="radio" aria-controls="radio-content01">
-							<input type="radio" name="radioTabGroup" onclick="radioTabMenu(this)" aria-checked="true" checked />
-							<span>라디오 텝메뉴1</span>
-						</label>
-						<label class="radio" aria-controls="radio-content02">
-							<input type="radio" name="radioTabGroup" onclick="radioTabMenu(this)" aria-checked="false" />
-							<span>라디오 텝메뉴2</span>
-						</label>
-						<label class="radio" aria-controls="radio-content03">
-							<input type="radio" name="radioTabGroup" onclick="radioTabMenu(this)" aria-checked="false">
-							<span>라디오 텝메뉴3</span>
-						</label>
-					</div>
-					<div class="radio-content">
-						<div id="radio-content01" class="isActive">
-							라디오 텝메뉴 내용
-						</div>
-						<div id="radio-content02">
-							라디오 텝메뉴 내용 2
-						</div>
-						<div id="radio-content03">
-							라디오 텝메뉴 내용 3
+							<div class="range-wrap">
+								<div class="item-box">
+									<div class="hidden">
+										<div class="progress"></div>
+									</div>
+									<p class="left-txt">0 km</p>
+									<p class="right-txt">75000 km</p>
+								</div>
+								<!-- range option : step 는 기본 이동단위 -->
+								<input type="range" class="range-min" min="0" max="75000" value="0" step="100"  oninput="handleRange(this,'minRange')">
+								<input type="range" class="range-max" min="0" max="75000" value="75000" step="100"  oninput="handleRange(this,'maxRange')">
+								
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class=""><!-- 체크 박스 -->
-				<h2>체크 박스</h2>
-				<div class="all-checkbox" style="margin-bottom: 50rem;">
-					<label class="checkbox all" style="margin-bottom: 10rem;">
-						<input type="checkbox" name="checkboxGroupAll" aria-checked="false" onclick="allCheck(this)" />
-						<span>전체 체크</span>
+				<div class="scrollIcon"><!-- 아이콘 -->
+					<h2>아이콘</h2>
+					<div>
+						<div class="icon"><span class="blind">아이콘</span></div>
+					</div>
+				</div>
+				<div class="scrollButton"><!-- 버튼 Button -->
+					<h2>버튼 Button</h2>
+					<div>
+						<button class="btn">버튼</button>
+						<button class="btn a">버튼</button>
+						<button class="btn b">버튼</button>
+						<button class="btn c">버튼</button>
+						<button class="btn d">버튼</button>
+						<button class="btn e">버튼</button>
+						<button class="btn disabled">버튼</button>
+						<button class="btn a disabled">버튼</button>
+						<button class="btn b disabled">버튼</button>
+						<button class="btn c disabled">버튼</button>
+						<button class="btn d disabled">버튼</button>
+						<button class="btn e disabled">버튼</button>
+					</div>
+					<h2>버튼 Link</h2>
+					<div>
+						<a href="javascript: void(0)" class="btn">버튼</a>
+						<a href="javascript: void(0)" class="btn a">버튼</a>
+						<a href="javascript: void(0)" class="btn b">버튼</a>
+						<a href="javascript: void(0)" class="btn c">버튼</a>
+						<a href="javascript: void(0)" class="btn d">버튼</a>
+						<a href="javascript: void(0)" class="btn e">버튼</a>
+						<a href="javascript: void(0)" class="btn disabled">버튼</a>
+						<a href="javascript: void(0)" class="btn a disabled">버튼</a>
+						<a href="javascript: void(0)" class="btn b disabled">버튼</a>
+						<a href="javascript: void(0)" class="btn c disabled">버튼</a>
+						<a href="javascript: void(0)" class="btn d disabled">버튼</a>
+						<a href="javascript: void(0)" class="btn e disabled">버튼</a>
+					</div>
+				</div>
+				<div class="scrollInput"><!-- 인풋박스  -->
+					<h2>인풋박스</h2>
+					<div>
+						<input type="text" placeholder="text" />
+						<input type="text" disabled="disabled" placeholder="disabled" />
+					</div>
+				</div>
+				<div class="scrollRadio"><!-- 라디오 버튼  -->
+					<h2>라디오 버튼</h2>
+					<label class="radio">
+						<input type="radio" name="radioGroup" aria-checked="true" checked />
+						<span>라디오 1</span>
 					</label>
-					<div class="check-list">
+					<label class="radio">
+						<input type="radio" name="radioGroup" aria-checked="false" />
+						<span>라디오 2</span>
+					</label>
+					<label class="radio">
+						<input type="radio" name="radioGroup" aria-checked="false" disabled="disabled">
+						<span>라디오 3</span>
+					</label>
+
+					<div class="radio-tabmenu">
+						<div class="radio-menu">
+							<label class="radio" aria-controls="radio-content01">
+								<input type="radio" name="radioTabGroup" onclick="radioTabMenu(this)" aria-checked="true" checked />
+								<span>라디오 텝메뉴1</span>
+							</label>
+							<label class="radio" aria-controls="radio-content02">
+								<input type="radio" name="radioTabGroup" onclick="radioTabMenu(this)" aria-checked="false" />
+								<span>라디오 텝메뉴2</span>
+							</label>
+							<label class="radio" aria-controls="radio-content03">
+								<input type="radio" name="radioTabGroup" onclick="radioTabMenu(this)" aria-checked="false">
+								<span>라디오 텝메뉴3</span>
+							</label>
+						</div>
+						<div class="radio-content">
+							<div id="radio-content01" class="isActive">
+								라디오 텝메뉴 내용
+							</div>
+							<div id="radio-content02">
+								라디오 텝메뉴 내용 2
+							</div>
+							<div id="radio-content03">
+								라디오 텝메뉴 내용 3
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="scrollCheckBox"><!-- 체크 박스 -->
+					<h2>체크 박스</h2>
+					<div class="all-checkbox" style="margin-bottom: 50rem;">
+						<label class="checkbox all" style="margin-bottom: 10rem;">
+							<input type="checkbox" name="checkboxGroupAll" aria-checked="false" onclick="allCheck(this)" />
+							<span>전체 체크</span>
+						</label>
+						<div class="check-list">
+							<label class="checkbox">
+								<input type="checkbox" name="checkboxGroup" aria-checked="true" onclick="check(this)" />
+								<span>체크박스 1</span>
+							</label>
+							<label class="checkbox">
+								<input type="checkbox" name="checkboxGroup" aria-checked="false" onclick="check(this)" />
+								<span>체크박스 2</span>
+							</label>
+							<label class="checkbox">
+								<input type="checkbox" name="checkboxGroup" aria-checked="false" onclick="check(this)" />
+								<span>체크박스 2</span>
+							</label>
+						</div>
+					</div>
+
+
+					<div>
 						<label class="checkbox">
-							<input type="checkbox" name="checkboxGroup" aria-checked="true" onclick="check(this)" />
+							<input type="checkbox" name="checkboxGroup" aria-checked="true" checked>
 							<span>체크박스 1</span>
 						</label>
 						<label class="checkbox">
-							<input type="checkbox" name="checkboxGroup" aria-checked="false" onclick="check(this)" />
+							<input type="checkbox" name="checkboxGroup" aria-checked="false" >
 							<span>체크박스 2</span>
 						</label>
 						<label class="checkbox">
-							<input type="checkbox" name="checkboxGroup" aria-checked="false" onclick="check(this)" />
+							<input type="checkbox" name="checkboxGroup" aria-checked="false"  disabled="disabled">
 							<span>체크박스 2</span>
 						</label>
 					</div>
 				</div>
-
-
-				<div>
-					<label class="checkbox">
-						<input type="checkbox" name="checkboxGroup" aria-checked="true" checked>
-						<span>체크박스 1</span>
-					</label>
-					<label class="checkbox">
-						<input type="checkbox" name="checkboxGroup" aria-checked="false" >
-						<span>체크박스 2</span>
-					</label>
-					<label class="checkbox">
-						<input type="checkbox" name="checkboxGroup" aria-checked="false"  disabled="disabled">
-						<span>체크박스 2</span>
-					</label>
-				</div>
-			</div>
-			<div class=""><!-- 스위치 -->
-				<h2>스위치</h2>
-				<div class="switch">
-					<input type="checkbox" id="toggle">
-					<label for="toggle"></label>
-				</div>
-			</div>
-			<div class=""><!-- 텝 메뉴 -->
-				<h2>탭</h2>
-				<div class="ui-tab">
-					<div class="tab-menu">
-						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content01">tab-menu01</button>
-						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content02">tab-menu02</button>
-						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content03">tab-menu03</button>
-						<button type="button" onclick="tabEvent(this)" aria-controls="tab-content04">tab-menu04</button>
-					</div>
-					<div class="tab-content">
-						<div id="tab-content01">tab-content01</div>
-						<div id="tab-content02">tab-content02</div>
-						<div id="tab-content03">tab-content03</div>
-						<div id="tab-content04">tab-content04</div>
+				<div class="scrollSwitch"><!-- 스위치 -->
+					<h2>스위치</h2>
+					<div class="switch">
+						<input type="checkbox" id="toggle">
+						<label for="toggle"></label>
 					</div>
 				</div>
-			</div>
-			<div class=""><!-- 모달 팝업 -->
-				<h2>모달</h2>
-				<button class="btn" aria-haspopup="true" onclick="openPopup('modal01' , {position: 'top', confirmFn: function(){console.log('팝업 확인') } })">상단 팝업 호출해보자</button>
-				<button class="btn" aria-haspopup="true" onclick="openPopup('modal02' , {position: 'center', confirmFn: function(){console.log('팝업 확인') } })">중앙 팝업 호출해보자</button>
-				<button class="btn" aria-haspopup="true" onclick="openPopup('modal03' , {position: 'bottom', confirmFn: function(){console.log('팝업 확인') } })">하단 팝업 호출해보자</button>
-			</div>
-			<div class=""><!-- 알럿 / 컨펌 -->
-				<h2>알럿 / 컨펌</h2>
-				<!-- <button type="button" class="btn" onclick="openAlert('alert-id01', '제목입니다.', '여기가 알럿 내용입니다.')">알럿</button> -->
-				<button type="button" class="btn alert" aria-haspopup="true" onclick="openAlert('alert-id01', {title: '제목입니다', text:' 알럿 내용이지롱..', confirmFn: function() {console.log('실행후 함수')} })">알럿</button>
-				<button type="button" class="btn confirm" aria-haspopup="true" onclick="openAlert('confirmFn-id01', {title: '컨펌 제목입니다', text:' 컨펌 내용입니다.', confirmFn: function() {console.log('실행후 함수')}})">컨펌</button>
-				<!-- <div class="ui-alert"></div> -->
-			</div>
-			<div class=""><!-- 아코디언 -->
-				<h2>아코디언</h2>
-				<div class="accordion">
-					<ul>
-						<li>
-							<button class="headBtn" type="button" aria-controls="section1" aria-expanded="false">이벤트 위임을 통한 아코디언 메뉴1</button>
-							<div class="content" role="region" id="section1" aria-labelledby="section1" aria-hidden="true">
-								<div class="inner">
-									컨텐츠1
-									컨텐츠1 <br>
-									컨텐츠1 <br>
-								</div>
-							</div>
-						</li>
-						<li>
-							<button class="headBtn" type="button" aria-controls="section2" aria-expanded="false">이벤트 위임을 통한 아코디언 메뉴2</button>
-							<div class="content" role="region" id="section2" aria-labelledby="section2" aria-hidden="true">
-								<div class="inner">
-									컨텐츠2 <br>
-									컨텐츠2 <br>
-									컨텐츠2 <br>
-									컨텐츠2 <br>
-								</div>
-							</div>
-						</li>
-						<li>
-							<button class="headBtn" type="button" aria-controls="section3" aria-expanded="false">이벤트 위임을 통한 아코디언 메뉴3</button>
-							<div class="content" role="region" id="section3" aria-labelledby="section3" aria-hidden="true">
-								<div class="inner">
-									컨텐츠3 <br>
-									컨텐츠3 <br>
-									컨텐츠3 <br>
-									컨텐츠3 <br>
-									컨텐츠3 <br>
-									컨텐츠3 <br>
-									컨텐츠3 <br>
-								</div>
-							</div>
-						</li>
-					</ul>
+				<div class="scrollTab"><!-- 텝 메뉴 -->
+					<h2>탭</h2>
+					<div class="ui-tab">
+						<div class="tab-menu">
+							<button type="button" onclick="tabEvent(this)" aria-controls="tab-content01">tab-menu01</button>
+							<button type="button" onclick="tabEvent(this)" aria-controls="tab-content02">tab-menu02</button>
+							<button type="button" onclick="tabEvent(this)" aria-controls="tab-content03">tab-menu03</button>
+							<button type="button" onclick="tabEvent(this)" aria-controls="tab-content04">tab-menu04</button>
+						</div>
+						<div class="tab-content">
+							<div id="tab-content01">tab-content01</div>
+							<div id="tab-content02">tab-content02</div>
+							<div id="tab-content03">tab-content03</div>
+							<div id="tab-content04">tab-content04</div>
+						</div>
+					</div>
 				</div>
+				<div class="scrollModal"><!-- 모달 팝업 -->
+					<h2>모달 팝업</h2>
+					<button class="btn" aria-haspopup="true" onclick="openPopup('modal01' , {position: 'top', confirmFn: function(){console.log('팝업 확인') } })">상단 팝업 호출해보자</button>
+					<button class="btn" aria-haspopup="true" onclick="openPopup('modal02' , {position: 'center', confirmFn: function(){console.log('팝업 확인') } })">중앙 팝업 호출해보자</button>
+					<button class="btn" aria-haspopup="true" onclick="openPopup('modal03' , {position: 'bottom', confirmFn: function(){console.log('팝업 확인') } })">하단 팝업 호출해보자</button>
+				</div>
+				<div class="scrollAlert"><!-- 알럿 / 컨펌 -->
+					<h2>알럿 / 컨펌</h2>
+					<button type="button" style="display: none;" class="btn alert" id="alert1" onclick="openAlert('alert-id01', {title: '페이지 업데이트 중', text:'페이지 업데이트 중',confirmFn: function() {console.log('실행후 함수')} })">알럿</button>
+					<button type="button" class="btn alert" aria-haspopup="true" onclick="openAlert('alert-id01', {title: '제목입니다', text:' 알럿 내용이지롱..', confirmFn: function() {console.log('실행후 함수')} })">알럿</button>
+					<button type="button" class="btn confirm" aria-haspopup="true" onclick="openAlert('confirmFn-id01', {title: '컨펌 제목입니다', text:' 컨펌 내용입니다.', confirmFn: function() {console.log('실행후 함수')}})">컨펌</button>
+					<!-- <div class="ui-alert"></div> -->
+				</div>
+				<div class="scrollAccordion"><!-- 아코디언 -->
+					<h2>아코디언</h2>
+					<div class="accordion">
+						<ul>
+							<li>
+								<button class="headBtn" type="button" aria-controls="section1" aria-expanded="false">이벤트 위임을 통한 아코디언 메뉴1</button>
+								<div class="content" role="region" id="section1" aria-labelledby="section1" aria-hidden="true">
+									<div class="inner">
+										컨텐츠1
+										컨텐츠1 <br>
+										컨텐츠1 <br>
+									</div>
+								</div>
+							</li>
+							<li>
+								<button class="headBtn" type="button" aria-controls="section2" aria-expanded="false">이벤트 위임을 통한 아코디언 메뉴2</button>
+								<div class="content" role="region" id="section2" aria-labelledby="section2" aria-hidden="true">
+									<div class="inner">
+										컨텐츠2 <br>
+										컨텐츠2 <br>
+										컨텐츠2 <br>
+										컨텐츠2 <br>
+									</div>
+								</div>
+							</li>
+							<li>
+								<button class="headBtn" type="button" aria-controls="section3" aria-expanded="false">이벤트 위임을 통한 아코디언 메뉴3</button>
+								<div class="content" role="region" id="section3" aria-labelledby="section3" aria-hidden="true">
+									<div class="inner">
+										컨텐츠3 <br>
+										컨텐츠3 <br>
+										컨텐츠3 <br>
+										컨텐츠3 <br>
+										컨텐츠3 <br>
+										컨텐츠3 <br>
+										컨텐츠3 <br>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
 
-				<h2>아코디언 함수형</h2>
-				<div class="accordion2">
-					<ul>
-						<li>
-							<button class="headBtn" type="button" aria-controls="section4" aria-expanded="false" onclick="accaordionFn()">함수형 아코디언 메뉴1</button>
-							<div class="content" role="region" id="section4" aria-labelledby="section4" aria-hidden="true">
-								<div class="inner">
-									컨텐츠1
-									컨텐츠1 <br>
-									컨텐츠1 <br>
+					<h2>아코디언 함수형</h2>
+					<div class="accordion2">
+						<ul>
+							<li>
+								<button class="headBtn" type="button" aria-controls="section4" aria-expanded="false" onclick="accaordionFn()">함수형 아코디언 메뉴1</button>
+								<div class="content" role="region" id="section4" aria-labelledby="section4" aria-hidden="true">
+									<div class="inner">
+										컨텐츠1
+										컨텐츠1 <br>
+										컨텐츠1 <br>
+									</div>
 								</div>
-							</div>
-						</li>
-						<li>
-							<button class="headBtn" type="button" aria-controls="section5" aria-expanded="false" onclick="accaordionFn()">함수형 아코디언 메뉴2</button>
-							<div class="content" role="region" id="section5" aria-labelledby="section5" aria-hidden="true">
-								<div class="inner">
-									컨텐츠2 <br>
-									컨텐츠2 <br>
-									컨텐츠2 <br>
-									컨텐츠2 <br>
+							</li>
+							<li>
+								<button class="headBtn" type="button" aria-controls="section5" aria-expanded="false" onclick="accaordionFn()">함수형 아코디언 메뉴2</button>
+								<div class="content" role="region" id="section5" aria-labelledby="section5" aria-hidden="true">
+									<div class="inner">
+										컨텐츠2 <br>
+										컨텐츠2 <br>
+										컨텐츠2 <br>
+										컨텐츠2 <br>
+									</div>
 								</div>
-							</div>
-						</li>
-						<li>
-							<button class="headBtn" type="button" aria-controls="section6" aria-expanded="false" onclick="accaordionFn()">함수형 아코디언 메뉴3</button>
-							<div class="content" role="region" id="section6" aria-labelledby="section6" aria-hidden="true">
-								<div class="inner">
-									컨텐츠3 <br>
-									컨텐츠3 <br>
-									컨텐츠3 <br>
-									컨텐츠3 <br>
-									컨텐츠3 <br>
-									컨텐츠3 <br>
-									컨텐츠3 <br>
+							</li>
+							<li>
+								<button class="headBtn" type="button" aria-controls="section6" aria-expanded="false" onclick="accaordionFn()">함수형 아코디언 메뉴3</button>
+								<div class="content" role="region" id="section6" aria-labelledby="section6" aria-hidden="true">
+									<div class="inner">
+										컨텐츠3 <br>
+										컨텐츠3 <br>
+										컨텐츠3 <br>
+										컨텐츠3 <br>
+										컨텐츠3 <br>
+										컨텐츠3 <br>
+										컨텐츠3 <br>
+									</div>
 								</div>
-							</div>
-						</li>
-					</ul>
+							</li>
+						</ul>
+					</div>
 				</div>
-			</div>
-			<div class=""><!--  -->
-				<h2></h2>
-			</div>
-			<div class=""><!-- 챠트 -->
-				<h2>차트</h2>
-			</div>
+				<div class="scroll"><!--  -->
+					<h2></h2>
+				</div>
+				<div class="scroll"><!-- 챠트 -->
+					<h2>차트</h2>
+				</div>
+				<div class="scroll"><!-- 로딩 -->
+					<h2>로딩</h2>
+				</div>
 			
-			<div class=""><!-- 로딩 -->
-				<h2>로딩</h2>
-			</div>
-			<div>
-		
 <pre class="language-html"><code class="language-html"><xmp><div><!-- 로딩 -->
 	<h2>로딩11safdasd</h2>
 </div>
 </xmp></code></pre>
-			</div>
-		</main>
-		<div data-include-path="footer.html"></div>
+			</main>
+		</div>
 		
 	</div>
 
@@ -430,6 +449,55 @@
 	<script src="../js/ui.js"></script>
 	<script>
 	
+	// document.querySelector("#alert1").click();
+
+	
+	// 좌측 스티키
+	function scrollMovie(name) {
+		const location = document.querySelector("." + name).offsetTop + 85;;
+		window.scrollTo({
+			top: location, 
+			behavior: 'smooth'
+		});
+	};
+	// 좌측 스티키
+	document.addEventListener('scroll', (event)=>{
+		let scrollY = this.scrollY;
+
+		const headerHeight = document.querySelector('.header').clientHeight
+
+		if(scrollY >= headerHeight) {
+			// const footerHeight = document.querySelector('.footer').clientHeight;
+			document.querySelector('.lnb').style.position = 'fixed';
+			document.querySelector('.lnb').style.top = '0';
+		} else {
+			document.querySelector('.lnb').style.position = 'absolute';
+			document.querySelector('.lnb').style.top = '0';
+		}
+		const h = window.innerHeight;	
+		const footerHeight = document.querySelector('.footer').clientHeight;
+
+		// 전체 바디 스크롤 높이 값.
+		const totalPageHeight = document.body.scrollHeight;
+
+		// 윈도우 스크롤 + 윈도우 높이 값
+		const scrollPoint = window.scrollY + window.innerHeight;
+
+		// check if we hit the bottom of the page
+		if (scrollPoint >= totalPageHeight) {
+			document.querySelector('.lnb').style.height = (h - footerHeight)  + 'px';
+			document.querySelector('.lnb').style.overflow = 'auto';
+		} else {
+			document.querySelector('.lnb').style.height = 'auto';
+			document.querySelector('.lnb').style.overflow = 'auto';
+		}
+
+		
+	})
+
+
+
+
 
 	document.addEventListener('DOMContentLoaded', function() {
 		// tabMenu 함수 호출
