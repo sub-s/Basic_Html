@@ -234,34 +234,49 @@ function accaordionFn(){
 
 
 
-// select
-function selectClicked(str){
-    const _this = str;
-  
-    if(_this.closest('.styled-combo').classList.contains('isActive')) {
-        _this.closest('.styled-combo').classList.remove('isActive');
-    } else {
-        _this.closest('.styled-combo').classList.add('isActive');
+
+
+
+
+
+
+if(document.querySelector('.styled-combo')) {
+    // select
+    function selectClicked(str){
+        const _this = str;
+    
+        if(_this.closest('.styled-combo').classList.contains('isActive')) {
+            _this.closest('.styled-combo').classList.remove('isActive');
+        } else {
+            _this.closest('.styled-combo').classList.add('isActive');
+        }
+
+        const selectOption = document.querySelectorAll('.custom-select-box li');
+        selectOption.forEach((item, index)=>{
+            const _index =  Array.from(selectOption).indexOf(item);
+
+            item.addEventListener('click', (e)=>{
+                console.log(item.getAttribute('data-value') , ":::::::::::")
+                if(index === _index) {
+                    item.closest('.styled-combo').querySelector('.combo-title').innerText = item.innerText
+                    item.closest('.styled-combo').classList.remove('isActive');
+                }
+            })
+        })
     }
 
-    const selectOption = document.querySelectorAll('.custom-select-box li');
+    // select closed
+    document.addEventListener('click', function(e){
+        const _this = e.target;
+        const combo = _this.closest('body').querySelectorAll('.styled-combo');
 
-    selectOption.forEach((item, index)=>{
-        const _index =  Array.from(selectOption).indexOf(item);
-
-        item.addEventListener('click', (e)=>{
-            console.log(item.getAttribute('data-value') , ":::::::::::")
-            if(index === _index) {
-                item.closest('.styled-combo').querySelector('.combo-title').innerText = item.innerText
-                item.closest('.styled-combo').classList.remove('isActive');
+        combo.forEach((item)=>{
+            if(item !== _this.closest('.styled-combo')) {
+                item.classList.remove('isActive');
             }
-        })
+        });
     })
-
-    
-
 }
-
 
 
 
@@ -663,17 +678,20 @@ function updateSlider(_this, inputType) {
     rightText.style.transform = 'translate(50%, 0)';
 }
 
+if(document.querySelector('.range-box .left-txt')){
 
-// 레인지 텍스트 박스 초기 위치 
-const leftText = document.querySelector('.range-box .left-txt');
-const rightText = document.querySelector('.range-box .right-txt'); 
+    // 레인지 텍스트 박스 초기 위치 
+    const leftText = document.querySelector('.range-box .left-txt');
+    const rightText = document.querySelector('.range-box .right-txt'); 
+    
+    // 너비 값.
+    const leftWidth = leftText.clientWidth;
+    const rightWidth = rightText.clientWidth;
+    
+    leftText.style.transform = 'translate(-50%, 0)';
+    rightText.style.transform = 'translate(50%, 0)';
+}
 
-// 너비 값.
-const leftWidth = leftText.clientWidth;
-const rightWidth = rightText.clientWidth;
-
-leftText.style.transform = 'translate(-50%, 0)';
-rightText.style.transform = 'translate(50%, 0)';
 
 
 
