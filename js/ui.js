@@ -1,6 +1,6 @@
 // Written by: sub's
 // Date: 30.11.2023
-// last-update: 22.12.2023
+// last-update: 20.02.2024
 //
 // Description: This code deals with HTML, CSS, and vanilla JavaScript.
 // Please specify any particular points or features you want to emphasize.
@@ -50,22 +50,45 @@ HTMLElement.prototype.parent = function(t){
 var ui = { 
     // 초기구동
 	init:function(){ 
-		this.ex.init();
+		
 	},
-    
-	ex:{ 
-		init: function() {
-            this.evt()
-		},
-        evt:function(){
-            
-		},
-		set:function(){
-		}
+	selectBox : (e)=> {  // 디자인 셀렉트 박스 
+        // if(str === undefined) return;
+        const _event = event.currentTarget;
+        const selectOption = document.querySelectorAll('.custom-select-box li');
+
+
+        if(_event.closest('.styled-combo').classList.contains('isActive')) {
+            _event.closest('.styled-combo').classList.remove('isActive');
+        } else {
+            _event.closest('.styled-combo').classList.add('isActive');
+            document.addEventListener('click', function(e){
+                const _this = e.target;
+                const comboBox = _this.closest('body').querySelectorAll('.styled-combo');
+                comboBox.forEach((item)=>{
+                    if(item.classList.contains('isActive')){
+                        const combo = document.querySelector('body').querySelectorAll('.styled-combo');
+                        combo.forEach((item)=>{
+                            if(item !== _this.closest('.styled-combo')) {
+                                item.classList.remove('isActive');
+                            }
+                        });
+                    }else {return false;}
+                });
+            });
+        }
+        
+        selectOption.forEach((item, index)=>{
+            const _index =  Array.from(selectOption).indexOf(item); // 인덱스 찾기 
+            item.addEventListener('click', (e)=>{
+                if(index === _index) {
+                    item.closest('.styled-combo').querySelector('.combo-title').innerText = item.innerText
+                    item.closest('.styled-combo').classList.remove('isActive');
+                }
+            })
+        });
 	},
 };
-
-
 
 
 
@@ -76,7 +99,54 @@ document.addEventListener('DOMContentLoaded', function () {
     // tabMenu 함수 호출
     // tabMenu(2);
     tabString('tab-content01');
+
 });
+
+
+
+
+// 콤보박스
+// if(document.querySelector('.styled-combo')) {
+//     // select
+//     function selectClicked(str){
+//         const _this = str;
+    
+//         if(_this.closest('.styled-combo').classList.contains('isActive')) {
+//             _this.closest('.styled-combo').classList.remove('isActive');
+//         } else {
+//             _this.closest('.styled-combo').classList.add('isActive');
+//         }
+
+//         const selectOption = document.querySelectorAll('.custom-select-box li');
+//         selectOption.forEach((item, index)=>{
+//             const _index =  Array.from(selectOption).indexOf(item);
+
+//             item.addEventListener('click', (e)=>{
+//                 console.log(item.getAttribute('data-value') , ":::::::::::")
+//                 if(index === _index) {
+//                     item.closest('.styled-combo').querySelector('.combo-title').innerText = item.innerText
+//                     item.closest('.styled-combo').classList.remove('isActive');
+//                 }
+//             })
+//         })
+//     }
+
+    
+//     // select closed
+//     document.addEventListener('click', function(e){
+//         if(document.querySelector('.styled-combo').classList.contains('isActive')){
+//             console.log('ddddddddd');
+//             const _this = e.target;
+//             const combo = document.querySelector('body').querySelectorAll('.styled-combo');
+        
+//             combo.forEach((item)=>{
+//                 if(item !== _this.closest('.styled-combo')) {
+//                     item.classList.remove('isActive');
+//                 }
+//             });
+//         }
+//     });    
+// }
 
 
 // 상단 검색창 텍스트 클리어 
@@ -95,6 +165,42 @@ function searchClearBtn(){
     clearInput.querySelector('input').value = '';
     clearInput.querySelector('.clear-btn').style.display = 'none';
 }
+
+
+
+// 가이드 : 유틸 스크립트 메뉴
+function toggleMenu() {
+    const _this = event.currentTarget;
+        if(_this.closest('.item').classList.contains('isActive')) {
+            
+            _this.closest('.item').classList.remove('isActive')
+            
+        } else {
+            
+            
+                _this.closest('.item').classList.add('isActive')
+            
+        }
+    
+
+
+
+
+
+	// var menu = document.getElementById("navMenu");
+    // menu.classList.toggle("isActive");
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -235,53 +341,6 @@ function accaordionFn(){
 
 
 
-
-
-
-
-
-if(document.querySelector('.styled-combo')) {
-    // select
-    function selectClicked(str){
-        const _this = str;
-    
-        if(_this.closest('.styled-combo').classList.contains('isActive')) {
-            _this.closest('.styled-combo').classList.remove('isActive');
-        } else {
-            _this.closest('.styled-combo').classList.add('isActive');
-        }
-
-        const selectOption = document.querySelectorAll('.custom-select-box li');
-        selectOption.forEach((item, index)=>{
-            const _index =  Array.from(selectOption).indexOf(item);
-
-            item.addEventListener('click', (e)=>{
-                console.log(item.getAttribute('data-value') , ":::::::::::")
-                if(index === _index) {
-                    item.closest('.styled-combo').querySelector('.combo-title').innerText = item.innerText
-                    item.closest('.styled-combo').classList.remove('isActive');
-                }
-            })
-        })
-    }
-
-    
-    // select closed
-    document.addEventListener('click', function(e){
-        if(document.querySelector('.styled-combo').classList.contains('isActive')){
-            console.log('ddddddddd');
-            const _this = e.target;
-            const combo = document.querySelector('body').querySelectorAll('.styled-combo');
-        
-            combo.forEach((item)=>{
-                if(item !== _this.closest('.styled-combo')) {
-                    item.classList.remove('isActive');
-                }
-            });
-        }
-    });    
-}
-    
 
 
 
@@ -673,29 +732,29 @@ function updateSlider(_this, inputType) {
 
 
     // 레인지 텍스트 박스 초기 위치 
-    const leftText = document.querySelector('.range-box .left-txt');
-    const rightText = document.querySelector('.range-box .right-txt'); 
+    // const leftText = document.querySelector('.range-box .left-txt');
+    // const rightText = document.querySelector('.range-box .right-txt'); 
 
 
-    leftText.style.transform = 'translate(-50%, 0)';
-    leftText.style.left = progressLeft  + '%';
-    rightText.style.right = progressRight + '%';
-    rightText.style.transform = 'translate(50%, 0)';
+    // leftText.style.transform = 'translate(-50%, 0)';
+    // leftText.style.left = progressLeft  + '%';
+    // rightText.style.right = progressRight + '%';
+    // rightText.style.transform = 'translate(50%, 0)';
 }
 
-if(document.querySelector('.range-box .left-txt')){
+// if(document.querySelector('.range-box .left-txt')){
 
-    // 레인지 텍스트 박스 초기 위치 
-    const leftText = document.querySelector('.range-box .left-txt');
-    const rightText = document.querySelector('.range-box .right-txt'); 
+//     // 레인지 텍스트 박스 초기 위치 
+//     const leftText = document.querySelector('.range-box .left-txt');
+//     const rightText = document.querySelector('.range-box .right-txt'); 
     
-    // 너비 값.
-    const leftWidth = leftText.clientWidth;
-    const rightWidth = rightText.clientWidth;
+//     // 너비 값.
+//     const leftWidth = leftText.clientWidth;
+//     const rightWidth = rightText.clientWidth;
     
-    leftText.style.transform = 'translate(-50%, 0)';
-    rightText.style.transform = 'translate(50%, 0)';
-}
+//     leftText.style.transform = 'translate(-50%, 0)';
+//     rightText.style.transform = 'translate(50%, 0)';
+// }
 
 
 
@@ -716,8 +775,8 @@ function handleRange(_this, rangeType) {
     let progressRight = 100 - (maxValue / maxNum) * 100;
 
     // 움직일때 값이 변경되면서 max와 min값을 빼준다. 그리고 gap이 크거나 작으면 실행
-    const leftText = wrap.querySelector('.left-txt');
-    const rightText = wrap.querySelector('.right-txt'); 
+    // const leftText = wrap.querySelector('.left-txt');
+    // const rightText = wrap.querySelector('.right-txt'); 
 
     // z-index setting
     if(rangeType === 'minRange' ) {
@@ -754,10 +813,10 @@ function handleRange(_this, rangeType) {
         progress.style.left = progressLeft + '%';
         progress.style.right = progressRight + '%';
 
-        leftText.style.transform = 'translate(-50%, 0)';
-        leftText.style.left = progressLeft  + '%';
-        rightText.style.right = progressRight + '%';
-        rightText.style.transform = 'translate(50%, 0)';
+        // leftText.style.transform = 'translate(-50%, 0)';
+        // leftText.style.left = progressLeft  + '%';
+        // rightText.style.right = progressRight + '%';
+        // rightText.style.transform = 'translate(50%, 0)';
         
     }
 
@@ -791,8 +850,9 @@ function rangeMax(){
 
 
 
+
 // 헤더 인쿨르드 
-// document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
 
     const parentDiv = document.querySelector('.wrap');
     const header = document.createElement('header');
@@ -807,24 +867,33 @@ function rangeMax(){
             </h1>
         </div>
         <div class="item">
-            <div class="gnb">
-                <a href="profile.html">sub's Profile</a>
-                <a href="javascript: void(0);">메뉴 2</a>
-                <a href="javascript: void(0);">메뉴 3</a>
+            <div class="inner-menu">
+                <nav class="gnb">
+                    <a href="profile.html">sub's Profile</a>
+                    <a href="javascript: void(0);">메뉴 준비중 2</a>
+                    <a href="javascript: void(0);">메뉴 준비중 3</a>
+                </nav>
+                <div class="util-box">
+                    <div class="search">
+                        <input type="text" placeholder="" oninput="searchText(this.value)" />
+                        <button class="search-btn" type="button">
+                            <span class="blind">검색버튼</span>
+                        </button>
+                        <button class="clear-btn" onclick="searchClearBtn()" type="button">
+                            <span class="blind">검색삭제</span>
+                        </button>
+                    </div>
+                    <div class="util">
+                        <a href="https://github.com/sub-s" target="_blank" class="git" title="sub's git page">
+                            <span class="blind">sub's git page</span>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="search">
-                <input type="text" oninput="searchText(this.value)" />
-                <button class="search-btn" type="button">
-                    <span class="blind">검색버튼</span>
-                </button>
-                <button class="clear-btn" onclick="searchClearBtn()" type="button">
-                    <span class="blind">검색삭제</span>
-                </button>
-            </div>
-            <div class="util">
-                <a href="https://github.com/sub-s" target="_blank" class="git" title="sub's git page">
-                    <span class="blind">sub's git page</span>
-                </a>
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
             </div>
         </div>
     </div>`
@@ -849,7 +918,7 @@ function rangeMax(){
 
 
    
-// });
+});
 
 
 

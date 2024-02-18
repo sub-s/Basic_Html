@@ -69,9 +69,11 @@ h2 {font-size: 16rem; font-weight: 700; margin-top: 20rem; margin-bottom: 10rem;
 
 /* ========================== START 레이아웃 ========================== */
 
+body {background: #0b1120;}
 .wrap {
     padding: 0rem; width: 100%; height: 100%;
-    background: linear-gradient(-60deg, #0b1120, #0f172c, #3f1e3d);
+    /* background: linear-gradient(-60deg, #0b1120, #0f172c, #3f1e3d); */
+    background: #0b1120;
 }
 
 
@@ -79,6 +81,10 @@ h2 {font-size: 16rem; font-weight: 700; margin-top: 20rem; margin-bottom: 10rem;
 .header {width: 100%; border-bottom:1rem solid #394254 } 
 .header .inner { width: 1280rem; height: 100rem; margin: 0 auto; padding: 20rem; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; border-radius: 10rem;} 
 .header .inner .item {display: flex;align-items: center;}
+
+.header .inner .item + .item .inner-menu {display: flex; align-items: center;}
+.header .inner .item + .item .hamburger-menu {display: none}
+
 .header .inner .item input {margin-left: 20rem;}
 .header .inner h1 {width: 50rem; height: 50rem;}
 .header .inner .gnb a {color: #94a3b8;font-weight: 500;}
@@ -93,18 +99,19 @@ h2 {font-size: 16rem; font-weight: 700; margin-top: 20rem; margin-bottom: 10rem;
 .header .inner .search input[type="number"]{font-size: 14rem;}
 
 
+.header .inner .util-box {display: flex; align-items: center;}
 .header .inner .util {margin-left: 20rem;}
 .header .inner .util .git {display: block; width: 28rem; height: 28rem; background: url(../img/common/icon_git.svg);}
 
 
-.container {width: 1280rem; padding-top: 20rem; margin: 0 auto}
+.container {width: 1280rem; padding: 20rem; margin: 0 auto}
 
 .container-wrap {width: 1280rem; margin: 0 auto; height: 100%; position: relative; display: flex; }
 .container-wrap .lnb {padding:20rem 10rem 0rem; width: 200rem; height: 100%; position: absolute; top: 0; overflow: auto;}
 .container-wrap .lnb ul li {margin-bottom: 20rem;}
 .container-wrap .lnb ul li button {color: #94a3b8; white-space: nowrap;}
 
-.container-wrap .container {width: calc(100% - 200rem); height: 100%; border-left: 1rem solid #394254; padding: 0; padding-left: 50rem; margin-left: 200rem;}
+.container-wrap .container {width: calc(100% - 200rem); height: 100%; border-left: 1rem solid #394254; padding: 20rem; padding-left: 50rem; margin-left: 200rem; padding-bottom: 100rem;}
 
 
 
@@ -141,8 +148,8 @@ footer .fixed {padding: 20px; width: 100%;  color: #fff;   } */
 .btn.disabled[class*='ico-']:before,
 .btn:disabled[class*='ico-']:before{opacity:0.3;} */
 
-.btn.a{border-color: #409eff; background-color: #409eff; color:#fff;}
-.btn.a:hover{border-color:#66b1ff; background-color: #66b1ff;}
+.btn.a{border-color: #25b09b; background-color: #25b09b; color:#fff;}
+.btn.a:hover{border-color:#25a09a; background-color: #25a09a;}
 .btn.a:disabled,
 .btn.a.disabled{color: #b5bcc3; border-color: #e6eaf1; background-color: #e6eaf1;}
 a.btn.disabled{ pointer-events: none; }
@@ -229,8 +236,43 @@ a.btn.disabled{ pointer-events: none; }
 .range-box .range-wrap .item-box {width: 100%; margin-top: 10rem;}
 .range-box .range-wrap .item-box .left-txt {background: #333; border-radius: 3rem; color:#fff; text-align: center; padding: 5rem; position: absolute; top:30rem; min-width: 50rem;  }
 .range-box .range-wrap .item-box .right-txt {background: #333; border-radius: 3rem; color:#fff;  text-align: center; padding: 5rem; position: absolute; top:30rem; right:0; min-width: 60rem;}
-.range-box .range-wrap .item-box .left-txt::after,
-.range-box .range-wrap .item-box .right-txt::after {display: block; content:''; background: #333; width: 8rem; height: 8rem; position: absolute; left:50%; top: 0rem; transform: rotate(45deg) translate( -50%, 0);}
+/* .range-box .range-wrap .item-box .left-txt::after,
+.range-box .range-wrap .item-box .right-txt::after {display: block; content:''; background: #333; width: 8rem; height: 8rem; position: absolute; left:50%; top: 0rem; transform: rotate(45deg) translate( -50%, 0);} */
+
+
+
+
+
+
+
+
+.design-range {padding: 40rem;}
+.design-range .design-range-wrap {position: relative; }
+.design-range .design-range-wrap .range-min,
+.design-range .design-range-wrap .range-max {position: absolute;  height: 20px; width: 20px; border-radius: 50%; background:#ccc url(../img/common/range_arrow.svg) no-repeat; background-position: center; background-size: 50%; box-shadow: 0 0 6px rgba(0,0,0,0.05);  z-index: 1;}
+
+.design-range .design-range-wrap .range-min {left:0; top: 50%; transform: translate(0, -50%) rotate(-180deg);}
+.design-range .design-range-wrap .range-max {right:0; top: 50%; transform: translate(0, -50%);}
+
+.design-range .design-range-wrap .hidden {overflow: hidden; position: relative; height: 5rem; background: #ccc;}
+.design-range .design-range-wrap .hidden .progress{height: 5px; border-radius: 5px; background: #C0D0FF; left: 0%; right: 0%; position: absolute; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -268,26 +310,56 @@ a.btn.disabled{ pointer-events: none; }
 
 
 
-.profile-wrap {display: flex; align-items: center; justify-content: space-between; margin-bottom: 20rem;}
-.profile-wrap .profile {background: #0f172a; padding: 20rem; border-radius: 10rem; width: 100%; position: relative;}
-.profile-wrap .profile pre {color:#94a3b8; font-family: 'Pretendard'; font-weight: normal; line-height: 24rem}
-.profile-wrap .profile .photo {width: 200rem; height: 200rem; border: 1rem solid #394254; border-radius: 50%; overflow: hidden; position: absolute; right: 40rem; top: 50%; transform: translate(0, -50%);  }
-
-
-
-
 
 
 /* 스타일 컴보박스 */
 .styled-combo { border-radius: 4rem; position: relative;}
+.styled-combo +.styled-combo {margin-top: 20rem;}
 .styled-combo.isActive .custom-select-box{ display: block;}
 .styled-combo.isActive .combo-title::after {display: block; content:''; transform: translate(0, -50%) rotate(-180deg)/*; transition: all .5s;*/}
 .styled-combo .combo-title {font-size: 14rem; padding: 10rem; border: 1rem solid #C0D0FF; border-radius: 5rem; position: relative;}
+.styled-combo .combo-title:hover {background: #0b1120;}
 .styled-combo .combo-title::after {display: block; content:''; background: url(../img/common/icon_arrow.svg) no-repeat; width:20rem; height:20rem; position: absolute; top: 50%; right:20rem; transform: translate(0, -50%) rotate(0deg);}
-.styled-combo .custom-select-box {display: none; border: 1rem solid #C0D0FF; border-radius: 5rem; position: absolute; top: 42rem; left:0; right:0; z-index: 1;;}
-.styled-combo .custom-select-box ul {}
+.styled-combo .custom-select-box {display: none; position: absolute; top: 42rem; left:0; right:0; z-index: 1;}
+.styled-combo .custom-select-box ul {border: 1rem solid #C0D0FF; border-radius: 5rem; overflow: hidden;;}
 .styled-combo .custom-select-box ul li:first-of-type {border-top: 0;}
-.styled-combo .custom-select-box ul li {padding: 10rem; border-top: 1rem solid #C0D0FF; background: #fff;}
+.styled-combo .custom-select-box ul li {padding: 10rem; border-top: 1rem solid #C0D0FF; background: #394254; transition: all .3s}
+.styled-combo .custom-select-box ul li:hover {background-color: #0b1120;}
+
+
+
+
+
+
+/* HTML:  */
+.loading { width: 50px; padding: 3px; aspect-ratio: 1; border-radius: 50%; background: #25b09b;     
+    --_m: conic-gradient(#0000 10%,#000),
+        linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+            mask: var(--_m);
+    -webkit-mask-composite: source-out;
+            mask-composite: subtract;
+    animation: loading 1s infinite linear;
+}
+@keyframes loading {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+
+
+/* 프로필 관련 */
+
+.profile-wrap {display: flex; align-items: center; justify-content: space-between; margin-bottom: 20rem;}
+.profile-wrap .profile {background: #0f172a; padding: 20rem; border-radius: 10rem; width: 100%; position: relative;}
+.profile-wrap .profile pre {color:#94a3b8; font-family: 'Pretendard'; font-weight: normal; line-height: 24rem}
+.profile-wrap .profile .inner-tab {padding-left: 20rem;}
+.profile-wrap .profile .inner-tab li:first-of-type {margin-top:0;}
+.profile-wrap .profile .inner-tab li {margin-top: 5rem;}
+.profile-wrap .profile .photo {width: 200rem; height: 200rem; border: 1rem solid #394254; border-radius: 50%; overflow: hidden; position: absolute; right: 40rem; top: 50%; transform: translate(0, -50%);  }
+
+
 
 
 
@@ -379,6 +451,10 @@ a.btn.disabled{ pointer-events: none; }
     .header .inner {width: 100%; }
     .container-wrap {width: 100%;}
     .container {width: 100%;}
+
+
+    .profile .photo {display: none;}
+   
 }
 
 
@@ -420,8 +496,38 @@ a.btn.disabled{ pointer-events: none; }
 
 /* iOS의 Safe Area에 따른 스타일 조절 */
 @media (max-width: 768px) {
-    body {
-        padding: 15px 0 calc(constant(safe-area-inset-bottom) + 15px);
-        padding: 15px 0 calc(env(safe-area-inset-bottom) + 15px);
-    }
+    .container  {padding-top: 80rem}
+    .container-wrap  {padding-top: 60rem}
+    .container-wrap .lnb {left: -200rem;}
+    .container-wrap .container {width: 100%; padding: 20rem; margin:0; border:0;}
+
+    /* 레이아웃 */
+    .header {width: 100%; border-bottom:1rem solid #394254; position: fixed; top:0; left:0; right:0; z-index: 10; background: #0b1120} 
+    .header .inner { width: 100%; height: 60rem; margin: 0 auto; padding: 10rem 20rem 10rem 10rem; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; z-index: 10; } 
+    .header .inner h1 {width: 45rem; height: 45rem}
+    
+    .header .inner .item + .item {position: relative; }
+    .header .inner .item + .item .util-box {width: 100%;}
+    .header .inner .item + .item .gnb {width: 100%; margin-top: 20rem;}
+    .header .inner .item + .item .gnb a {display: block; margin:0; width: 100%; padding: 5rem;}
+    .header .inner .item + .item .gnb a + a {margin-top: 10rem;}
+    
+
+    .header .inner .item + .item .inner-menu {display: none; flex-direction: column-reverse; position: fixed; top:0; left: 0; right:0; background-color: #0b1120; z-index: 9; padding: 20rem; }
+    .header .inner .item + .item.isActive .inner-menu {display: flex; top: 61rem;}
+
+    
+    .header .inner .item + .item .inner-menu .search {margin: 0; width: 100%;}
+    .header .inner .search input[type="text"] {margin: 0; width: 100%;}
+    
+
+
+    /* 햄버거 아이콘 스타일 */
+    .header .inner .item + .item .hamburger-menu {width: 30rem; height: 23rem; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
+    .header .inner .item + .item .hamburger-menu .line {width: 30rem; height: 3rem; background-color: #fff; transition: all 0.3s ease-in-out; }
+    
+    .header .inner .item + .item.isActive .hamburger-menu .line:nth-child(1) {transform-origin: right top; transform: rotate(-45deg); /* 대각선 회전 및 이동 */ }
+    .header .inner .item + .item.isActive .hamburger-menu .line:nth-of-type(2) {opacity: 0; /* 두 번째 선은 투명하게 설정하여 숨김 */}
+    .header .inner .item + .item.isActive .hamburger-menu .line:nth-child(3) {transform-origin: right bottom; transform: rotate(45deg); /* 대각선 회전 및 이동 */ }
+
 }

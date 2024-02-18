@@ -9,14 +9,13 @@
 	<!-- <link href="../img/common/favicon.ico" rel="shrtcut icon">
 	<link href="../img/common/favicon.png" rel="apple-touch-icon-precomposed"> -->
 	<link rel="stylesheet" href="../css/style.css">
-	
-
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-tomorrow.min.css">
    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1"></script>
 </head>
 <body class="body">
 	<div class="wrap">
-
+		<!--  -->
+		
 		<div class="container-wrap">
 			<div class="lnb">
 				<ul>
@@ -33,6 +32,7 @@
 					<li><button onclick="scrollMovie('scrollModal')">모달 팝업</button></li>
 					<li><button onclick="scrollMovie('scrollAlert')">알럿 / 컨펌</button></li>
 					<li><button onclick="scrollMovie('scrollAccordion')">아코디언</button></li>
+					<li><button onclick="scrollMovie('scrollLoading')">로딩</button></li>
 				</ul>
 			</div>
 
@@ -60,7 +60,7 @@
 				<div class="scrollSelect"><!-- 디자인 셀렉트 박스 -->
 					<h2>디자인 셀렉트 박스</h2>
 					<div class="styled-combo">
-						<p class="combo-title" onclick="selectClicked(this)">title</p>
+						<p class="combo-title" onclick="ui.selectBox()">option 1</p>
 						<div class="custom-select-box">
 							<ul>
 								<li data-value="option 1">option 1</li>
@@ -69,41 +69,62 @@
 							</ul>
 						</div>
 					</div>
-				
-
+					<div class="styled-combo">
+						<p class="combo-title" onclick="ui.selectBox()">option 1</p>
+						<div class="custom-select-box">
+							<ul>
+								<li data-value="option 1">option 1</li>
+								<li data-value="option 2">option 2</li>
+								<li data-value="option 3">option 3</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 				<div class="scrollRange"><!-- 인풋 레인지 버튼 -->
-					<h2>인풋 레인지 버튼 - 수정중 .... </h2>
-					<div style="padding: 40rem; border: 1px solid #C0D0FF">
-						<div class="range-box" data-min="0" data-max="800000">
-							<div class="input-box">
-								<button type="button" class="btn sm a" onclick="rangeMin()">최소</button>
-								<div class="range-input">
-									<div class="input-km">
-										<input type="number" class="min" value="0"  oninput="updateSlider(this, 'min')"/>
-										<span>km</span>
-									</div>
-									<span class="space">~</span>
-									<div class="input-km">
-										<input type="number" class="max" value="75000" oninput="updateSlider(this, 'max')" />
-										<span>km</span>
-									</div>
+					<h2>인풋 레인지 버튼</h2>
+					
+					<div class="range-box" data-min="0" data-max="800000">
+						<div class="input-box">
+							<button type="button" class="btn sm a" onclick="rangeMin()">최소</button>
+							<div class="range-input">
+								<div class="input-km">
+									<input type="number" class="min" value="0"  oninput="updateSlider(this, 'min')"/>
+									<span>km</span>
 								</div>
-								<button type="button" class="btn sm a" onclick="rangeMax()">최대</button>
+								<span class="space">~</span>
+								<div class="input-km">
+									<input type="number" class="max" value="75000" oninput="updateSlider(this, 'max')" />
+									<span>km</span>
+								</div>
 							</div>
+							<button type="button" class="btn sm a" onclick="rangeMax()">최대</button>
+						</div>
 
-							<div class="range-wrap">
-								<div class="item-box">
-									<div class="hidden">
-										<div class="progress"></div>
-									</div>
-									<p class="left-txt">0 km</p>
-									<p class="right-txt">75000 km</p>
+						<div class="range-wrap">
+							<div class="item-box">
+								<div class="hidden">
+									<div class="progress"></div>
 								</div>
-								<!-- range option : step 는 기본 이동단위 -->
-								<input type="range" class="range-min" min="0" max="75000" value="0" step="100"  oninput="handleRange(this,'minRange')">
-								<input type="range" class="range-max" min="0" max="75000" value="75000" step="100"  oninput="handleRange(this,'maxRange')">
-								
+								<p class="left-txt">0 km</p>
+								<p class="right-txt">75000 km</p>
+							</div>
+							<!-- range option : step 는 기본 이동단위 -->
+							<input type="range" class="range-min" min="0" max="75000" value="0" step="100"  oninput="handleRange(this,'minRange')">
+							<input type="range" class="range-max" min="0" max="75000" value="75000" step="100"  oninput="handleRange(this,'maxRange')">
+							
+						</div>
+					</div>
+
+
+					<div>
+						<h2>...........</h2>
+						<div class="design-range">
+							<div class="design-range-wrap">
+								<p class="range-min"></p>
+								<div class="hidden">
+									<div class="progress"></div>
+								</div>
+								<p class="range-max"></p>
 							</div>
 						</div>
 					</div>
@@ -355,20 +376,22 @@
 						</ul>
 					</div>
 				</div>
-				<div class="scroll"><!--  -->
-					<h2></h2>
+				<div class="scrollLoading"><!-- 로딩  -->
+					<h2>로딩</h2>
+					<div class="loading"></div>
+<pre class="language-html"><code class="language-html"><xmp><div class="loading"></div>
+</xmp></code></pre>
 				</div>
 				<div class="scroll"><!-- 챠트 -->
-					<h2>차트</h2>
+					<h2></h2>
+					<div>
+					</div>
 				</div>
 				<div class="scroll"><!-- 로딩 -->
-					<h2>로딩</h2>
+					<h2></h2>
 				</div>
 			
-<pre class="language-html"><code class="language-html"><xmp><div><!-- 로딩 -->
-	<h2>로딩11safdasd</h2>
-</div>
-</xmp></code></pre>
+
 			</main>
 		</div>
 		
