@@ -451,8 +451,6 @@ a.btn.disabled{ pointer-events: none; }
     .header .inner {width: 100%; }
     .container-wrap {width: 100%;}
     .container {width: 100%;}
-
-
     .profile .photo {display: none;}
    
 }
@@ -502,8 +500,8 @@ a.btn.disabled{ pointer-events: none; }
     .container-wrap .container {width: 100%; padding: 20rem; margin:0; border:0;}
 
     /* 레이아웃 */
-    .header {width: 100%; border-bottom:1rem solid #394254; position: fixed; top:0; left:0; right:0; z-index: 10; background: #0b1120} 
-    .header .inner { width: 100%; height: 60rem; margin: 0 auto; padding: 10rem 20rem 10rem 10rem; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; z-index: 10; } 
+    .header {width: 100%; border-bottom:1rem solid #394254; position: relative;  position: fixed; top:0; left:0; right:0; z-index: 9999; background: #0b1120} 
+    .header .inner { width: 100%; height: 60rem; margin: 0 auto; padding: 10rem 20rem 10rem 10rem; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; } 
     .header .inner h1 {width: 45rem; height: 45rem}
     
     .header .inner .item + .item {position: relative; }
@@ -513,9 +511,25 @@ a.btn.disabled{ pointer-events: none; }
     .header .inner .item + .item .gnb a + a {margin-top: 10rem;}
     
 
-    .header .inner .item + .item .inner-menu {display: none; flex-direction: column-reverse; position: fixed; top:0; left: 0; right:0; background-color: #0b1120; z-index: 9; padding: 20rem; }
-    .header .inner .item + .item.isActive .inner-menu {display: flex; top: 61rem;}
-
+    /*  */
+    .header .inner .item + .item .inner-menu {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        position: fixed; 
+        top: 61rem; 
+        right: -100%; 
+        background-color: #0b1120; 
+        z-index: 100; 
+        padding: 20rem; 
+        transition: all .5s;
+        width: 60%;
+        z-index: 100;
+    }
+    .header .inner .item + .item.isActive .inner-menu {
+        right: 0; 
+        
+    }
     
     .header .inner .item + .item .inner-menu .search {margin: 0; width: 100%;}
     .header .inner .search input[type="text"] {margin: 0; width: 100%;}

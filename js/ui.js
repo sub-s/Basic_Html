@@ -168,28 +168,6 @@ function searchClearBtn(){
 
 
 
-// 가이드 : 유틸 스크립트 메뉴
-function toggleMenu() {
-    const _this = event.currentTarget;
-        if(_this.closest('.item').classList.contains('isActive')) {
-            
-            _this.closest('.item').classList.remove('isActive')
-            
-        } else {
-            
-            
-                _this.closest('.item').classList.add('isActive')
-            
-        }
-    
-
-
-
-
-
-	// var menu = document.getElementById("navMenu");
-    // menu.classList.toggle("isActive");
-}
 
 
 
@@ -851,7 +829,33 @@ function rangeMax(){
 
 
 
-// 헤더 인쿨르드 
+// 순서를 먼저 잘 선택 해야 한다..
+// 1. 트랜지션이 시작되기 전에 
+// 2. 해당하는 범위의 높이 값을 가저오고.
+// 3. 블럭이 되었을 때 다시 값을 입력 해준다. 
+
+
+// 가이드 : 유틸 스크립트 메뉴
+function toggleMenu() {
+    const _this = event.currentTarget;
+    const isActive = _this.closest('.item').classList.contains('isActive');
+    const h = _this.closest('.header').scrollHeight;
+    const allHeight = window.innerHeight;
+    
+    _this.closest('.item').querySelector('.inner-menu').style.height = (allHeight - h) + 'rem';
+
+    if(isActive) {
+        _this.closest('body').style.overflow = 'unset'
+        _this.closest('.item').classList.remove('isActive');
+    } else {
+        _this.closest('body').style.overflow = 'hidden'
+        _this.closest('.item').classList.add('isActive');
+    }
+}
+
+
+
+// 헤더 푸터 인쿨르드 
 document.addEventListener("DOMContentLoaded", function() {
 
     const parentDiv = document.querySelector('.wrap');
