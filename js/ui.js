@@ -532,12 +532,47 @@ function allCheck(str) {
 }
 
 
+// 토스트 팝업 
+function openToast(str, options) {
+    options = options || {} // option에 값이 들어오면 option 없으면 {} 
+
+    const _this = event.currentTarget;
+    const defaults = {
+        position : 'bottom',
+        title : '기본 타이틀 입니다.',
+        text : '기본 토스트 팝업 텍스트 입니다.',
+    }
+
+    for(let key in defaults) {
+        // options에 타입 undefined 이면 defaults[key] 를 하고 아니면 options[key]
+        options[key] = typeof options[key] !== 'undefined' ? options[key] : defaults[key]
+    }
+
+    document.querySelector('body').classList.add('isToast');
+    
+    const toastPop = document.createElement('div');
+    toastPop.innerHTML =
+    `<div class="toast-popup ${options.position}">
+        <p class="tit">${options.title}</p>
+        <p class="content-text">${options.text}</p>
+    </div>`
+    document.body.append(toastPop)
+    setTimeout(()=>{
+        document.querySelector('.isToast').classList.remove('isToast')
+        document.querySelector('.toast-popup').parentNode.remove('toast-popup')
+    },1000)
+
+}
+
+
 
 
 // 알럿, 컨펌 창
 function openAlert(str, options){
     options = options || {} // option에 값이 들어오면 option 없으면 {} 
     const _this = event.currentTarget;
+
+    console.log(str)
 
     const defaults = {
         title : '기본 타이틀 입니다.',

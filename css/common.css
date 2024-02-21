@@ -367,6 +367,17 @@ a.btn.disabled{ pointer-events: none; }
 
 
 
+/* 토스트 팝업 */
+.isToast {position: relative; overflow: hidden;}
+.isToast::after {content:''; position: fixed; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.3);  white-space: nowrap; }
+.isToast {}
+.toast-popup {position: fixed; bottom: 30rem; left: 20rem; right: 20rem; z-index:10; background: rgba(0, 0, 0, .8);  padding: 20rem; border-radius: 10rem;}
+.toast-popup .tit{color:#94a3b8; font-size: 14rem; padding-bottom: 10rem; margin-bottom: 10rem; border-bottom: 1rem solid #94a3b8}
+.toast-popup .content-text{ color:#94a3b8; font-size: 14rem;}
+
+
+
+
 
 
 
