@@ -551,16 +551,22 @@ function openToast(str, options) {
     document.querySelector('body').classList.add('isToast');
     
     const toastPop = document.createElement('div');
-    toastPop.innerHTML =
-    `<div class="toast-popup ${options.position}">
+    toastPop.setAttribute('class', options.position);
+    toastPop.innerHTML = 
+    `<div class="toast-popup">
         <p class="tit">${options.title}</p>
         <p class="content-text">${options.text}</p>
     </div>`
+
     document.body.append(toastPop)
-    setTimeout(()=>{
-        document.querySelector('.isToast').classList.remove('isToast')
-        document.querySelector('.toast-popup').parentNode.remove('toast-popup')
-    },1000)
+    // document.querySelector('.isToast').classList.remove('isToast')
+    document.querySelectorAll('.toast-popup').forEach((item, index)=>{
+        // setTimeout(()=>{
+            console.log(index , ":::::::::::::::")
+            item.parentNode.remove('toast-popup')
+        // },10000)
+    })
+
 
 }
 
