@@ -58,10 +58,53 @@ var ui = {
         const selectOption = document.querySelectorAll('.custom-select-box li');
 
 
+        function comboBoxPosition(comboBox) {
+            // 콤보박스의 위치 정보를 가져옵니다.
+            const rect = comboBox.getBoundingClientRect();
+        
+            // 콤보박스의 상대적인 위치를 계산합니다.
+            const comboBoxTop = rect.top;
+            const comboBoxBottom = rect.bottom;
+        
+            // 현재 스크롤의 위치를 가져옵니다.
+            const scrollPosition = window.scrollY || window.pageYOffset;
+        
+            // 화면의 높이를 가져옵니다.
+            const windowHeight = window.innerHeight;
+        
+            // 콤보박스가 화면의 중앙보다 위에 있는지 여부를 확인합니다.
+            const isAbove = comboBoxBottom < windowHeight / 2 + scrollPosition;
+        
+            // 콤보박스가 화면의 중앙보다 아래에 있는지 여부를 확인합니다.
+            const isBelow = comboBoxTop > windowHeight / 2 + scrollPosition;
+        
+            // 결과를 반환합니다.
+            return { isAbove, isBelow };
+        }
+        
+        // 사용 예시
+        const comboBoxElement = document.querySelector('.styled-combo');
+        const { isAbove, isBelow } = comboBoxPosition(comboBoxElement);
+        
+        
         if(_event.closest('.styled-combo').classList.contains('isActive')) {
             _event.closest('.styled-combo').classList.remove('isActive');
+            _event.closest('.styled-combo').querySelector('.custom-select-box').classList.remove('bottom')
         } else {
             _event.closest('.styled-combo').classList.add('isActive');
+            //콤보 박스가 위에 있는지 아래 있는지 체크 
+            if (isAbove) {
+                console.log('콤보박스가 화면의 위쪽에 있습니다.');
+                _event.closest('.styled-combo').querySelector('.custom-select-box').classList.remove('bottom');
+            } else if (isBelow) {
+                console.log('콤보박스가 화면의 아래쪽에 있습니다.');
+                _event.closest('.styled-combo').querySelector('.custom-select-box').classList.add('bottom');
+            } else {
+                console.log('콤보박스가 화면의 중앙에 위치하거나 화면에 표시되지 않습니다.');
+                _event.closest('.styled-combo').querySelector('.custom-select-box').classList.add('bottom');
+            }
+
+
             document.addEventListener('click', function(e){
                 const _this = e.target;
                 const comboBox = _this.closest('body').querySelectorAll('.styled-combo');
@@ -73,7 +116,9 @@ var ui = {
                                 item.classList.remove('isActive');
                             }
                         });
-                    }else {return false;}
+                    }else {
+                        return false;
+                    }
                 });
             });
         }
@@ -87,6 +132,11 @@ var ui = {
                 }
             })
         });
+
+
+        
+        
+        
 	},
 };
 
