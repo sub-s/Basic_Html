@@ -315,12 +315,13 @@ a.btn.disabled{ pointer-events: none; }
 /* 스타일 컴보박스 */
 .styled-combo { border-radius: 4rem; position: relative;}
 .styled-combo +.styled-combo {margin-top: 20rem;}
-.styled-combo.isActive .custom-select-box{ display: block;}
+.styled-combo.isActive .custom-select-box{ display: block; position: absolute; top: 42rem; left:0; right:0; z-index: 1;}
+.styled-combo.isActive .custom-select-box.bottom { display: block; position: absolute; top:unset; bottom: 42rem; left:0; right:0; z-index: 1;}
 .styled-combo.isActive .combo-title::after {display: block; content:''; transform: translate(0, -50%) rotate(-180deg)/*; transition: all .5s;*/}
 .styled-combo .combo-title {font-size: 14rem; padding: 10rem; border: 1rem solid #C0D0FF; border-radius: 5rem; position: relative;}
 .styled-combo .combo-title:hover {background: #0b1120;}
 .styled-combo .combo-title::after {display: block; content:''; background: url(../img/common/icon_arrow.svg) no-repeat; width:20rem; height:20rem; position: absolute; top: 50%; right:20rem; transform: translate(0, -50%) rotate(0deg);}
-.styled-combo .custom-select-box {display: none; position: absolute; top: 42rem; left:0; right:0; z-index: 1;}
+.styled-combo .custom-select-box {display: none; }
 .styled-combo .custom-select-box ul {border: 1rem solid #C0D0FF; border-radius: 5rem; overflow: hidden;;}
 .styled-combo .custom-select-box ul li:first-of-type {border-top: 0;}
 .styled-combo .custom-select-box ul li {padding: 10rem; border-top: 1rem solid #C0D0FF; background: #394254; transition: all .3s}
