@@ -480,6 +480,19 @@ a.btn.disabled{ pointer-events: none; }
 
 
 
+.divider {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .divider::before, .divider::after {
+    flex: 1;
+    content: '';
+    padding: 1px;
+    background-color: #C0D0FF;
+    margin: 5px;
+  }
 
 
 @media screen and (max-width: 1200px) {
