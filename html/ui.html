@@ -9,8 +9,8 @@
 	<!-- <link href="../img/common/favicon.ico" rel="shrtcut icon">
 	<link href="../img/common/favicon.png" rel="apple-touch-icon-precomposed"> -->
 	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-tomorrow.min.css">
-   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1"></script>
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-tomorrow.min.css">
+   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1"></script> -->
 </head>
 <body class="body">
 	<div class="wrap">
@@ -43,32 +43,21 @@
 						<div class="delivery">
 							<ul class="check">
 								<li class="">
-									<span>텍스트1</span>
+									<span>배송 준비</span>
+								</li>
+								<li class="isActive">
+									<span>배송 출발</span>
 								</li>
 								<li class="">
-									<span>텍스트2</span>
+									<span>배송 중</span>
 								</li>
 								<li class="">
-									<span>텍스트3</span>
-								</li>
-								<li class="">
-									<span>텍스트4</span>
+									<span>배송 도착</span>
 								</li>
 							</ul>
 						</div>
 					</div>
-					<style>
-						.delivery {padding-top: 30px;}
-						.delivery .check {width: 80%; margin:0 auto; position: relative;}
-						.delivery .check::before {display: block; content:''; width: 10px; height: 10px; background: red; position: absolute; top:50%; left:-2px; transform: translate(0, -50%); border-radius: 50%; z-index: 1;}
-						.delivery .check {display: flex; align-items: center; justify-content: space-around; }
-						.delivery .check li {height: 5px; width: 100%; text-align: center; background: #ccc; position: relative;}
-						.delivery .check li span {position: absolute; top:-30px; left:0; transform: translateX(-50%);}
-						.delivery .check li::before {display: block; content:''; width: 10px; height: 10px; background: #ccc; position: absolute; top:50%; right:0; transform: translate(0, -50%); border-radius: 50%;}
-						.delivery .check li:last-of-type {width: 0;}
-						.delivery .check li.isActive {background: red;}
-						.delivery .check li.isActive::before {background: red;} 
-					</style>
+			
 				</div>
 				<div class="scrollSwiper"><!-- 스와이퍼 커러셀 -->
 					<h2>스와이퍼</h2>
@@ -90,22 +79,6 @@
 						</div>
 					</div>
 				</div>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
 				<div class="scrollSelect"><!-- 디자인 셀렉트 박스 -->
 					<h2>디자인 셀렉트 박스</h2>
 					<div class="styled-combo">
@@ -306,10 +279,20 @@
 				</div>
 				<div class="scrollSwitch"><!-- 스위치 -->
 					<h2>스위치</h2>
-					<div class="switch">
+					<!-- <div class="switch">
 						<input type="checkbox" id="toggle">
 						<label for="toggle"></label>
-					</div>
+					</div> -->
+
+					<label class="switch">
+						<input type="checkbox">
+						<span class="toggle"></span>
+					</label>
+					
+					<label class="switch">
+						<input type="checkbox" checked>
+						<span class="toggle"></span>
+					</label>
 				</div>
 				<div class="scrollTab"><!-- 텝 메뉴 -->
 					<h2>탭</h2>
