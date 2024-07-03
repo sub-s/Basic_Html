@@ -59,6 +59,7 @@
                 nameTd.textContent = data[0].careerProfile[i].name; // 데이터의 구조에 맞게 수정하세요.
                 dateTd.textContent = data[0].careerProfile[i].date; // 데이터의 구조에 맞게 수정하세요.
                 clientTd.textContent = data[0].careerProfile[i].client; // 데이터의 구조에 맞게 수정하세요.
+                skillTd.textContent = data[0].careerProfile[i].skill; // 데이터의 구조에 맞게 수정하세요.
                 //skillTd.textContent = "<img src='"+data[0].careerProfile[i].skill+"'>"; // 데이터의 구조에 맞게 수정하세요.
                 
                 let imgstr = data[0].careerProfile[i].skill;

@@ -25,264 +25,365 @@
 		],
 		"careerProfile" : [
 			{
+				"name": "1금융 API포털 UI/UX개발",
+				"date": "2024.04.07 ~ 2024.06.30",
+				"client": "이데아텍",
+				"skill": [
+					"figma",
+					"react",
+					"html",
+					"javascript",
+					"css",
+					"git"
+				  ]
+			},
+			{
+				"name": "나린카 중고차 재고관리 서비스",
+				"date": "2024.01.02 ~ 2024.03.31",
+				"client": "나린씨엔에스",
+				"skill": [
+					"figma",
+					"html",
+					"javascript",
+					"css",
+					"git"
+				  ]
+			},
+			{
 				"name": "삼성 디스플레이 QMS2.0 품질관리 시스템",
 				"date": "2023.06.01 ~ 2023.10.31",
 				"client": "삼성디스플레이",
 				"skill": [
-					 "vue",
-					 "html",
-					 "javascript",
-					 "css",
-					 "git"
+					"figma",
+					"vue",
+					"html",
+					"javascript",
+					"css",
+					"git"
 				  ]
 			},
 			{
 				"name": "삼성전자DS WIS시스템",
 				"date": "2023.05.01 ~ 2023.05.31",
 				"client": "삼성전자",
-				"skill": [ "figma", "bootstrap", "javascript", "css", "git"]
+				"skill": [ 
+					"figma", 
+					"bootstrap", 
+					"javascript", 
+					"css", 
+					"git"
+				]
 			},
 			{
 				"name": "한국 항공 우주연구원",
 				"date": "2023.02.01 ~ 2023.04.29",
 				"client": "한국 항공 우주연구원",
-				"skill": ["html", "javascript", "css", "git"]
+				"skill": [
+					"XD", 
+					"html", 
+					"javascript", 
+					"css", 
+					"git"
+				]
 			},
 			{
 				"name": "다올저축은행",
 				"date": "2022.07.01 ~ 2022.12.31",
 				"client": "다올저축은행",
-				"skill": ["html", "javascript", "css", "git"]
+				"skill": [
+					"zeplin",
+					"html", 
+					"javascript", 
+					"css", 
+					"git"
+				]
 			},
 			{
 				"name": "IBK기업은행 I-NET",
 				"date": "2022.05.02 ~ 2022.07.30",
 				"client": "IBK기업은행",
-				"skill": ["html", "javascript", "css", "git"]
+				"skill": [
+					"photoshop",
+					"html", 
+					"javascript", 
+					"css", 
+					"git"
+				]
 			},
 			{
 				"name": "교보생명보험",
 				"date": "2021.08.01 ~ 2022.04.29",
 				"client": "교보생명보험",
-				"skill": ["html", "javascript", "css", "git"]
+				"skill": [
+					"zeplin",
+					"html", 
+					"javascript", 
+					"css", 
+					"git"
+				]
 			},
 			{
 				"name": "관광공사 근로자 휴가지원사업",
 				"date": "2021.05.03 ~ 2021.07.30",
 				"client": "SK",
-				"skill": ["vue", "html", "javascript", "css", "git"]
+				"skill": [
+					"zeplin",
+					"vue", 
+					"html", 
+					"javascript", 
+					"css", 
+					"git"
+				]
 			},
 			{
 				"name": "AboutPet",
 				"date": "2021.01.04 ~ 2021.04.30",
 				"client": "GS Retail",
-				"skill": ["html", "javascript", "css", "git"]
+				"skill": [
+					"zeplin",
+					"html", 
+					"javascript", 
+					"css", 
+					"git"
+				]
 			},
 			{
 				"name": "KAMP 인공지는 중소벤처 제조플랫폼",
 				"date": "2020.11.02 ~ 2021.01.29",
 				"client": "KAMP 인공지는 중소벤처",
-				"skill": ["html", "javascript", "css", "git"]
+				"skill": [
+					"photoshop",
+					"html", 
+					"javascript", 
+					"css", 
+					"git"
+				]
 			},
 			{
 				"name": "아이마켓코리아",
 				"date": "2020.09.01 ~ 2020.11.30",
 				"client": "삼성SDS",
-				"skill": ["html", "javascript", "css", "git"]
+				"skill": [
+					"photoshop",
+					"html", 
+					"javascript", 
+					"css", 
+					"git"
+				]
 			},
 			{
 				"name": "미식의시대",
 				"date": "2020.06.01 ~ 2020.09.30",
 				"client": "미식의시대",
-				"skill": ["react", "html", "javascript", "css", "git"]
+				"skill": [
+					"zeplin",
+					"react", 
+					"html", 
+					"javascript", 
+					"css", 
+					"git"
+				]
 			},
 			{
 				"name": "Michaatalk WEB APP",
 				"date": "2020.01.02 ~ 2020.04.30",
 				"client": "Michaa",
-				"skill": ["vue", "html", "javascript", "css", "git"]
+				"skill": [
+					"photoshop",
+					"vue", 
+					"html", 
+					"javascript", 
+					"css", 
+					"git"
+				]
 			},
 			{
 				"name": "하나은행 비대면",
 				"date": "2019.09.01 ~ 2019.12.31",
 				"client": "하나은행",
-				"skill": ["html", "javascript", "css", "svn"]
+				"skill": [
+					"zeplin",
+					"html", 
+					"javascript", 
+					"css", 
+					"svn"
+				]
 			},
 
 			{
 				"name": "여성가족부 모바일 아이돌보미",
 				"date": "2019.07.01 ~ 2019.09.30",
 				"client": "여성가족부",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "우리은행 원터치 개인뱅킹",
 				"date": "2019.04.01 ~ 2019.06.28",
 				"client": "우리은행",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "롯데호텔 TMS 식음예약",
 				"date": "2018.09.01 ~ 2019.03.29",
 				"client": "롯데호텔",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "KB LiivMate",
 				"date": "2018.04.02 ~ 2018.09.28",
 				"client": "KB",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "삼성닷컴",
 				"date": "2018.03.01 ~ 2018.04.30",
 				"client": "삼성SDS",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "한국경제TV",
 				"date": "2017.09.01 ~ 2018.01.31",
 				"client": "한국경제TV",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "롯데정보통신-ECM",
 				"date": "2016.11.01 ~ 2017.08.31",
 				"client": "롯데정보통신",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "KB손해보험",
 				"date": "2016.06.01 ~ 2016.10.31",
 				"client": "KB손해보험",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "ING 생명, 농협생명 보험 컨텐츠",
 				"date": "2016.04.01 ~ 2016.05.31",
 				"client": "ING, 농협생명",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "초록마을 내부 관리자",
 				"date": "2016.03.01 ~ 2016.03.31",
 				"client": "초록마을",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "재팬료칸넷",
 				"date": "2015.09.01 ~ 2015.11.30",
 				"client": "하나투어 JP",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "쿠루쿠루버스",
 				"date": "2015.09.01 ~ 2015.11.30",
 				"client": "하나투어 JP",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "하나투어 JP 3차통합관리 시스템",
 				"date": "2015.01.01 ~ 2015.11.30",
 				"client": "하나투어 JP",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "신한은행 스마트펀드센터",
 				"date": "2015.02.02 ~ 2015.03.31",
 				"client": "신한은행",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "클래비",
 				"date": "2015.02.02 ~ 2015.03.31",
 				"client": "클래비",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "하나투어 JP 2차 시스템 사이트",
 				"date": "2015.01.01 ~ 2015.03.31",
 				"client": "하나투어 JP",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "하나투어 JP 시스템 사이트",
 				"date": "2014.10.01 ~ 2014.12.31",
 				"client": "하나투어 JP",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "농사로(농촌진흥청)웹사이트",
 				"date": "2014.08.01 ~ 2015.01.30",
 				"client": "농촌진흥청",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "농림축산식품부 공공데이터포털",
 				"date": "2014.08.01 ~ 2014.12.31",
 				"client": "농림축산식품부",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "퍼스트피부과",
 				"date": "2014.08.01 ~ 2014.10.31",
 				"client": "퍼스트피부과",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "라이브스포츠 모바일 앱",
 				"date": "2014.08.01 ~ 2014.09.30",
 				"client": "라이브스포츠",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "비상교육",
 				"date": "2014.08.01 ~ 2014.08.30",
 				"client": "비상교육",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "현대해상 VOC시스템 사이트",
 				"date": "2014.07.01 ~ 2014.08.29",
 				"client": "현대해상",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 
 			{
 				"name": "R&D도우미센터 웹사이트",
 				"date": "2014.07.01 ~ 2014.07.31",
 				"client": "R&D도우미센터",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "대한항공 신갈 연수원",
 				"date": "2014.07.01 ~ 2014.07.31",
 				"client": "대한항공",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "새만금 개발청",
 				"date": "2014.03.03 ~ 2014.07.31",
 				"client": "새만금 개발청",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "대자연 쇼핑몰",
 				"date": "2014.02.03 ~ 2014.02.28",
 				"client": "대자연",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "방송고 앱북",
 				"date": "2014.01.01 ~ 2014.02.28",
 				"client": "방송고",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "공연예술포털 모바일",
 				"date": "2013.11.01 ~ 2013.12.31",
 				"client": "공연예술포털",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "I Will센터",
@@ -294,87 +395,87 @@
 				"name": "메리츠화재 걱정인형 모바일",
 				"date": "2013.08.01 ~ 2013.09.30",
 				"client": "메리츠화재",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "인제스피디움 반응형 웹사이트",
 				"date": "2013.07.01 ~ 2013.08.30",
 				"client": "인제스피디움",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "현대오토에버 HKPRIMEPILOT 시스템 개발",
 				"date": "2013.05.01 ~ 2013.10.31",
 				"client": "현대오토에버",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 
 			{
 				"name": "효성cms전자금융센터시스템 개발",
 				"date": "2013.06.03 ~ 2013.09.30",
 				"client": "효성cms",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "하나생명",
 				"date": "2013.03.01 ~ 2013.06.28",
 				"client": "하나생명",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "우리은행 차세대",
 				"date": "2012.11.01 ~ 2013.03.30",
 				"client": "우리은행 차세대",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "KDB 산업은행 차세대",
 				"date": "2012.07.02 ~ 2012.11.30",
 				"client": "KDB 산업은행",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "국가 암정보 센터",
 				"date": "2012.09.03 ~ 2012.10.31",
 				"client": "국가 암정보 센터",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "전남대 안전망",
 				"date": "2012.05.01 ~ 2012.07.31",
 				"client": "전남대",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "충북대 안전망",
 				"date": "2012.04.02 ~ 2012.06.29",
 				"client": "충북대",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "인천대 안전망",
 				"date": "2012.03.01 ~ 2012.04.30",
 				"client": "인천대",
-				"skill": ["html", "javascript", "css","svn"]
+				"skill": ["photoshop","html", "javascript", "css","svn"]
 			},
 			{
 				"name": "㈜말타니바이오",
 				"date": "2012.02.01 ~ 2012.03.30",
 				"client": "㈜말타니바이오",
-				"skill": ["html", "javascript", "css", "svn"]
+				"skill": ["photoshop","html", "javascript", "css", "svn"]
 			},
 			{
 				"name": "삼성SVC",
 				"date": "2011.08.01 ~ 2011.11.30",
 				"client": "삼성",
-				"skill": ["html", "javascript", "css", "svn"]
+				"skill": ["photoshop","html", "javascript", "css", "svn"]
 			},
 
 			{
 				"name": "현대자동차 위치 기반포탈 SOI",
 				"date": "2011.06.01 ~ 2011.08.31",
 				"client": "현대자동차",
-				"skill": ["html", "javascript", "css", "svn"]
+				"skill": ["photoshop", "html", "javascript", "css", "svn"]
 			},
 			{
 				"name": "GS Retail",
@@ -392,7 +493,7 @@
 				"name": "한전 KDN 인트라망 작업",
 				"date": "2010.05.03 ~ 2010.06.30",
 				"client": "한전 KDN",
-				"skill": ["photoshop"]
+				"skill": ["photoshop","html", "css"]
 			},
 			{
 				"name": "국립공원관리공단 다국어 홈페이지 구축",

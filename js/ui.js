@@ -609,7 +609,7 @@ function openToast(str, options) {
     </div>`
 
     document.body.append(toastPop)
-    // document.querySelector('.isToast').classList.remove('isToast')
+    document.querySelector('.isToast').classList.remove('isToast')
     document.querySelectorAll('.toast-popup').forEach((item, index)=>{
         // setTimeout(()=>{
             console.log(index , ":::::::::::::::")
