@@ -9,10 +9,18 @@
 	<!-- <link href="../img/common/favicon.ico" rel="shrtcut icon">
 	<link href="../img/common/favicon.png" rel="apple-touch-icon-precomposed"> -->
 	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-tomorrow.min.css">
-   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1"></script>
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism-tomorrow.min.css">
+   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1"></script> -->
 </head>
 <body class="body">
+	<div style="position: fixed;
+		top: 0;
+		z-index: 1000;
+		width: 100%;
+		height: 5px;
+		background-color: #f1f1f1;">
+		<div  id="myBar" style="position: fixed;height: 5px; background: #25b09b;"></div>
+	</div>
 	<div class="wrap">
 		<!--  -->
 		
@@ -37,6 +45,32 @@
 			</div>
 
 			<main class="container">
+				<div class="divider">Lorem Ipsum</div>
+				<!-- <div>
+					<h2>배송중</h2>
+					<div>
+						<div class="delivery">
+							<ul class="check">
+								<li class="isActive">
+									<span>배송 준비</span>
+								</li>
+								<li class="">
+									<span>배송 출발</span>
+								</li>
+								<li class="">
+									<span>배송 중</span>
+								</li>
+								<li class="">
+									<span>배송 도착</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+			
+				</div> -->
+
+				
+
 				<div class="scrollSwiper"><!-- 스와이퍼 커러셀 -->
 					<h2>스와이퍼</h2>
 					<div class="container-swiper">
@@ -57,7 +91,10 @@
 						</div>
 					</div>
 				</div>
+<<<<<<< HEAD
 				
+=======
+>>>>>>> refs/remotes/origin/main
 				<div class="scrollSelect"><!-- 디자인 셀렉트 박스 -->
 					<h2>디자인 셀렉트 박스</h2>
 					<div class="styled-combo">
@@ -129,6 +166,7 @@
 						</div>
 					</div> -->
 				</div>
+				
 				<div class="scrollIcon"><!-- 아이콘 -->
 					<h2>아이콘</h2>
 					<div>
@@ -258,10 +296,20 @@
 				</div>
 				<div class="scrollSwitch"><!-- 스위치 -->
 					<h2>스위치</h2>
-					<div class="switch">
+					<!-- <div class="switch">
 						<input type="checkbox" id="toggle">
 						<label for="toggle"></label>
-					</div>
+					</div> -->
+
+					<label class="switch">
+						<input type="checkbox">
+						<span class="toggle"></span>
+					</label>
+					
+					<label class="switch">
+						<input type="checkbox" checked>
+						<span class="toggle"></span>
+					</label>
 				</div>
 				<div class="scrollTab"><!-- 텝 메뉴 -->
 					<h2>탭</h2>
@@ -440,6 +488,8 @@
 		</div>
 		<div class="pop-content">
 			<div class="inner">
+				팝업 노출 입니다. <br>
+				팝업 노출 입니다. <br>
 				팝업 노출 입니다. <br>
 				팝업 노출 입니다. <br>
 				팝업 노출 입니다. <br>

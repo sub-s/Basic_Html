@@ -47,6 +47,23 @@ HTMLElement.prototype.parent = function(t){
 
 
 
+
+// 가로 스크롤
+window.onscroll = function(){
+    horizontalScroll();
+}
+
+function horizontalScroll(){
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById("myBar").style.width = scrolled + "%";
+}
+
+
+
+
 var ui = { 
     // 초기구동
 	init:function(){ 
