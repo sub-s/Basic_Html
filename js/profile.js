@@ -18,32 +18,32 @@
             
             // 추가적인 작업 수행
             // const profile = document.querySelector('.profile tbody')
-            const school = document.querySelector('.school tbody')
+            // const school = document.querySelector('.school tbody')
             const projectList = document.querySelector('.project tbody')
 
 
             // 학교 
-            for(let i = 0; i < data[0].schoolProfile.length; i++){
-                const tr = document.createElement('tr');
+            // for(let i = 0; i < data[0].schoolProfile.length; i++){
+            //     const tr = document.createElement('tr');
 
-                const schoolTd = document.createElement('td')
-                const dateTd = document.createElement('td')
-                const graduationTd = document.createElement('td')
-                const majorTd = document.createElement('td')
+            //     const schoolTd = document.createElement('td')
+            //     const dateTd = document.createElement('td')
+            //     const graduationTd = document.createElement('td')
+            //     const majorTd = document.createElement('td')
 
-                schoolTd.textContent = data[0].schoolProfile[i].school
-                dateTd.textContent = data[0].schoolProfile[i].date
-                graduationTd.textContent = data[0].schoolProfile[i].graduation
-                majorTd.textContent = data[0].schoolProfile[i].major
+            //     schoolTd.textContent = data[0].schoolProfile[i].school
+            //     dateTd.textContent = data[0].schoolProfile[i].date
+            //     graduationTd.textContent = data[0].schoolProfile[i].graduation
+            //     majorTd.textContent = data[0].schoolProfile[i].major
 
-                school.appendChild(tr)
+            //     // school.appendChild(tr)
 
-                tr.appendChild(schoolTd)
-                tr.appendChild(dateTd)
-                tr.appendChild(graduationTd)
-                tr.appendChild(majorTd)
+            //     tr.appendChild(schoolTd)
+            //     tr.appendChild(dateTd)
+            //     tr.appendChild(graduationTd)
+            //     tr.appendChild(majorTd)
                 
-            }
+            // }
 
 
             

@@ -26,7 +26,7 @@ legend,caption{/* position: absolute !important; *//* left: 0rem !important; *//
 img{vertical-align:middle; border:none;}
 table{border-collapse:collapse;border-spacing:0;}
 address,em,i{font-style:normal;}
-strong,b{font-weight:normal;}
+/* strong,b{font-weight:normal;} */
 *,::before,::after{-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
 [tabindex]:focus>.pbd,
 *:focus{outline-color: rgba(0, 114, 255,0.2);outline-width: 3rem !important;outline-style: solid;}
