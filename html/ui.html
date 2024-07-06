@@ -17,9 +17,9 @@
 		top: 0;
 		z-index: 1000;
 		width: 100%;
-		height: 5px;
-		background-color: #f1f1f1;">
-		<div  id="myBar" style="position: fixed;height: 5px; background: #25b09b;"></div>
+		height: 2px;
+		background-color: #C0D0FF;">
+		<div  id="myBar" style="position: fixed;height: 2px; background: #333;"></div>
 	</div>
 	<div class="wrap">
 		<!--  -->
@@ -46,29 +46,7 @@
 
 			<main class="container">
 				<div class="divider">Lorem Ipsum</div>
-				<!-- <div>
-					<h2>배송중</h2>
-					<div>
-						<div class="delivery">
-							<ul class="check">
-								<li class="isActive">
-									<span>배송 준비</span>
-								</li>
-								<li class="">
-									<span>배송 출발</span>
-								</li>
-								<li class="">
-									<span>배송 중</span>
-								</li>
-								<li class="">
-									<span>배송 도착</span>
-								</li>
-							</ul>
-						</div>
-					</div>
 			
-				</div> -->
-
 				
 
 				<div class="scrollSwiper"><!-- 스와이퍼 커러셀 -->
@@ -101,7 +79,7 @@
 				<div class="scrollSelect"><!-- 디자인 셀렉트 박스 -->
 					<h2>디자인 셀렉트 박스</h2>
 					<div class="styled-combo">
-						<p class="combo-title" onclick="ui.selectBox()">option 1</p>
+						<p class="combo-title" onclick="selectBox()">option 1</p>
 						<div class="custom-select-box">
 							<ul>
 								<li data-value="option 1">option 1</li>
@@ -111,7 +89,7 @@
 						</div>
 					</div>
 					<div class="styled-combo">
-						<p class="combo-title" onclick="ui.selectBox()">option 1</p>
+						<p class="combo-title" onclick="selectBox()">option 1</p>
 						<div class="custom-select-box">
 							<ul>
 								<li data-value="option 1">option 1</li>
@@ -469,14 +447,15 @@
 	</div>
 
 	<!-- 모달 팝업 -->
-	<div class="ui-popup" role="dialog" aria-modal="true" id="modal01">
+	<div class="ui-popup" role="dialog" aria-modal="true" id="modal01" >
 		<div class="pop-header">
-			<h3>팝업 헤드</h3>
+			<h3>테스트 가이드 공지사항</h3>
 			<button class="btn" onclick="closePopup()"> 닫기</button>
 		</div>
 		<div class="pop-content">
 			<div class="inner">
-				팝업 노출 입니다.
+				새로운 repository 에서  <br />
+				새로운 구성으로 기본 가이드 페이지 리펙토링 중 입니다.<br />
 			</div>
 		</div>
 		<div class="pop-footer">
@@ -532,6 +511,12 @@
 	<script src="../js/skin.js"></script>
 	<script>
 	
+
+		
+	
+	
+
+
 	// document.querySelector("#alert1").click();
 
 	
@@ -586,6 +571,7 @@
 		// tabMenu 함수 호출
 		// tabMenu(2);
 		tabString('tab-content01');
+		// openPopup('modal01' , {position: 'center', confirmFn: function(){console.log('팝업 확인') } })
 	});
 
 		
@@ -711,6 +697,8 @@
 
 	// settingRangeBox();
 	
+
+
 	</script>
 
 </body>

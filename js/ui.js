@@ -69,93 +69,105 @@ var ui = {
 	init:function(){ 
 		
 	},
-	selectBox : (e)=> {  // 디자인 셀렉트 박스 
-        // if(str === undefined) return;
-        const _event = event.currentTarget;
-        const selectOption = document.querySelectorAll('.custom-select-box li');
-
-
-        function comboBoxPosition(comboBox) {
-            // 콤보박스의 위치 정보를 가져옵니다.
-            const rect = comboBox.getBoundingClientRect();
-        
-            // 콤보박스의 상대적인 위치를 계산합니다.
-            const comboBoxTop = rect.top;
-            const comboBoxBottom = rect.bottom;
-        
-            // 현재 스크롤의 위치를 가져옵니다.
-            const scrollPosition = window.scrollY || window.pageYOffset;
-        
-            // 화면의 높이를 가져옵니다.
-            const windowHeight = window.innerHeight;
-        
-            // 콤보박스가 화면의 중앙보다 위에 있는지 여부를 확인합니다.
-            const isAbove = comboBoxBottom < windowHeight / 2 + scrollPosition;
-        
-            // 콤보박스가 화면의 중앙보다 아래에 있는지 여부를 확인합니다.
-            const isBelow = comboBoxTop > windowHeight / 2 + scrollPosition;
-        
-            // 결과를 반환합니다.
-            return { isAbove, isBelow };
-        }
-        
-        // 사용 예시
-        const comboBoxElement = document.querySelector('.styled-combo');
-        const { isAbove, isBelow } = comboBoxPosition(comboBoxElement);
-        
-        
-        if(_event.closest('.styled-combo').classList.contains('isActive')) {
-            _event.closest('.styled-combo').classList.remove('isActive');
-            _event.closest('.styled-combo').querySelector('.custom-select-box').classList.remove('bottom')
-        } else {
-            _event.closest('.styled-combo').classList.add('isActive');
-            //콤보 박스가 위에 있는지 아래 있는지 체크 
-            if (isAbove) {
-                console.log('콤보박스가 화면의 위쪽에 있습니다.');
-                _event.closest('.styled-combo').querySelector('.custom-select-box').classList.remove('bottom');
-            } else if (isBelow) {
-                console.log('콤보박스가 화면의 아래쪽에 있습니다.');
-                _event.closest('.styled-combo').querySelector('.custom-select-box').classList.add('bottom');
-            } else {
-                console.log('콤보박스가 화면의 중앙에 위치하거나 화면에 표시되지 않습니다.');
-                _event.closest('.styled-combo').querySelector('.custom-select-box').classList.add('bottom');
-            }
-
-
-            document.addEventListener('click', function(e){
-                const _this = e.target;
-                const comboBox = _this.closest('body').querySelectorAll('.styled-combo');
-                comboBox.forEach((item)=>{
-                    if(item.classList.contains('isActive')){
-                        const combo = document.querySelector('body').querySelectorAll('.styled-combo');
-                        combo.forEach((item)=>{
-                            if(item !== _this.closest('.styled-combo')) {
-                                item.classList.remove('isActive');
-                            }
-                        });
-                    }else {
-                        return false;
-                    }
-                });
-            });
-        }
-        
-        selectOption.forEach((item, index)=>{
-            const _index =  Array.from(selectOption).indexOf(item); // 인덱스 찾기 
-            item.addEventListener('click', (e)=>{
-                if(index === _index) {
-                    item.closest('.styled-combo').querySelector('.combo-title').innerText = item.innerText
-                    item.closest('.styled-combo').classList.remove('isActive');
-                }
-            })
-        });
-
-
-        
-        
-        
-	},
+	
 };
+
+
+
+
+function selectBox(e){  // 디자인 셀렉트 박스 
+    // if(str === undefined) return;
+    const _event = event.currentTarget;
+    const selectOption = document.querySelectorAll('.custom-select-box li');
+
+
+    function comboBoxPosition(comboBox) {
+        // 콤보박스의 위치 정보를 가져옵니다.
+        const rect = comboBox.getBoundingClientRect();
+    
+        // 콤보박스의 상대적인 위치를 계산합니다.
+        const comboBoxTop = rect.top;
+        const comboBoxBottom = rect.bottom;
+    
+        // 현재 스크롤의 위치를 가져옵니다.
+        const scrollPosition = window.scrollY || window.pageYOffset;
+    
+        // 화면의 높이를 가져옵니다.
+        const windowHeight = window.innerHeight;
+    
+        // 콤보박스가 화면의 중앙보다 위에 있는지 여부를 확인합니다.
+        const isAbove = comboBoxBottom < windowHeight / 2 + scrollPosition;
+    
+        // 콤보박스가 화면의 중앙보다 아래에 있는지 여부를 확인합니다.
+        const isBelow = comboBoxTop > windowHeight / 2 + scrollPosition;
+    
+        // 결과를 반환합니다.
+        return { isAbove, isBelow };
+    }
+    
+    // 사용 예시
+    const comboBoxElement = document.querySelector('.styled-combo');
+    const { isAbove, isBelow } = comboBoxPosition(comboBoxElement);
+    
+    
+    if(_event.closest('.styled-combo').classList.contains('isActive')) {
+        _event.closest('.styled-combo').classList.remove('isActive');
+        _event.closest('.styled-combo').querySelector('.custom-select-box').classList.remove('bottom')
+    } else {
+        _event.closest('.styled-combo').classList.add('isActive');
+        //콤보 박스가 위에 있는지 아래 있는지 체크 
+        if (isAbove) {
+            console.log('콤보박스가 화면의 위쪽에 있습니다.');
+            _event.closest('.styled-combo').querySelector('.custom-select-box').classList.remove('bottom');
+        } else if (isBelow) {
+            console.log('콤보박스가 화면의 아래쪽에 있습니다.');
+            _event.closest('.styled-combo').querySelector('.custom-select-box').classList.add('bottom');
+        } else {
+            console.log('콤보박스가 화면의 중앙에 위치하거나 화면에 표시되지 않습니다.');
+            _event.closest('.styled-combo').querySelector('.custom-select-box').classList.add('bottom');
+        }
+
+
+        document.addEventListener('click', function(e){
+            const _this = e.target;
+            const comboBox = _this.closest('body').querySelectorAll('.styled-combo');
+            comboBox.forEach((item)=>{
+                if(item.classList.contains('isActive')){
+                    const combo = document.querySelector('body').querySelectorAll('.styled-combo');
+                    combo.forEach((item)=>{
+                        if(item !== _this.closest('.styled-combo')) {
+                            item.classList.remove('isActive');
+                        }
+                    });
+                }else {
+                    return false;
+                }
+            });
+        });
+    }
+    
+    selectOption.forEach((item, index)=>{
+        const _index =  Array.from(selectOption).indexOf(item); // 인덱스 찾기 
+        item.addEventListener('click', (e)=>{
+            if(index === _index) {
+                item.closest('.styled-combo').querySelector('.combo-title').innerText = item.innerText
+                item.closest('.styled-combo').classList.remove('isActive');
+            }
+        })
+    });
+
+
+    
+    
+    
+}
+
+
+
+
+
+
+
 
 
 
@@ -170,50 +182,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
-// 콤보박스
-// if(document.querySelector('.styled-combo')) {
-//     // select
-//     function selectClicked(str){
-//         const _this = str;
-    
-//         if(_this.closest('.styled-combo').classList.contains('isActive')) {
-//             _this.closest('.styled-combo').classList.remove('isActive');
-//         } else {
-//             _this.closest('.styled-combo').classList.add('isActive');
-//         }
-
-//         const selectOption = document.querySelectorAll('.custom-select-box li');
-//         selectOption.forEach((item, index)=>{
-//             const _index =  Array.from(selectOption).indexOf(item);
-
-//             item.addEventListener('click', (e)=>{
-//                 console.log(item.getAttribute('data-value') , ":::::::::::")
-//                 if(index === _index) {
-//                     item.closest('.styled-combo').querySelector('.combo-title').innerText = item.innerText
-//                     item.closest('.styled-combo').classList.remove('isActive');
-//                 }
-//             })
-//         })
-//     }
-
-    
-//     // select closed
-//     document.addEventListener('click', function(e){
-//         if(document.querySelector('.styled-combo').classList.contains('isActive')){
-//             console.log('ddddddddd');
-//             const _this = e.target;
-//             const combo = document.querySelector('body').querySelectorAll('.styled-combo');
-        
-//             combo.forEach((item)=>{
-//                 if(item !== _this.closest('.styled-combo')) {
-//                     item.classList.remove('isActive');
-//                 }
-//             });
-//         }
-//     });    
-// }
 
 
 // 상단 검색창 텍스트 클리어 
@@ -817,32 +785,8 @@ function updateSlider(_this, inputType) {
     progress.style.right = progressRight + '%';
 
 
-    // 레인지 텍스트 박스 초기 위치 
-    // const leftText = document.querySelector('.range-box .left-txt');
-    // const rightText = document.querySelector('.range-box .right-txt'); 
-
-
-    // leftText.style.transform = 'translate(-50%, 0)';
-    // leftText.style.left = progressLeft  + '%';
-    // rightText.style.right = progressRight + '%';
-    // rightText.style.transform = 'translate(50%, 0)';
+  
 }
-
-// if(document.querySelector('.range-box .left-txt')){
-
-//     // 레인지 텍스트 박스 초기 위치 
-//     const leftText = document.querySelector('.range-box .left-txt');
-//     const rightText = document.querySelector('.range-box .right-txt'); 
-    
-//     // 너비 값.
-//     const leftWidth = leftText.clientWidth;
-//     const rightWidth = rightText.clientWidth;
-    
-//     leftText.style.transform = 'translate(-50%, 0)';
-//     rightText.style.transform = 'translate(50%, 0)';
-// }
-
-
 
 
 // 인풋 레인지 
@@ -899,10 +843,7 @@ function handleRange(_this, rangeType) {
         progress.style.left = progressLeft + '%';
         progress.style.right = progressRight + '%';
 
-        // leftText.style.transform = 'translate(-50%, 0)';
-        // leftText.style.left = progressLeft  + '%';
-        // rightText.style.right = progressRight + '%';
-        // rightText.style.transform = 'translate(50%, 0)';
+    
         
     }
 
@@ -935,12 +876,6 @@ function rangeMax(){
 
 
 
-
-
-// 순서를 먼저 잘 선택 해야 한다..
-// 1. 트랜지션이 시작되기 전에 
-// 2. 해당하는 범위의 높이 값을 가저오고.
-// 3. 블럭이 되었을 때 다시 값을 입력 해준다. 
 
 
 // 가이드 : 유틸 스크립트 메뉴
@@ -1031,33 +966,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
    
 });
-
-
-
-
-// // 페이지에 있는 모든 테그네임을 가져와서 배열로 변환
-// var allElements = document.getElementsByTagName('*');
-// // console.log(allElements , "allElements")
-// // 배열의 각 요소에 대해 반복문 실행
-// Array.prototype.forEach.call(allElements, function (el) {
-//     // 현재 요소의 data-include-path 속성 값을 가져옴
-//     var includePath = el.dataset.includePath;
-
-//     // data-include-path 속성이 존재하는 경우
-//     if (includePath) {
-//         // XMLHttpRequest를 사용하여 외부 HTML 파일을 가져옴
-//         var xhttp = new XMLHttpRequest();
-//         xhttp.onreadystatechange = function () {
-//             // 요청이 완료되고 성공한 경우
-//             if (this.readyState == 4 && this.status == 200) {
-//                 // 현재 요소의 outerHTML을 가져온 파일의 내용으로 대체
-//                 el.outerHTML = this.responseText;
-//             }
-//         };
-//         xhttp.open('GET', includePath, true);
-//         xhttp.send(); // 서버에 요청을 보냄
-//     }
-// });
 
 
 
